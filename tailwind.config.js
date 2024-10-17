@@ -7,7 +7,16 @@ export default {
     'node_modules/preline/dist/*.js',
   ],
   theme: {
-    extend: {},
+    extend: {
+                  colors: {
+                    "Genoa" : "#368666",
+                    "Aquamarine" : "#B5FFCE",
+                    "Medium-Carmine" : "#B6333C",
+            },
+        fontFamily: {
+                poppins: ["Poppins", "mono"],
+            },
+    },
   },
   plugins: [
      require('preline/plugin'),
