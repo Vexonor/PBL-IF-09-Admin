@@ -1,6 +1,17 @@
 @extends('layouts/main')
 
 @section('main')
+<button type="button"
+    class="py-3 px-4 my-10 w-52 justify-center inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
+    aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal" data-hs-overlay="#tambah-modal">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+        <path
+            d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z">
+        </path>
+    </svg>
+    Tambah
+</button>
+
 <div class="flex flex-col">
     <div class="-m-1.5 overflow-x-auto">
         <div class="p-1.5 min-w-full inline-block align-middle">
@@ -86,6 +97,309 @@
 </div>
 
 
+<!-- Tambah -->
+<div id="tambah-modal"
+    class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+    role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
+    <div
+        class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-4xl sm:w-full m-3 sm:mx-auto h-[calc(100%-3.5rem)] min-h-[calc(100%-3.5rem)] flex items-center">
+        <div
+            class="w-full max-h-full overflow-hidden flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
+            <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+                <h3 id="hs-vertically-centered-scrollable-modal-label" class="font-bold text-gray-800 dark:text-white">
+                    Tambah Informasi Pengangkutan
+                </h3>
+                <button type="button"
+                    class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
+                    aria-label="Close" data-hs-overlay="#tambah-modal">
+                    <span class="sr-only">Close</span>
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M18 6 6 18"></path>
+                        <path d="m6 6 12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="p-4 overflow-y-auto">
+                <div class="space-y-4">
+                    <form action="">
+                        <!-- Wilayah -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Wilayah
+                                Pengangkutan :</label>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" value="Argentina"
+                                        data-hs-combo-box-input="">
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="Argentina"
+                                                data-hs-combo-box-value="">Argentina</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="1" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="Brazil"
+                                                data-hs-combo-box-value="">Brazil</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="2" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="China"
+                                                data-hs-combo-box-value="">China</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="3" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="USA"
+                                                data-hs-combo-box-value="">USA</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="3" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="Italy"
+                                                data-hs-combo-box-value="">Italy</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="3" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="France"
+                                                data-hs-combo-box-value="">France</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Wilayah -->
+
+                        <!-- Tanggal Pengangkutan -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Tanggal
+                                Pengangkutan :</label>
+                            @include('layouts/calendar')
+                        </div>
+                        <!-- Tanggal Pengangkutan -->
+
+                        <!-- Jam Pengangkutan -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Jam
+                                Pengangkutan :</label>
+                            <input type="time" id="input-label"
+                                class="py-3 px-4 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                placeholder="you@site.com">
+                        </div>
+                        <!-- Jam Pengangkutan -->
+
+                        <!-- Petugas -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Petugas
+                                Yang Bertanggung Jawab :</label>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" value="Argentina"
+                                        data-hs-combo-box-input="">
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="Argentina"
+                                                data-hs-combo-box-value="">Argentina</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="1" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="Brazil"
+                                                data-hs-combo-box-value="">Brazil</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="2" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="China"
+                                                data-hs-combo-box-value="">China</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="3" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="USA"
+                                                data-hs-combo-box-value="">USA</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="3" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="Italy"
+                                                data-hs-combo-box-value="">Italy</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="3" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="France"
+                                                data-hs-combo-box-value="">France</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Petugas -->
+                    </form>
+                </div>
+            </div>
+            <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
+                <button type="button"
+                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                    data-hs-overlay="#edit-modal">
+                    Tutup
+                </button>
+                <button type="button"
+                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white  focus:outline-none  disabled:opacity-50 disabled:pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256">
+                        <path
+                            d="M208,32H83.31A15.86,15.86,0,0,0,72,36.69L36.69,72A15.86,15.86,0,0,0,32,83.31V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM88,48h80V80H88ZM208,208H48V83.31l24-24V80A16,16,0,0,0,88,96h80a16,16,0,0,0,16-16V48h24Zm-80-96a40,40,0,1,0,40,40A40,40,0,0,0,128,112Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,176Z">
+                        </path>
+                    </svg>
+                    Simpan
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tambah -->
 
 <!-- Edit -->
 <div id="edit-modal"
@@ -405,7 +719,7 @@
                 </h3>
                 <button type="button"
                     class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#hs-vertically-centered-modal">
+                    aria-label="Close" data-hs-overlay="#hapus-modal">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -465,7 +779,7 @@
                 </h3>
                 <button type="button"
                     class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#edit-modal">
+                    aria-label="Close" data-hs-overlay="#detail-modal">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
