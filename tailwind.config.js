@@ -11,7 +11,12 @@ export default {
                   colors: {
                     "Genoa" : "#368666",
                     "Aquamarine" : "#B5FFCE",
-                    "Medium-Carmine" : "#B6333C",
+                    "Orange-Peel" : "#FF9900",
+                    "Shalimar" : "FFF3AE",
+                    "Flamingo" : "F15950",
+                    "Beauty-Bush" : "EEB3B0",
+                    "Brick-Red" : "#B5333D"
+                    ,
             },
         fontFamily: {
                 poppins: ["Poppins", "mono"],

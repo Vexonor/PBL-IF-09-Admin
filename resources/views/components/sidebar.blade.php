@@ -2,10 +2,11 @@
     <ul>
         <li class="logo pointer-events-none">
             <a href="#">
-                <div class="icon">
+        <div class="text font-bold" style="font-size: 24px; font-family: 'Poppins', sans-serif;">
+                    Trashify</div>
+                <div class="icon" style="margin-left: auto;">
                     <img src="{{ asset('img/garbage-truck 4.svg') }}" alt="">
                 </div>
-                <div class="text font-bold">Trashify</div>
             </a>
         </li>
         <div class="Menulist">
