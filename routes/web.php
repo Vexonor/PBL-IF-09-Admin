@@ -4,10 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
     return view('dashboard', [
         'title' => 'Dashboard'
     ]);
@@ -46,5 +42,11 @@ Route::get('/admin', function () {
 Route::get('/petugasKebersihan', function () {
     return view('petugasKebersihan', [
         'title' => 'Petugas Kebersihan'
+    ]);
+});
+
+Route::get('/pengaturan', function () {
+    return view('pengaturan', [
+        'title' => 'Pengaturan'
     ]);
 });

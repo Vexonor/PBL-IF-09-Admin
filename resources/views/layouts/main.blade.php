@@ -17,23 +17,23 @@
 </head>
 
 <body class="font-poppins">
-    <div class="flex h-full">
+    <div class="flex h-full overflow-y-auto">
         <!-- Sidebar -->
-        <div class="w-[350px] bg-gray-200">
+        <div class="md:w-64 xl:w-[21.875rem]">
             @include('components/sidebar')
         </div>
 
         <!-- Main Content -->
         <div class="flex-grow flex flex-col">
             <!-- Header -->
-            <div class="grid grid-cols-3 p-5">
+            <div class="grid grid-cols-5 p-5">
                 <!-- Title -->
-                <div class="col-span-1 flex items-center justify-center">
+                <div class="col-span-2 flex items-center justify-center">
                     <span class="font-semibold text-xl">{{ $title }}</span>
                 </div>
 
                 <!-- Search Bar -->
-                <div class="col-span-1 flex items-center justify-center w-full">
+                <div class="col-span-2 flex items-center justify-center w-full">
                     <div class="relative w-full">
                         <input type="text"
                             class="peer py-3 px-4 pl-11 w-full block bg-gray-100 border border-transparent rounded-full text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
@@ -71,7 +71,7 @@
                             role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-custom-trigger">
                             <div class="p-1 space-y-0.5">
                                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700"
-                                    href="#">
+                                    href="/pengaturan">
                                     Pengaturan
                                 </a>
                             </div>
@@ -81,11 +81,13 @@
             </div>
 
             <!-- Content -->
-            <div class="container mx-auto p-5">
+            <div class="container mx-auto sm:p-10 lg:p-5">
                 @yield('main')
             </div>
         </div>
     </div>
+    <script src="./node_modules/lodash/lodash.min.js"></script>
+    <script src="./node_modules/dropzone/dist/dropzone-min.js"></script>
 </body>
 
 </html>

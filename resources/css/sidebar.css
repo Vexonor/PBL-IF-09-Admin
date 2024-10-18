@@ -2,38 +2,8 @@
     --clr: #ffffff;
 }
 
-.menuToggle {
-    position: absolute;
-    top: 10px;
-    left: 330px;
-    border-radius: 100%;
-    border-color: #ffffff;
-    border: 5px solid white;
-    width: 50px;
-    height: 50px;
-    background: #368666;
-    z-index: 1;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s;
-}
-
-.menuToggle.active {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    border-color: #368666;
-    transform: rotate(-180deg);
-    box-shadow: 0 0 0 #fff;
-    transition: 0.5s;
-}
-
 .sidebar {
     position: fixed;
-    width: 350px;
-    height: 100%;
     background: #368666;
     transition: 0.5s;
     padding-left: 10px;
@@ -88,13 +58,10 @@
 }
 
 .sidebar ul li.logo .icon {
-    font-size: 2em;
     margin-bottom: 20px;
 }
 
 .sidebar ul li.logo .text {
-    font-size: 1.2em;
-    font-weight: 500;
     color: var(--clr);
 }
 
@@ -123,9 +90,7 @@
     height: 70px;
     display: flex;
     align-items: center;
-    font-size: 1em;
-    padding-left: 15px;
-    letter-spacing: 0.05em;
+    padding-left: 5px;
 
 }
 

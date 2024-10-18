@@ -1,16 +1,16 @@
-<div class="sidebar">
+<div class="sidebar md:w-64 xl:w-[21.875rem] h-svh">
     <ul>
-        <li class="logo pointer-events-none">
+        <li class="logo pointer-events-none flex justify-center items-center mt-3">
             <a href="#">
                 <div class="icon">
-                    <img src="{{ asset('img/garbage-truck 4.svg') }}" alt="">
+                    <img class="size-16" src="{{ asset('img/garbage-truck 4.svg') }}" alt="">
                 </div>
-                <div class="text font-bold">Trashify</div>
+                <div class="text md:text-xl xl:text-2xl font-bold">Trashify</div>
             </a>
         </li>
         <div class="Menulist">
             <li class="{{ $title == 'Dashboard' ? 'active' : '' }}">
-                <a href="/dashboard">
+                <a href="/">
                     <div class="icon">
                         <svg class="{{ $title == 'Dashboard' ? 'text-black' : 'text-white' }}"
                             xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
@@ -20,7 +20,8 @@
                             </path>
                         </svg>
                     </div>
-                    <div class="text font-medium {{ $title == 'Dashboard' ? 'text-black' : 'text-white' }}">
+                    <div
+                        class="text md:text-sm xl:text-lg font-medium {{ $title == 'Dashboard' ? 'text-black' : 'text-white' }}">
                         Dashboard</div>
                 </a>
             </li>
@@ -36,7 +37,8 @@
                             </path>
                         </svg>
                     </div>
-                    <div class="text font-medium {{ $title == 'Laporan' ? 'text-black' : 'text-white' }}">
+                    <div
+                        class="text md:text-sm xl:text-lg font-medium {{ $title == 'Laporan' ? 'text-black' : 'text-white' }}">
                         Laporan
                     </div>
                 </a>
@@ -53,7 +55,7 @@
                         </svg>
                     </div>
                     <div
-                        class="text font-medium {{ $title == 'Informasi Pengangkutan' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-lg font-medium {{ $title == 'Informasi Pengangkutan' ? 'text-black' : 'text-white' }}">
                         Informasi Pengangkutan</div>
                 </a>
             </li>
@@ -68,7 +70,8 @@
                             </path>
                         </svg>
                     </div>
-                    <div class="text font-medium {{ $title == 'Lokasi TPS' ? 'text-black' : 'text-white' }}">
+                    <div
+                        class="text md:text-sm xl:text-lg font-medium {{ $title == 'Lokasi TPS' ? 'text-black' : 'text-white' }}">
                         Lokasi
                         TPS</div>
                 </a>
@@ -84,7 +87,8 @@
                             </path>
                         </svg>
                     </div>
-                    <div class="text font-medium {{ $title == 'Bank Sampah' ? 'text-black' : 'text-white' }}">
+                    <div
+                        class="text md:text-sm xl:text-lg font-medium {{ $title == 'Bank Sampah' ? 'text-black' : 'text-white' }}">
                         Bank
                         Sampah
                     </div>
@@ -101,7 +105,8 @@
                             </path>
                         </svg>
                     </div>
-                    <div class="text font-medium {{ $title == 'Admin' ? 'text-black' : 'text-white' }}">
+                    <div
+                        class="text md:text-sm xl:text-lg font-medium {{ $title == 'Admin' ? 'text-black' : 'text-white' }}">
                         Admin
                     </div>
                 </a>
@@ -117,7 +122,8 @@
                             </path>
                         </svg>
                     </div>
-                    <div class="text font-medium {{ $title == 'Petugas Kebersihan' ? 'text-black' : 'text-white' }}">
+                    <div
+                        class="text md:text-sm xl:text-lg font-medium {{ $title == 'Petugas Kebersihan' ? 'text-black' : 'text-white' }}">
                         Petugas
                         Kebersihan</div>
                 </a>
