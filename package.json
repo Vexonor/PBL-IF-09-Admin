@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@preline/toggle-password": "^2.5.0",
+        "apexcharts": "^3.54.1",
         "preline": "^2.5.0"
     }
 }

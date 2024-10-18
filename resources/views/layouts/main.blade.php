@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="./node_modules/apexcharts/dist/apexcharts.css">
     @vite('resources/css/app.css')
     @vite('resources/css/sidebar.css')
     @vite('resources/js/app.js')
@@ -89,5 +90,10 @@
     <script src="./node_modules/lodash/lodash.min.js"></script>
     <script src="./node_modules/dropzone/dist/dropzone-min.js"></script>
 </body>
+
+<script src="./node_modules/lodash/lodash.min.js"></script>
+<script src="./node_modules/apexcharts/dist/apexcharts.min.js"></script>
+<script src="./node_modules/preline/dist/helper-apexcharts.js"></script>
+<script src="https://preline.co/assets/js/hs-apexcharts-helpers.js"></script>
 
 </html>
