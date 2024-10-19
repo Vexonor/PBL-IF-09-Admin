@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dashboardController;
 
+Route::get('/login', function () {
+    return view('login', [
+        'title' => 'Login'
+    ]);
+});
+
 Route::get('/', function () {
     return view('dashboard', [
         'title' => 'Dashboard'
