@@ -13,11 +13,26 @@
     <link rel="stylesheet" href="./node_modules/apexcharts/dist/apexcharts.css">
     @vite('resources/css/app.css')
     @vite('resources/css/sidebar.css')
+    @vite('resources/css/loader.css')
     @vite('resources/js/app.js')
     @vite('resources/js/sidebar.js')
+    @vite('resources/js/loader.js')
 </head>
 
-<body class="font-poppins">
+<body class="font-poppins  [&::-webkit-scrollbar]:w-3
+    [&::-webkit-scrollbar-track]:rounded-full
+    [&::-webkit-scrollbar-track]:bg-gray-100
+    [&::-webkit-scrollbar-thumb]:rounded-full
+    [&::-webkit-scrollbar-thumb]:bg-gray-300
+    dark:[&::-webkit-scrollbar-track]:bg-neutral-700
+    dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+    <!-- Loader -->
+    <div class="loader-wrapper fixed top-0 left-0 bg-Genoa flex justify-center items-center w-full h-full z-[9999]">
+        <div class="loader">
+            @include('components/loaders')
+        </div>
+    </div>
+
     <div class="flex h-full overflow-y-auto">
         <!-- Sidebar -->
         <div class="md:w-64 xl:w-[21.875rem]">
@@ -68,7 +83,7 @@
                                 <path d="m6 9 6 6 6-6" />
                             </svg>
                         </button>
-                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700"
+                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 z-10 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700"
                             role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-custom-trigger">
                             <div class="p-1 space-y-0.5">
                                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700"
@@ -141,7 +156,7 @@
                             </button>
                         </li>
                         <li>
-                            <a href="/login"
+                            <a href="/"
                                 class="w-32 justify-center py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-transparent bg-Genoa text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                     viewBox="0 0 256 256">
@@ -157,7 +172,6 @@
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

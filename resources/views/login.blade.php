@@ -11,10 +11,18 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
     @vite('resources/css/app.css')
+    @vite('resources/css/loader.css')
     @vite('resources/js/app.js')
+    @vite('resources/js/loader.js')
 </head>
 
 <body class="font-poppins bg-Genoa">
+    <!-- Loader -->
+    <div class="loader-wrapper fixed top-0 left-0 bg-Genoa flex justify-center items-center w-full h-full z-[9999]">
+        <div class="loader">
+            @include('components/loaders')
+        </div>
+    </div>
     <div class="container flex justify-center items-center h-screen">
         <div
             class="w-1/2 flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
@@ -65,7 +73,7 @@
                         class="w-full mt-10 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white disabled:opacity-50 disabled:pointer-events-none">
                         Masuk
                     </button> -->
-                    <a href="/"
+                    <a href="/dashboard"
                         class="w-full mt-10 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white disabled:opacity-50 disabled:pointer-events-none">
                         Masuk
                     </a>

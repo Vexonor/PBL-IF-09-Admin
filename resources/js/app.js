@@ -1,5 +1,5 @@
 import './bootstrap';
-import 'preline'
+import 'preline';
 import ApexCharts from 'apexcharts';
 
 const options = {
@@ -25,4 +25,24 @@ const options = {
 
 const chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
+
+
+window.addEventListener('load', () => {
+  (function() {
+    const clearBtn = document.querySelector('#multiple-with-conditional-counter-trigger-clear');
+
+    clearBtn.addEventListener('click', () => {
+      const selectInstances = [
+        HSSelect.getInstance('#kategoriFilter'),
+        HSSelect.getInstance('#statusFilter')
+      ];
+
+      selectInstances.forEach(select => {
+        if (select) {
+          select.setValue([]);
+        }
+      });
+    });
+  })();
+});
 

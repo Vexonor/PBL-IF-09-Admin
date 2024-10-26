@@ -10,7 +10,7 @@
         </li>
         <div class="Menulist">
             <li class="{{ $title == 'Dashboard' ? 'active' : '' }}">
-                <a href="/">
+                <a href="/dashboard">
                     <div class="icon">
                         <svg class="{{ $title == 'Dashboard' ? 'text-black' : 'text-white' }}"
                             xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
