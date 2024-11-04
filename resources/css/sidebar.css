@@ -3,11 +3,10 @@
 }
 
 .sidebar {
-    position: fixed;
     background: #368666;
     transition: 0.5s;
     padding-left: 10px;
-    overflow: hidden;
+    height: 100%;
 }
 
 .sidebar.active {
@@ -16,7 +15,6 @@
 
 .sidebar ul {
     position: relative;
-    height: 100vh;
 }
 
 .sidebar ul li {

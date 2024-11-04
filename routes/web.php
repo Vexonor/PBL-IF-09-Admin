@@ -27,6 +27,12 @@ Route::get('/informasiPengangkutan', function () {
     ]);
 });
 
+Route::get('/kontenEdukasi', function () {
+    return view('kontenEdukasi', [
+        'title' => 'Konten Edukasi'
+    ]);
+});
+
 Route::get('/lokasiTPS', function () {
     return view('lokasiTPS', [
         'title' => 'Lokasi TPS'
