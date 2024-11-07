@@ -9,18 +9,19 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = "User";
+    protected $primaryKey = "ID_User";
     protected $fillable = [
-        'name',
+        'Nama',
+        'NIK',
+        'Tanggal_Lahir',
+        'Jenis_Kelamin',
+        'Alamat',
+        'No_Telp',
+        'Foto_Profil',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -44,5 +45,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function AdminTable()
+    {
+        return $this->hasOne(AdminModel::class, 'ID_User');
+    }
+
+    public function PetugasTable()
+    {
+        return $this->hasOne(PetugasModel::class, 'ID_User');
     }
 }

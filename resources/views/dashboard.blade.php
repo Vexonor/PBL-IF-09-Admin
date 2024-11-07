@@ -195,22 +195,6 @@
         </select>
     </div>
 
-    <!-- Legend Indicator -->
-    <div class="flex justify-center sm:justify-end items-center gap-x-4 mb-3 sm:mb-6">
-        <div class="inline-flex items-center">
-            <span class="size-3 inline-block bg-Genoa rounded-full me-2"></span>
-            <span class="text-[15px] text-Genoa">
-                Terangkut
-            </span>
-        </div>
-        <div class="inline-flex items-center">
-            <span class="size-3 inline-block bg-Brick-Red rounded-full me-2"></span>
-            <span class="text-[15px] text-Brick-Red">
-                Tersisa
-            </span>
-        </div>
-    </div>
-
     <!-- Chart -->
     <div id="chart"></div>
 </div>

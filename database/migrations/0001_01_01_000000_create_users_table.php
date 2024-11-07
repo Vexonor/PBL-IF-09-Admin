@@ -11,15 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('User', function (Blueprint $table) {
+            $table->id('ID_User')->nullable();
+            $table->string('Nama')->nullable();
+            $table->bigInteger('Nik')->nullable();
+            $table->date('Tanggal_Lahir')->nullable();
+            $table->enum('Jenis_Kelamin', ['Laki - Laki', 'Perempuan'])->nullable();
+            $table->longText('Alamat')->nullable();
+            $table->char('No_Telp')->nullable();
+            $table->string('Foto_Profil')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['Admin', 'Petugas', 'Warga']);
             $table->rememberToken();
             $table->timestamps();
         });
+        $this->call(\Database\Seeders\UserSeeder::class);
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
@@ -42,8 +50,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('User');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
+    }
+
+    protected function call($class)
+    {
+        (new $class)->run();
     }
 };

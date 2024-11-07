@@ -24,14 +24,15 @@
             </div>
             <div class="p-4 overflow-y-auto">
                 <div class="space-y-4">
-                    <form action="">
+                    <form action="{{ route('BankSampah.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <!-- Nama Bank Sampah -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nama Bank
                                 Sampah :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Nama_Bank_Sampah"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Nama Bank Sampah">
+                                placeholder="Masukkan Nama Bank Sampah" required>
                         </div>
                         <!-- Jenis Bank Sampah -->
                         <div class="w-full mb-5">
@@ -45,11 +46,14 @@
                                 "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
+                                }' class="hidden" name="Jenis_Sampah" required>
                                 <option value="">Pilih Jenis Sampah</option>
-                                <option>Plastik</option>
-                                <option>Elektronik</option>
-                                <option>Besi</option>
+                                <option value="Plastik">Plastik</option>
+                                <option value="Kaca">Kaca</option>
+                                <option value="Kertas">Kertas</option>
+                                <option value="Logam">Logam</option>
+                                <option value="Organik">Organik</option>
+                                <option value="Elektronik">Elektronik</option>
                             </select>
                         </div>
                         <!-- Nama Pemilik Bank Sampah -->
@@ -57,17 +61,17 @@
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nama Pemilik
                                 Bank
                                 Sampah :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Nama_Pemilik"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Nama Pemilik Bank Sampah">
+                                placeholder="Masukkan Nama Pemilik Bank Sampah" required>
                         </div>
                         <!-- No. Telepon -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">No. Telepon
                                 Pemilik :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="No_Telp"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan No. Telepon Pemilik">
+                                placeholder="Masukkan No. Telepon Pemilik" required>
                         </div>
                         <!-- Jam Operasional -->
                         <ul class="flex justify-between gap-2">
@@ -76,9 +80,9 @@
                                 <div class="w-full mb-5">
                                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Jam
                                         Buka :</label>
-                                    <input type="time" id="input-label"
+                                    <input type="time" id="input-label" name="Jam_Buka"
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                        placeholder="Masukkan No. Telepon Pemilik">
+                                        placeholder="Masukkan No. Telepon Pemilik" required>
                                 </div>
                             </li>
                             <!-- Jam Tutup -->
@@ -86,9 +90,9 @@
                                 <div class="w-full mb-5">
                                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Jam
                                         Tutup :</label>
-                                    <input type="time" id="input-label"
+                                    <input type="time" id="input-label" name="Jam_Tutup"
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                        placeholder="Masukkan No. Telepon Pemilik">
+                                        placeholder="Masukkan No. Telepon Pemilik" required>
                                 </div>
                             </li>
                         </ul>
@@ -96,9 +100,9 @@
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Lokasi
                                 :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Titik_Koordinat"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Titik Koordinat">
+                                placeholder="Masukkan Titik Koordinat" required>
                         </div>
                         <!-- Status Operasional -->
                         <div class="w-full mb-5">
@@ -112,13 +116,12 @@
                                 "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
-                                <option value="">Pilih Jenis Sampah</option>
-                                <option>Buka</option>
-                                <option>Tutup</option>
+                                }' class="hidden" name="Status_Operasional" required>
+                                <option value="">Pilih Status</option>
+                                <option value="Buka">Buka</option>
+                                <option value="Tutup">Tutup</option>
                             </select>
                         </div>
-                    </form>
                 </div>
             </div>
             <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
@@ -127,7 +130,7 @@
                     data-hs-overlay="#tambah-modal">
                     Tutup
                 </button>
-                <button type="button"
+                <button type="submit"
                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white  focus:outline-none  disabled:opacity-50 disabled:pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256">
                         <path
@@ -136,11 +139,11 @@
                     </svg>
                     Simpan
                 </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-<!-- Tambah -->
 
 <!-- Edit -->
 <div id="edit-modal"
@@ -284,7 +287,6 @@
         </div>
     </div>
 </div>
-<!-- Edit -->
 
 <!-- Hapus -->
 <div id="hapus-modal"
@@ -344,7 +346,6 @@
         </div>
     </div>
 </div>
-<!-- Hapus -->
 
 <!-- Detail -->
 <div id="detail-modal"
@@ -472,4 +473,3 @@
         </div>
     </div>
 </div>
-<!-- Detail -->

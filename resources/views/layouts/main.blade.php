@@ -27,11 +27,11 @@
     dark:[&::-webkit-scrollbar-track]:bg-neutral-700
     dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
     <!-- Loader -->
-    <div class="loader-wrapper fixed top-0 left-0 bg-Genoa flex justify-center items-center w-full h-full z-[9999]">
+    <!-- <div class="loader-wrapper fixed top-0 left-0 bg-Genoa flex justify-center items-center w-full h-full z-[9999]">
         <div class="loader">
             @include('components/loaders')
         </div>
-    </div>
+    </div> -->
 
     <div class="flex h-full overflow-y-auto">
         <!-- Sidebar -->
@@ -156,16 +156,19 @@
                             </button>
                         </li>
                         <li>
-                            <a href="/"
-                                class="w-32 justify-center py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-transparent bg-Genoa text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                    viewBox="0 0 256 256">
-                                    <path
-                                        d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z">
-                                    </path>
-                                </svg>
-                                Ya
-                            </a>
+                            <form action="{{ route('logout') }}" method="post">
+                                @csrf
+                                <button type="submit"
+                                    class="w-32 justify-center py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-transparent bg-Genoa text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        viewBox="0 0 256 256">
+                                        <path
+                                            d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z">
+                                        </path>
+                                    </svg>
+                                    Ya
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </div>

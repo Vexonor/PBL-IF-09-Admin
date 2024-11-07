@@ -66,6 +66,10 @@
                         <tr>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                No.
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Nama Bank Sampah</th>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
@@ -82,24 +86,39 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700 text-center">
+                        @foreach ($dataBankSampah as $key => $bankSampah)
                         <tr class="hover:bg-gray-100">
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm border-r-2 font-medium text-gray-800 dark:text-neutral-200">
-                                Batam</td>
-                            <td
-                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
-                                Plastik</td>
-                            <td
-                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
-                                Jhon Doe
+                                {{ $key + 1 }}
                             </td>
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $bankSampah -> Nama_Bank_Sampah }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $bankSampah -> Jenis_Sampah }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $bankSampah -> Nama_Pemilik }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                @if ( $bankSampah -> Status_Operasional === 'Buka' )
                                 <span
                                     class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
                                     <span class="size-1.5 inline-block rounded-full bg-Genoa  dark:bg-blue-500"></span>
                                     Buka
                                 </span>
+                                @else
+                                <span
+                                    class="inline-flex border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine">
+                                    <span class="size-1.5 inline-block rounded-full bg-Medium-Carmine"></span>
+                                    Tutup
+                                </span>
+                                @endif
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                 <button type="button"
@@ -139,6 +158,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -146,6 +166,10 @@
     </div>
 </div>
 
+<div class="flex justify-center items-center">
+    @include('alert/success')
+    @include('alert/error')
+</div>
 
 @include('components/bankModal')
 @endsection

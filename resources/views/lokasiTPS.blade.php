@@ -67,6 +67,9 @@
                         <tr>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                No.</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Kode TPS</th>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
@@ -83,30 +86,45 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700 text-center">
+                        @foreach ($dataTPS as $key => $TPS)
                         <tr class="hover:bg-gray-100">
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm border-r-2 font-medium text-gray-800 dark:text-neutral-200">
-                                TPS-001</td>
-                            <td
-                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
-                                Batu Ampar</td>
-                            <td
-                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
-                                1.1187205,104.0484566
+                                {{ $key +1 }}.
                             </td>
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $TPS->Kode_TPS }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $TPS->Wilayah_TPS }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $TPS->Titik_Koordinat }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                @if ( $TPS -> Status_TPS === 'Kosong' )
                                 <span
-                                    class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-lg text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
-                                    <span class="size-1.5 inline-block rounded-lg bg-Genoa  dark:bg-blue-500"></span>
+                                    class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span class="size-1.5 inline-block rounded-full bg-Genoa  dark:bg-blue-500"></span>
                                     Kosong
                                 </span>
+                                @else
+                                <span
+                                    class="inline-flex border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine">
+                                    <span class="size-1.5 inline-block rounded-full bg-Medium-Carmine"></span>
+                                    Penuh
+                                </span>
+                                @endif
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                 <button type="button"
                                     class="py-3 px-4 inline-flex items-center text-sm font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal"
-                                    data-hs-overlay="#edit-modal">
+                                    data-hs-overlay="#edit-modal{{ $TPS->ID_TPS }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -118,7 +136,7 @@
                                     class="py-3 px-4 inline-flex items-center text-sm font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#hapus-modal">
+                                    data-hs-overlay="#hapus-modal{{ $TPS->ID_TPS }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -130,7 +148,7 @@
                                     class="py-3 px-4 inline-flex items-center text-sm font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#detail-modal">
+                                    data-hs-overlay="#detail-modal{{ $TPS->ID_TPS }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -140,6 +158,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -171,6 +190,9 @@
                         <tr>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                No.</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Kode TPS</th>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
@@ -186,30 +208,53 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700 text-center">
+                        @foreach ($dataPengangkutan as $key => $Pengangkutan)
                         <tr class="hover:bg-gray-100">
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm border-r-2 font-medium text-gray-800 dark:text-neutral-200">
-                                TPS-001</td>
-                            <td
-                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
-                                09-11-2024</td>
-                            <td
-                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
-                                Jhon Doe
+                                {{ $key +1 }}.
                             </td>
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $Pengangkutan->Kode_TPS }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $Pengangkutan->Tanggal_Pengangkutan }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $Pengangkutan->ID_Petugas }}
+                            </td>
+                            <td
+                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                @if ($Pengangkutan->Status_Pengangkutan === 'Selesai')
                                 <span
-                                    class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-lg text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
-                                    <span class="size-1.5 inline-block rounded-lg bg-Genoa  dark:bg-blue-500"></span>
-                                    Kosong
+                                    class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span class="size-1.5 inline-block rounded-full bg-Genoa  dark:bg-blue-500"></span>
+                                    Selesai
                                 </span>
+                                @elseif ($Pengangkutan->Status_Pengangkutan === 'Tertunda')
+                                <span
+                                    class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-Orange-Peel dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span
+                                        class="size-1.5 inline-block rounded-full bg-Orange-Peel  dark:bg-blue-500"></span>
+                                    Tertunda
+                                </span>
+                                @elseif($Pengangkutan->Status_Pengangkutan === 'Belum Selesai')
+                                <span
+                                    class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span
+                                        class="size-1.5 inline-block rounded-full bg-Medium-Carmine  dark:bg-blue-500"></span>
+                                    Belum Selesai
+                                </span>
+                                @endif
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                 <button type="button"
                                     class="py-3 px-4 inline-flex items-center text-sm font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal"
-                                    data-hs-overlay="#edit-modal1">
+                                    data-hs-overlay="#edit-modal-pengangkutan{{ $Pengangkutan->ID_Pengangkutan }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -221,7 +266,7 @@
                                     class="py-3 px-4 inline-flex items-center text-sm font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#hapus-modal1">
+                                    data-hs-overlay="#hapus-modal-pengangkutan{{ $Pengangkutan->ID_Pengangkutan }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -233,7 +278,7 @@
                                     class="py-3 px-4 inline-flex items-center text-sm font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#detail-modal1">
+                                    data-hs-overlay="#detail-modal-pengangkutan{{ $Pengangkutan->ID_Pengangkutan }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -243,11 +288,17 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+</div>
+
+<div class="flex justify-center items-center">
+    @include('alert/success')
+    @include('alert/error')
 </div>
 
 @include('components/tpsModal')

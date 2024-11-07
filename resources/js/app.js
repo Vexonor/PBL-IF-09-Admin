@@ -6,14 +6,17 @@ const options = {
   chart: {
     type: 'line',
     height: 350,
+    fontFamily: 'Poppins'
   },
   series: [{
-    name: 'Data Series',
+    name: 'Terangkut',
     data: [30, 40, 35, 50, 49, 60, 70, 91, 125],
+    color: '#368666'
   },
  {
-      name: 'Data Series 2',
+      name: 'Tidak Terangkut',
       data: [20, 30, 100, 40, 39, 50, 60, 120, 100],
+      color: '#B5333D'
     },],
   xaxis: {
     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
