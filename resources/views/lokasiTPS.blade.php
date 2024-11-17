@@ -296,10 +296,5 @@
     </div>
 </div>
 
-<div class="flex justify-center items-center">
-    @include('alert/success')
-    @include('alert/error')
-</div>
-
 @include('components/tpsModal')
 @endsection

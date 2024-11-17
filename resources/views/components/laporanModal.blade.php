@@ -1,5 +1,6 @@
+@foreach ($dataPengaduan as $key => $Pengaduan)
 <!-- Edit Laporan -->
-<div id="edit-modal"
+<div id="edit-modal{{ $Pengaduan->ID_Laporan }}"
     class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
     <div
@@ -12,7 +13,7 @@
                 </h3>
                 <button type="button"
                     class="inline-flex items-center justify-center text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#edit-modal">
+                    aria-label="Close" data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Laporan }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -24,14 +25,17 @@
             </div>
             <div class="p-4 overflow-y-auto">
                 <div class="space-y-4">
-                    <form action="">
+                    <form action="{{ route('laporan.update', ['ID_Laporan' => $Pengaduan -> ID_Laporan]) }}"
+                        method="post" enctype="multipart/form-data">
+                        @csrf
+                        @method('PATCH')
                         <!-- Kode Laporan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Kode Laporan
                                 :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Kode_Laporan"
                                 class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Kode Laporan" readonly>
+                                placeholder="Masukkan Kode Laporan" value="{{ $Pengaduan->Kode_Laporan }}" readonly>
                         </div>
                         <!-- Kategori Laporan -->
                         <div class="w-full mb-5">
@@ -39,33 +43,37 @@
                                 Laporan :</label>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="flex">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-1" checked="">
+                                    <input type="radio" name="Kategori_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-1" value="Pengumpulan Sampah"
+                                        {{ $Pengaduan->Kategori_Laporan === 'Pengumpulan Sampah' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-1"
                                         class="text-sm text-gray-500 ms-2 dark:text-neutral-400">Pengumpulan
                                         Sampah</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-2">
+                                    <input type="radio" name="Kategori_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-2" value="Kondisi TPS"
+                                        {{ $Pengaduan->Kategori_Laporan === 'Kondisi TPS' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-2"
                                         class="text-sm text-gray-500 ms-2 dark:text-neutral-400">Kondisi
                                         TPS</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-3">
+                                    <input type="radio" name="Kategori_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-3" value="Tempat Sampah Liar"
+                                        {{ $Pengaduan->Kategori_Laporan === 'Tempat Sampah Liar' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-3"
                                         class="text-sm text-gray-500 ms-2 dark:text-neutral-400">Tempat Sampah
                                         Liar</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-3">
+                                    <input type="radio" name="Kategori_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-3" value="Lainnya"
+                                        {{ $Pengaduan->Kategori_Laporan === 'Lainnya' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-3"
                                         class="text-sm text-gray-500 ms-2 dark:text-neutral-400">Lainnya</label>
                                 </div>
@@ -75,36 +83,64 @@
                         <div class="w-full mb-5">
                             <label for="textarea-label" class="block mb-2 text-sm font-medium dark:text-white">Deskripsi
                                 Laporan</label>
-                            <textarea id="textarea-label"
+                            <textarea id="textarea-label" name="Deskripsi_Laporan"
                                 class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                rows="3" placeholder="Deskripsi Laporan"></textarea>
+                                rows="3" placeholder="Deskripsi Laporan"
+                                readonly>{{ $Pengaduan->Deskripsi_Laporan }}</textarea>
                         </div>
                         <!-- Titik Koordinat -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Titik
                                 Koordinat :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Titik_Koordinat"
                                 class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Titik Koordinat" readonly>
+                                placeholder="Masukkan Titik Koordinat" value="{{ $Pengaduan->Titik_Koordinat }}"
+                                readonly>
+                        </div>
+                        <div class="w-full mb-5">
+                            @php
+                            list($latitude, $longitude) = explode(',', $Pengaduan->Titik_Koordinat);
+                            @endphp
+                            <iframe
+                                src="https://www.google.com/maps?q={{ $latitude }},{{ $longitude }}&hl=en&z=17&output=embed"
+                                class="w-full h-[25rem] rounded-sm" style="border:0;" allowfullscreen="" loading="lazy">
+                            </iframe>
                         </div>
                         <!-- Gambar Pendukung -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Gambar
                                 Pendukung :</label>
                             <div class="grid grid-cols-3 gap-4">
+                                @foreach ($Pengaduan->FotoTable as $foto)
+                                @if ($foto->ID_Laporan === $Pengaduan->ID_Laporan)
                                 <div class="col-span-1">
-                                    <img src="{{ asset('img/dokumenpendukung.jpg') }}" class="size-20\" alt="">
+                                    <img src="{{ asset('storage/' . $foto->Foto) }}" class="size-full" alt="">
                                 </div>
-                                <div class="col-span-1">
-                                    <img src="{{ asset('img/dokumenpendukung.jpg') }}" class="size-20\" alt="">
-                                </div>
-                                <div class="col-span-1">
-                                    <img src="{{ asset('img/dokumenpendukung.jpg') }}" class="size-20\" alt="">
-                                </div>
-                                <div class="col-span-1">
-                                    <img src="{{ asset('img/dokumenpendukung.jpg') }}" class="size-20\" alt="">
-                                </div>
+                                @endif
+                                @endforeach
                             </div>
+
+                        </div>
+                        <!-- Dokumen Pendukung -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Dokumen
+                                Pendukung :</label>
+                            @if($Pengaduan->Dokumen_Pendukung)
+                            <a href="{{ Storage::url($Pengaduan->Dokumen_Pendukung) }}" target="_blank"
+                                class="w-max p-2 border-2 border-Genoa rounded-lg flex items-center gap-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000"
+                                    viewBox="0 0 256 256">
+                                    <path
+                                        d="M224,152a8,8,0,0,1-8,8H192v16h16a8,8,0,0,1,0,16H192v16a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8h32A8,8,0,0,1,224,152ZM92,172a28,28,0,0,1-28,28H56v8a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8H64A28,28,0,0,1,92,172Zm-16,0a12,12,0,0,0-12-12H56v24h8A12,12,0,0,0,76,172Zm88,8a36,36,0,0,1-36,36H112a8,8,0,0,1-8-8V152a8,8,0,0,1,8-8h16A36,36,0,0,1,164,180Zm-16,0a20,20,0,0,0-20-20h-8v40h8A20,20,0,0,0,148,180ZM40,112V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88v24a8,8,0,0,1-16,0V96H152a8,8,0,0,1-8-8V40H56v72a8,8,0,0,1-16,0ZM160,80h28.69L160,51.31Z">
+                                    </path>
+                                </svg>
+                                <p class="w-40 truncate">
+                                    {{ $Pengaduan->Dokumen_Pendukung }}
+                                </p>
+                            </a>
+                            @else
+                            <p class="text-gray-500">Tidak Ada File Yang Diunggah.</p>
+                            @endif
                         </div>
                         <!-- Status Laporan -->
                         <div class="w-full">
@@ -112,9 +148,10 @@
                                 Laporan :</label>
                             <div class="flex gap-x-6">
                                 <div class="flex items-center">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-1" checked="">
+                                    <input type="radio" name="Status_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-1" value="Selesai"
+                                        {{ $Pengaduan->Status_Laporan === 'Selesai' ? 'checked' : '' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
                                         <span
@@ -124,9 +161,10 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-2">
+                                    <input type="radio" name="Status_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-2" value="Sedang Diproses"
+                                        {{ $Pengaduan->Status_Laporan === 'Sedang Diproses' ? 'checked' : '' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-Orange-Peel dark:bg-blue-800/30 dark:text-blue-500">
                                         <span
@@ -136,9 +174,10 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-3">
+                                    <input type="radio" name="Status_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-3" value="Belum Selesai"
+                                        {{ $Pengaduan->Status_Laporan === 'Belum Selesai' ? 'checked' : '' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine dark:bg-blue-800/30 dark:text-blue-500">
                                         <span
@@ -148,16 +187,15 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
             <div class="flex items-center justify-end px-4 py-3 border-t gap-x-2 dark:border-neutral-700">
                 <button type="button"
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                    data-hs-overlay="#edit-modal">
+                    data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Laporan }}">
                     Tutup
                 </button>
-                <button type="button"
+                <button type="submit"
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-white border border-transparent rounded-lg gap-x-2 bg-Genoa focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256">
                         <path
@@ -167,12 +205,13 @@
                     Simpan
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
 
 <!-- Hapus Laporan -->
-<div id="hapus-modal"
+<div id="hapus-modal{{ $Pengaduan->ID_Laporan }}"
     class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-vertically-centered-modal-label">
     <div
@@ -185,7 +224,7 @@
                 </h3>
                 <button type="button"
                     class="inline-flex items-center justify-center text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#hapus-modal">
+                    aria-label="Close" data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Laporan }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -201,7 +240,7 @@
                 </p>
 
                 <ul class="flex items-center justify-center gap-4 my-10">
-                    <li><button type="button" data-hs-overlay="#hapus-modal"
+                    <li><button type="button" data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Laporan }}"
                             class="inline-flex items-center justify-center w-32 px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 bg-Medium-Carmine focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 viewBox="0 0 256 256">
@@ -213,16 +252,21 @@
                         </button>
                     </li>
                     <li>
-                        <button type="button"
-                            class="inline-flex items-center justify-center w-32 px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 bg-Genoa focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                viewBox="0 0 256 256">
-                                <path
-                                    d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z">
-                                </path>
-                            </svg>
-                            Ya
-                        </button>
+                        <form action="{{ route('laporan.destroy', ['ID_Laporan' => $Pengaduan -> ID_Laporan]) }}"
+                            method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="inline-flex items-center justify-center w-32 px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 bg-Genoa focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    viewBox="0 0 256 256">
+                                    <path
+                                        d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z">
+                                    </path>
+                                </svg>
+                                Ya
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -231,7 +275,7 @@
 </div>
 
 <!-- Detail Laporan -->
-<div id="detail-modal"
+<div id="detail-modal{{ $Pengaduan->ID_Laporan }}"
     class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
     <div
@@ -244,7 +288,7 @@
                 </h3>
                 <button type="button"
                     class="inline-flex items-center justify-center text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#detail-modal">
+                    aria-label="Close" data-hs-overlay="#detail-modal{{ $Pengaduan->ID_Laporan }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -261,9 +305,9 @@
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Kode Laporan
                                 :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Kode_Laporan"
                                 class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Kode Laporan" readonly>
+                                placeholder="Masukkan Kode Laporan" value="{{ $Pengaduan->Kode_Laporan }}" readonly>
                         </div>
                         <!-- Kategori Laporan -->
                         <div class="w-full mb-5">
@@ -271,34 +315,37 @@
                                 Laporan :</label>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="flex">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-1" checked="">
+                                    <input type="radio" name="Kategori_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-1" value="Pengumpulan Sampah"
+                                        {{ $Pengaduan->Kategori_Laporan === 'Pengumpulan Sampah' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-1"
                                         class="text-sm text-gray-500 ms-2 dark:text-neutral-400">Pengumpulan
                                         Sampah</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-2">
+                                    <input type="radio" name="Kategori_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-2" value="Kondisi TPS"
+                                        {{ $Pengaduan->Kategori_Laporan === 'Kondisi TPS' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-2"
                                         class="text-sm text-gray-500 ms-2 dark:text-neutral-400">Kondisi
                                         TPS</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-3">
+                                    <input type="radio" name="Kategori_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-3" value="Tempat Sampah Liar"
+                                        {{ $Pengaduan->Kategori_Laporan === 'Tempat Sampah Liar' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-3"
-                                        class="text-sm text-gray-500 ms-2 dark:text-neutral-400">Tempat
-                                        Sampah
+                                        class="text-sm text-gray-500 ms-2 dark:text-neutral-400">Tempat Sampah
                                         Liar</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-3">
+                                    <input type="radio" name="Kategori_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-3" value="Lainnya"
+                                        {{ $Pengaduan->Kategori_Laporan === 'Lainnya' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-3"
                                         class="text-sm text-gray-500 ms-2 dark:text-neutral-400">Lainnya</label>
                                 </div>
@@ -308,36 +355,64 @@
                         <div class="w-full mb-5">
                             <label for="textarea-label" class="block mb-2 text-sm font-medium dark:text-white">Deskripsi
                                 Laporan</label>
-                            <textarea id="textarea-label"
+                            <textarea id="textarea-label" name="Deskripsi_Laporan"
                                 class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                rows="3" placeholder="Deskripsi Laporan"></textarea>
+                                rows="3" placeholder="Deskripsi Laporan"
+                                readonly>{{ $Pengaduan->Deskripsi_Laporan }}</textarea>
                         </div>
                         <!-- Titik Koordinat -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Titik
                                 Koordinat :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Titik_Koordinat"
                                 class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Titik Koordinat" readonly>
+                                placeholder="Masukkan Titik Koordinat" value="{{ $Pengaduan->Titik_Koordinat }}"
+                                readonly>
+                        </div>
+                        <div class="w-full mb-5">
+                            @php
+                            list($latitude, $longitude) = explode(',', $Pengaduan->Titik_Koordinat);
+                            @endphp
+                            <iframe
+                                src="https://www.google.com/maps?q={{ $latitude }},{{ $longitude }}&hl=en&z=17&output=embed"
+                                class="w-full h-[25rem] rounded-sm" style="border:0;" allowfullscreen="" loading="lazy">
+                            </iframe>
                         </div>
                         <!-- Gambar Pendukung -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Gambar
                                 Pendukung :</label>
                             <div class="grid grid-cols-3 gap-4">
+                                @foreach ($Pengaduan->FotoTable as $foto)
+                                @if ($foto->ID_Laporan === $Pengaduan->ID_Laporan)
                                 <div class="col-span-1">
-                                    <img src="{{ asset('img/dokumenpendukung.jpg') }}" class="size-20\" alt="">
+                                    <img src="{{ asset('storage/' . $foto->Foto) }}" class="size-full" alt="">
                                 </div>
-                                <div class="col-span-1">
-                                    <img src="{{ asset('img/dokumenpendukung.jpg') }}" class="size-20\" alt="">
-                                </div>
-                                <div class="col-span-1">
-                                    <img src="{{ asset('img/dokumenpendukung.jpg') }}" class="size-20\" alt="">
-                                </div>
-                                <div class="col-span-1">
-                                    <img src="{{ asset('img/dokumenpendukung.jpg') }}" class="size-20\" alt="">
-                                </div>
+                                @endif
+                                @endforeach
                             </div>
+
+                        </div>
+                        <!-- Dokumen Pendukung -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Dokumen
+                                Pendukung :</label>
+                            @if($Pengaduan->Dokumen_Pendukung)
+                            <a href="{{ Storage::url($Pengaduan->Dokumen_Pendukung) }}" target="_blank"
+                                class="w-max p-2 border-2 border-Genoa rounded-lg flex items-center gap-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000"
+                                    viewBox="0 0 256 256">
+                                    <path
+                                        d="M224,152a8,8,0,0,1-8,8H192v16h16a8,8,0,0,1,0,16H192v16a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8h32A8,8,0,0,1,224,152ZM92,172a28,28,0,0,1-28,28H56v8a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8H64A28,28,0,0,1,92,172Zm-16,0a12,12,0,0,0-12-12H56v24h8A12,12,0,0,0,76,172Zm88,8a36,36,0,0,1-36,36H112a8,8,0,0,1-8-8V152a8,8,0,0,1,8-8h16A36,36,0,0,1,164,180Zm-16,0a20,20,0,0,0-20-20h-8v40h8A20,20,0,0,0,148,180ZM40,112V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88v24a8,8,0,0,1-16,0V96H152a8,8,0,0,1-8-8V40H56v72a8,8,0,0,1-16,0ZM160,80h28.69L160,51.31Z">
+                                    </path>
+                                </svg>
+                                <p class="w-40 truncate">
+                                    {{ $Pengaduan->Dokumen_Pendukung }}
+                                </p>
+                            </a>
+                            @else
+                            <p class="text-gray-500">Tidak ada file yang diunggah.</p>
+                            @endif
                         </div>
                         <!-- Status Laporan -->
                         <div class="w-full">
@@ -345,9 +420,10 @@
                                 Laporan :</label>
                             <div class="flex gap-x-6">
                                 <div class="flex items-center">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-1" checked="">
+                                    <input type="radio" name="Status_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-1" value="Selesai"
+                                        {{ $Pengaduan->Status_Laporan === 'Selesai' ? 'checked' : 'disabled' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
                                         <span
@@ -357,9 +433,10 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-2">
+                                    <input type="radio" name="Status_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-2" value="Sedang Diproses"
+                                        {{ $Pengaduan->Status_Laporan === 'Sedang Diproses' ? 'checked' : 'disabled' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-Orange-Peel dark:bg-blue-800/30 dark:text-blue-500">
                                         <span
@@ -369,9 +446,10 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input type="radio" name="hs-radio-group"
-                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
-                                        id="hs-radio-group-3">
+                                    <input type="radio" name="Status_Laporan"
+                                        class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800"
+                                        id="hs-radio-group-3" value="Belum Selesai"
+                                        {{ $Pengaduan->Status_Laporan === 'Belum Selesai' ? 'checked' : 'disabled' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine dark:bg-blue-800/30 dark:text-blue-500">
                                         <span
@@ -387,6 +465,7 @@
         </div>
     </div>
 </div>
+@endforeach
 
 <!-- Tambah Penanggung Jawab -->
 <div id="tambah-modal"
@@ -414,61 +493,115 @@
             </div>
             <div class="p-4 overflow-y-auto">
                 <div class="space-y-4">
-                    <form action="">
+                    <form action="{{ route('penanggungJawab.store') }}" method="post">
+                        @csrf
+                        <!-- Petugas -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Petugas
+                                Yang Bertanggung Jawab :</label>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" id="id_petugas_input"
+                                        name="ID_Petugas" data-hs-combo-box-input="" required>
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @foreach ($dataPetugas as $User)
+                                @if ($User->Status_Keaktifan == 'Aktif')
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="{{ $User->UserTable->Nama }}">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="{{ $User->UserTable->Nama }}">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="{{ $User->ID_Petugas }}"
+                                                data-hs-combo-box-value="{{ $User->ID_Petugas }}">{{ $User->UserTable->Nama }}</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                            </div>
+                        </div>
                         <!-- Kode Laporan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Kode Laporan
                                 :</label>
-                            <select data-hs-select='{
-                                "placeholder": "Pilih Kode Laporan",
-                                "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-                                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
-                                "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
-                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
-                                "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
-                                "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
-                                <option value="">Pilih</option>
-                                <option>LP-001</option>
-                                <option>LP-002</option>
-                            </select>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" name="Kode_Laporan"
+                                        data-hs-combo-box-input="" id="kode_laporan_input" value="" required>
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @foreach ($dataPengaduan as $Pengaduan)
+                                @if ($Pengaduan->Status_Laporan !== 'Selesai')
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="{{ $Pengaduan->Kode_Laporan }}">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="{{ $Pengaduan->Kode_Laporan }}">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="{{ $Pengaduan->Kode_Laporan }}"
+                                                data-hs-combo-box-value="{{ $Pengaduan->Kode_Laporan }}">{{ $Pengaduan->Kode_Laporan }}</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                            </div>
                         </div>
                         <!-- Kategori Laporan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Kategori
                                 Laporan
                                 :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="kategori_laporan_input"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Kategori Laporan">
-                        </div>
-                        <!-- Petugas Yang Bertanggung Jawab -->
-                        <div class="w-full mb-5">
-                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Petugas Yang
-                                Bertanggung Jawab :</label>
-                            <select data-hs-select='{
-                                "placeholder": "Pilih Petugas Yang Bertanggung Jawab",
-                                "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-                                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
-                                "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
-                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
-                                "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
-                                "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
-                                <option value="">Pilih</option>
-                                <option>Jhon Doe</option>
-                                <option>Jane Doe</option>
-                            </select>
+                                placeholder="Masukkan Kategori Laporan" name="Kategori_Laporan" value="" readonly>
                         </div>
                         <!-- Status Laporan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Status
                                 Laporan :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="status_laporan_input"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Status Laporan">
+                                placeholder="Masukkan Status Laporan" name="Status_Laporan" value="">
                         </div>
-                    </form>
                 </div>
             </div>
             <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
@@ -477,7 +610,7 @@
                     data-hs-overlay="#tambah-modal">
                     Tutup
                 </button>
-                <button type="button"
+                <button type="submit"
                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white  focus:outline-none  disabled:opacity-50 disabled:pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256">
                         <path
@@ -487,12 +620,14 @@
                     Simpan
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
 
+@foreach ($dataPenanggungJawab as $key => $PJ)
 <!-- Edit Penanggung Jawab -->
-<div id="edit-modal1"
+<div id="edit-modalPJ{{ $PJ->ID_PJ }}"
     class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
     <div
@@ -505,7 +640,7 @@
                 </h3>
                 <button type="button"
                     class="inline-flex items-center justify-center text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#edit-modal1">
+                    aria-label="Close" data-hs-overlay="#edit-modalPJ{{ $PJ->ID_PJ }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -517,70 +652,145 @@
             </div>
             <div class="p-4 overflow-y-auto">
                 <div class="space-y-4">
-                    <form action="">
+                    <form action="{{ route('penanggungJawab.update', ['ID_PJ' => $PJ -> ID_PJ]) }}" method="post">
+                        @csrf
+                        @method('PATCH')
+                        <!-- Petugas -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Petugas
+                                Yang Bertanggung Jawab :</label>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" id="id_petugas_input"
+                                        name="ID_Petugas" data-hs-combo-box-input="" value="{{ $PJ->ID_Petugas }}"
+                                        required>
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @foreach ($dataPetugas as $User)
+                                @if ($User->Status_Keaktifan == 'Aktif')
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="{{ $User->UserTable->Nama }}">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="{{ $User->UserTable->Nama }}">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="{{ $User->ID_Petugas }}"
+                                                data-hs-combo-box-value="{{ $User->ID_Petugas }}">{{ $User->UserTable->Nama }}</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                            </div>
+                        </div>
                         <!-- Kode Laporan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Kode Laporan
                                 :</label>
-                            <select data-hs-select='{
-                                "placeholder": "Pilih Kode Laporan",
-                                "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-                                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
-                                "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
-                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
-                                "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
-                                "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
-                                <option value="">Pilih</option>
-                                <option>LP-001</option>
-                                <option>LP-002</option>
-                            </select>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" name="Kode_Laporan"
+                                        data-hs-combo-box-input="" id="kode_laporan_input"
+                                        value="{{ $PJ->Kode_Laporan }}" required>
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @foreach ($dataPengaduan as $Pengaduan)
+                                @if ($Pengaduan->Status_Laporan !== 'Selesai')
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="{{ $Pengaduan->Kode_Laporan }}">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="{{ $Pengaduan->Kode_Laporan }}">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="{{ $Pengaduan->Kode_Laporan }}"
+                                                data-hs-combo-box-value="{{ $Pengaduan->Kode_Laporan }}">{{ $Pengaduan->Kode_Laporan }}</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                            </div>
                         </div>
                         <!-- Kategori Laporan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Kategori
                                 Laporan
                                 :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="kategori_laporan_input"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Kategori Laporan">
+                                placeholder="Masukkan Kategori Laporan" name="Kategori_Laporan"
+                                value="{{ $PJ->Kategori_Laporan }}" readonly>
                         </div>
-                        <!-- Petugas Yang Bertanggung Jawab -->
+                        <!-- Status Laporan -->
                         <div class="w-full mb-5">
-                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Petugas Yang
-                                Bertanggung Jawab :</label>
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Status
+                                Laporan
+                                :</label>
                             <select data-hs-select='{
-                                "placeholder": "Pilih Petugas Yang Bertanggung Jawab",
+                                "placeholder": "Pilih Status Laporan",
                                 "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
                                 "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
                                 "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
                                 "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
+                                }' class="hidden" name="Status_Laporan" required>
                                 <option value="">Pilih</option>
-                                <option>Jhon Doe</option>
-                                <option>Jane Doe</option>
+                                <option value="Selesai" {{ $PJ->Status_Laporan == 'Selesai' ? 'selected' : '' }}>Selesai
+                                </option>
+                                <option value="Sedang Diproses"
+                                    {{ $PJ->Status_Laporan == 'Sedang Diproses' ? 'selected' : '' }}>
+                                    Sedang Diproses</option>
+                                <option value="Belum Selesai"
+                                    {{ $PJ->Status_Laporan == 'Belum Selesai' ? 'selected' : '' }}>
+                                    Belum Selesai</option>
                             </select>
                         </div>
-                        <!-- Status Laporan -->
-                        <div class="w-full mb-5">
-                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Status
-                                Laporan :</label>
-                            <input type="text" id="input-label"
-                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Status Laporan">
-                        </div>
-                    </form>
                 </div>
             </div>
             <div class="flex items-center justify-end px-4 py-3 border-t gap-x-2 dark:border-neutral-700">
                 <button type="button"
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                    data-hs-overlay="#edit-modal1">
+                    data-hs-overlay="#edit-modalPJ{{ $PJ->ID_PJ }}">
                     Tutup
                 </button>
-                <button type="button"
+                <button type="submit"
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-white border border-transparent rounded-lg gap-x-2 bg-Genoa focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256">
                         <path
@@ -590,12 +800,13 @@
                     Simpan
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
 
 <!-- Detail Penanggung Jawab -->
-<div id="detail-modal1"
+<div id="detail-modalPJ{{ $PJ->ID_PJ }}"
     class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
     <div
@@ -608,7 +819,7 @@
                 </h3>
                 <button type="button"
                     class="inline-flex items-center justify-center text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#detail-modal1">
+                    aria-label="Close" data-hs-overlay="#detail-modalPJ{{ $PJ->ID_PJ }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -621,58 +832,132 @@
             <div class="p-4 overflow-y-auto">
                 <div class="space-y-4">
                     <form action="">
+                        <!-- Petugas -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Petugas
+                                Yang Bertanggung Jawab :</label>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" id="id_petugas_input"
+                                        name="ID_Petugas" data-hs-combo-box-input="" value="{{ $PJ->ID_Petugas }}"
+                                        required>
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @foreach ($dataPetugas as $User)
+                                @if ($User->Status_Keaktifan == 'Aktif')
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto pointer-events-none [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="{{ $User->UserTable->Nama }}">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="{{ $User->UserTable->Nama }}">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="{{ $User->ID_Petugas }}"
+                                                data-hs-combo-box-value="{{ $User->ID_Petugas }}">{{ $User->UserTable->Nama }}</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                            </div>
+                        </div>
                         <!-- Kode Laporan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Kode Laporan
                                 :</label>
-                            <select data-hs-select='{
-                                "placeholder": "Pilih Kode Laporan",
-                                "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-                                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
-                                "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
-                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
-                                "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
-                                "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
-                                <option value="">Pilih</option>
-                                <option>LP-001</option>
-                                <option>LP-002</option>
-                            </select>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" name="Kode_Laporan"
+                                        data-hs-combo-box-input="" id="kode_laporan_input"
+                                        value="{{ $PJ->Kode_Laporan }}" required>
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @foreach ($dataPengaduan as $Pengaduan)
+                                @if ($Pengaduan->Status_Laporan !== 'Selesai')
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto pointer-events-none [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="{{ $Pengaduan->Kode_Laporan }}">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="{{ $Pengaduan->Kode_Laporan }}">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="{{ $Pengaduan->Kode_Laporan }}"
+                                                data-hs-combo-box-value="{{ $Pengaduan->Kode_Laporan }}">{{ $Pengaduan->Kode_Laporan }}</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
+                                @endforeach
+                            </div>
                         </div>
                         <!-- Kategori Laporan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Kategori
                                 Laporan
                                 :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="kategori_laporan_input"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Kategori Laporan">
-                        </div>
-                        <!-- Petugas Yang Bertanggung Jawab -->
-                        <div class="w-full mb-5">
-                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Petugas Yang
-                                Bertanggung Jawab :</label>
-                            <select data-hs-select='{
-                                "placeholder": "Pilih Petugas Yang Bertanggung Jawab",
-                                "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-                                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
-                                "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
-                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
-                                "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
-                                "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
-                                <option value="">Pilih</option>
-                                <option>Jhon Doe</option>
-                                <option>Jane Doe</option>
-                            </select>
+                                placeholder="Masukkan Kategori Laporan" name="Kategori_Laporan"
+                                value="{{ $PJ->Kategori_Laporan }}" readonly>
                         </div>
                         <!-- Status Laporan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Status
-                                Laporan :</label>
-                            <input type="text" id="input-label"
-                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Status Laporan">
+                                Laporan
+                                :</label>
+                            <select data-hs-select='{
+                                "placeholder": "Pilih Status Laporan",
+                                "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
+                                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                                "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
+                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                                "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
+                                "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
+                                }' class="hidden" name="Status_Laporan" required>
+                                <option value="">Pilih</option>
+                                <option value="Selesai" {{ $PJ->Status_Laporan == 'Selesai' ? 'selected' : '' }}>Selesai
+                                </option>
+                                <option value="Sedang Diproses"
+                                    {{ $PJ->Status_Laporan == 'Sedang Diproses' ? 'selected' : '' }}>
+                                    Sedang Diproses</option>
+                                <option value="Belum Selesai"
+                                    {{ $PJ->Status_Laporan == 'Belum Selesai' ? 'selected' : '' }}>
+                                    Belum Selesai</option>
+                            </select>
                         </div>
                     </form>
                 </div>
@@ -682,7 +967,7 @@
 </div>
 
 <!-- Hapus Laporan -->
-<div id="hapus-modal1"
+<div id="hapus-modalPJ{{ $PJ->ID_PJ }}"
     class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-vertically-centered-modal-label">
     <div
@@ -695,7 +980,7 @@
                 </h3>
                 <button type="button"
                     class="inline-flex items-center justify-center text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#hapus-modal1">
+                    aria-label="Close" data-hs-overlay="#hapus-modalPJ{{ $PJ->ID_PJ }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -711,7 +996,7 @@
                 </p>
 
                 <ul class="flex items-center justify-center gap-4 my-10">
-                    <li><button type="button" data-hs-overlay="#hapus-modal1"
+                    <li><button type="button" data-hs-overlay="#hapus-modalPJ{{ $PJ->ID_PJ }}"
                             class="inline-flex items-center justify-center w-32 px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 bg-Medium-Carmine focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 viewBox="0 0 256 256">
@@ -723,19 +1008,24 @@
                         </button>
                     </li>
                     <li>
-                        <button type="button"
-                            class="inline-flex items-center justify-center w-32 px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 bg-Genoa focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                viewBox="0 0 256 256">
-                                <path
-                                    d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z">
-                                </path>
-                            </svg>
-                            Ya
-                        </button>
+                        <form action="{{ route('penanggungJawab.destroy', ['ID_PJ' => $PJ -> ID_PJ]) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="inline-flex items-center justify-center w-32 px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 bg-Genoa focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    viewBox="0 0 256 256">
+                                    <path
+                                        d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z">
+                                    </path>
+                                </svg>
+                                Ya
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+@endforeach

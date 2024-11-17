@@ -195,10 +195,6 @@
     </div>
 </div>
 
-<div class="flex justify-center items-center">
-    @include('alert/success')
-    @include('alert/error')
-</div>
 
 <!-- Tambah -->
 <div id="tambah-modal"

@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('Penanggung_Jawab', function (Blueprint $table) {
             $table->id('ID_PJ');
-            $table->foreignId('ID_Laporan')->constrained('Laporan', 'ID_Laporan')->onDelete('cascade');
-            $table->char('ID_Petugas', 7);
+            $table->char('Kode_Laporan');
+            $table->foreign('Kode_Laporan')->references('Kode_Laporan')->on('Pengaduan')->onDelete('cascade');
+            $table->char('ID_Petugas');
             $table->foreign('ID_Petugas')->references('ID_Petugas')->on('Petugas_Kebersihan')->onDelete('cascade');
+            $table->enum('Kategori_Laporan', ['Pengumpulan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']);
             $table->enum('Status_Laporan', ['Selesai', 'Sedang Diproses', 'Belum Selesai'])->default('Sedang Diproses');
             $table->timestamps();
         });

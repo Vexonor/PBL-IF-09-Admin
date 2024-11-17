@@ -23,9 +23,9 @@
             @include('components/loaders')
         </div>
     </div>
-    <div class="container flex justify-center items-center h-screen">
+    <div class="flex justify-center items-center w-screen h-screen">
         <div
-            class="w-1/2 flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
+            class="w-5/12 flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
             <div class="p-4 md:p-5">
                 <p class="text-center font-semibold mt-2 text-gray-500 dark:text-neutral-400">
                     Harap mengisi form dibawah terlebih dahulu sebelum mengakses halaman dashboard

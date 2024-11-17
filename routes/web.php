@@ -6,62 +6,84 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\login;
 use App\Http\Controllers\petugasKebersihan;
 use App\Http\Controllers\informasiPengangkutan;
+use App\Http\Controllers\laporan;
 use App\Http\Controllers\lokasiTPS;
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [login::class, 'login'])->name('login.page');
+// Login
+Route::get('/', [login::class, 'login'])->name('login');
 Route::post('/', [login::class, 'loginProcess'])->name('login.process');
 Route::post('/logout', [login::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', [dashboardController::class, 'dashboard'])->name('dashboard.page');
+Route::middleware(['auth'])->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard.page');
 
-Route::get('/laporan', function () {
-    return view('laporan', [
-        'title' => 'Laporan'
-    ]);
-});
+    // Laporan
+    Route::prefix('laporan')->group(function () {
+        Route::get('/', [laporan::class, 'laporan'])->name('laporan.page');
+        Route::patch('/{ID_Laporan}', [laporan::class, 'updateLaporan'])->name('laporan.update');
+        Route::delete('/{ID_Laporan}', [laporan::class, 'destroyLaporan'])->name('laporan.destroy');
+        Route::get('/get-kategori/{Kode_Laporan}', [laporan::class, 'getKategori'])->name('laporan.getKategori');
 
-// Informasi Pengangkutan
-Route::get('/informasiPengangkutan', [informasiPengangkutan::class, 'informasiPengangkutan'])->name('informasi.page');
-Route::post('/informasiPengangkutan', [informasiPengangkutan::class, 'storeInformasi'])->name('informasi.store');
-Route::patch('/informasiPengangkutan/{ID_Informasi}', [informasiPengangkutan::class, 'updateInformasi'])->name('informasi.update');
-Route::delete('/informasiPengangkutan/{ID_Informasi}', [informasiPengangkutan::class, 'destroyInformasi'])->name('informasi.destroy');
+        Route::prefix('penanggungJawab')->group(function () {
+            Route::post('/', [laporan::class, 'storePenanggungJawab'])->name('penanggungJawab.store');
+            Route::patch('/{ID_PJ}', [laporan::class, 'updatePenanggungJawab'])->name('penanggungJawab.update');
+            Route::delete('/{ID_PJ}', [laporan::class, 'destroyPenanggungJawab'])->name('penanggungJawab.destroy');
+        });
+    });
 
-Route::get('/kontenEdukasi', function () {
-    return view('kontenEdukasi', [
-        'title' => 'Konten Edukasi'
-    ]);
-});
+    // Informasi Pengangkutan
+    Route::prefix('informasiPengangkutan')->group(function () {
+        Route::get('/', [informasiPengangkutan::class, 'informasiPengangkutan'])->name('informasi.page');
+        Route::post('/', [informasiPengangkutan::class, 'storeInformasi'])->name('informasi.store');
+        Route::patch('/{ID_Informasi}', [informasiPengangkutan::class, 'updateInformasi'])->name('informasi.update');
+        Route::delete('/{ID_Informasi}', [informasiPengangkutan::class, 'destroyInformasi'])->name('informasi.destroy');
+    });
 
-// Lokasi TPS
-Route::get('/lokasiTPS', [lokasiTPS::class, 'lokasiTPS'])->name('tps.page');
-Route::post('/lokasiTPS', [lokasiTPS::class, 'storeTPS'])->name('tps.store');
-Route::patch('/lokasiTPS/{ID_TPS}', [lokasiTPS::class, 'updateTPS'])->name('tps.update');
-Route::delete('/lokasiTPS/{ID_TPS}', [lokasiTPS::class, 'destroyTPS'])->name('tps.destroy');
+    // Lokasi TPS dan Pengangkutan TPS
+    Route::prefix('lokasiTPS')->group(function () {
+        Route::get('/', [lokasiTPS::class, 'lokasiTPS'])->name('tps.page');
+        Route::post('/', [lokasiTPS::class, 'storeTPS'])->name('tps.store');
+        Route::patch('/{ID_TPS}', [lokasiTPS::class, 'updateTPS'])->name('tps.update');
+        Route::delete('/{ID_TPS}', [lokasiTPS::class, 'destroyTPS'])->name('tps.destroy');
 
-// Pengangkutan TPS
-Route::post('/pengangkutanTPS', [lokasiTPS::class, 'storePengangkutan'])->name('pengangkutan.store');
-Route::patch('/pengangkutanTPS/{ID_Pengangkutan}', [lokasiTPS::class, 'updatePengangkutan'])->name('pengangkutan.update');
-Route::delete('/pengangkutanTPS/{ID_Pengangkutan}', [lokasiTPS::class, 'destroyPengangkutan'])->name('pengangkutan.destroy');
+        Route::prefix('pengangkutan')->group(function () {
+            Route::post('/', [lokasiTPS::class, 'storePengangkutan'])->name('pengangkutan.store');
+            Route::patch('/{ID_Pengangkutan}', [lokasiTPS::class, 'updatePengangkutan'])->name('pengangkutan.update');
+            Route::delete('/{ID_Pengangkutan}', [lokasiTPS::class, 'destroyPengangkutan'])->name('pengangkutan.destroy');
+        });
+    });
 
-// Bank Sampah
-Route::get('/bankSampah', [bankSampah::class, 'bankSampah']);
-Route::post('/bankSampah', [bankSampah::class, 'storeBankSampah'])->name('BankSampah.store');
+    // Bank Sampah
+    Route::prefix('bankSampah')->group(function () {
+        Route::get('/', [bankSampah::class, 'bankSampah'])->name('BankSampah.page');
+        Route::post('/', [bankSampah::class, 'storeBankSampah'])->name('BankSampah.store');
+    });
 
-// Admin
-Route::get('/admin', [admin::class, 'admin'])->name('admin.page');
-Route::post('/admin', [admin::class, 'storeAdmin'])->name('admin.store');
-Route::patch('/admin/{ID_User}', [admin::class, 'updateAdmin'])->name('admin.update');
-Route::delete('/admin/{ID_User}', [admin::class, 'destroyAdmin'])->name('admin.destroy');
+    // Admin
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [admin::class, 'admin'])->name('admin.page');
+        Route::post('/', [admin::class, 'storeAdmin'])->name('admin.store');
+        Route::patch('/{ID_User}', [admin::class, 'updateAdmin'])->name('admin.update');
+        Route::delete('/{ID_User}', [admin::class, 'destroyAdmin'])->name('admin.destroy');
+    });
 
-// Petugas Kebersihan
-Route::get('/petugasKebersihan', [petugasKebersihan::class, 'petugasKebersihan'])->name('petugas.page');
-Route::post('/petugasKebersihan', [petugasKebersihan::class, 'storePetugas'])->name('petugas.store');
-Route::patch('/petugasKebersihan/{ID_User}', [petugasKebersihan::class, 'updatePetugas'])->name('petugas.update');
-Route::delete('/petugasKebersihan/{ID_User}', [petugasKebersihan::class, 'destroyPetugas'])->name('petugas.destroy');
+    // Petugas Kebersihan
+    Route::prefix('petugasKebersihan')->group(function () {
+        Route::get('/', [petugasKebersihan::class, 'petugasKebersihan'])->name('petugas.page');
+        Route::post('/', [petugasKebersihan::class, 'storePetugas'])->name('petugas.store');
+        Route::patch('/{ID_User}', [petugasKebersihan::class, 'updatePetugas'])->name('petugas.update');
+        Route::delete('/{ID_User}', [petugasKebersihan::class, 'destroyPetugas'])->name('petugas.destroy');
+    });
 
-Route::get('/pengaturan', function () {
-    return view('pengaturan', [
-        'title' => 'Pengaturan'
-    ]);
+    // Halaman Lain
+    Route::get('/kontenEdukasi', function () {
+        return view('kontenEdukasi', ['title' => 'Konten Edukasi']);
+    });
+
+    Route::get('/pengaturan', function () {
+        return view('pengaturan', ['title' => 'Pengaturan']);
+    });
 });

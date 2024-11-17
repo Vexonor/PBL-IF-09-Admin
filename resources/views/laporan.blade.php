@@ -75,6 +75,9 @@
                         <tr>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                No.</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Kode Laporan</th>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
@@ -90,30 +93,55 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700 text-center">
+                        @foreach ($dataPengaduan as $key => $Pengaduan)
                         <tr class="hover:bg-gray-100">
                             <td
+                                class="px-3 py-4 whitespace-nowrap text-sm border-r-2 font-medium text-gray-800 dark:text-neutral-200">
+                                {{ $key + 1 }}.
+                            </td>
+                            <td
                                 class="px-6 py-4 text-sm border-r-2 font-medium text-gray-800 whitespace-nowrap dark:text-neutral-200">
-                                LP-001</td>
-                            <td
-                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
-                                Jhon Doe</td>
-                            <td
-                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
-                                Kondisi TPS
+                                {{ $Pengaduan->Kode_Laporan }}
                             </td>
                             <td
                                 class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                <p class="truncate w-28">
+                                    {{ $Pengaduan->UserTable->Nama }}
+                                </p>
+                            </td>
+                            <td
+                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                {{ $Pengaduan->Kategori_Laporan }}
+                            </td>
+                            <td
+                                class="px-1 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                @if ($Pengaduan->Status_Laporan === 'Selesai')
                                 <span
                                     class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
                                     <span class="size-1.5 inline-block rounded-full bg-Genoa  dark:bg-blue-500"></span>
                                     Selesai
                                 </span>
+                                @elseif ($Pengaduan->Status_Laporan === 'Sedang Diproses')
+                                <span
+                                    class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-Orange-Peel dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span
+                                        class="size-1.5 inline-block rounded-full bg-Orange-Peel  dark:bg-blue-500"></span>
+                                    Sedang Diproses
+                                </span>
+                                @elseif($Pengaduan->Status_Laporan === 'Belum Selesai')
+                                <span
+                                    class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span
+                                        class="size-1.5 inline-block rounded-full bg-Medium-Carmine  dark:bg-blue-500"></span>
+                                    Belum Selesai
+                                </span>
+                                @endif
                             </td>
                             <td class="px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
                                 <button type="button"
                                     class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal"
-                                    data-hs-overlay="#edit-modal">
+                                    data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Laporan }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -125,7 +153,7 @@
                                     class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#hapus-modal">
+                                    data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Laporan }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -137,7 +165,7 @@
                                     class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#detail-modal">
+                                    data-hs-overlay="#detail-modal{{ $Pengaduan->ID_Laporan }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -147,6 +175,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -180,6 +209,9 @@
                         <tr>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                No.</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Kode Laporan</th>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
@@ -195,30 +227,53 @@
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700 text-center">
+                        @foreach ($dataPenanggungJawab as $key => $PJ)
                         <tr class="hover:bg-gray-100">
                             <td
                                 class="px-6 py-4 text-sm border-r-2 font-medium text-gray-800 whitespace-nowrap dark:text-neutral-200">
-                                LP-001</td>
-                            <td
-                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
-                                Jhon Doe
+                                {{ $key + 1 }}.
                             </td>
                             <td
                                 class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
-                                Kondisi TPS</td>
+                                {{ $PJ->Kode_Laporan }}
+                            </td>
                             <td
                                 class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                {{ $PJ->ID_Petugas }}
+                            </td>
+                            <td
+                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                {{ $PJ->Kategori_Laporan }}
+                            </td>
+                            <td
+                                class="px-1 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                @if ($PJ->Status_Laporan === 'Selesai')
                                 <span
                                     class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
                                     <span class="size-1.5 inline-block rounded-full bg-Genoa  dark:bg-blue-500"></span>
                                     Selesai
                                 </span>
+                                @elseif ($PJ->Status_Laporan === 'Sedang Diproses')
+                                <span
+                                    class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-Orange-Peel dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span
+                                        class="size-1.5 inline-block rounded-full bg-Orange-Peel  dark:bg-blue-500"></span>
+                                    Sedang Diproses
+                                </span>
+                                @elseif($PJ->Status_Laporan === 'Belum Selesai')
+                                <span
+                                    class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span
+                                        class="size-1.5 inline-block rounded-full bg-Medium-Carmine  dark:bg-blue-500"></span>
+                                    Belum Selesai
+                                </span>
+                                @endif
                             </td>
                             <td class="px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
                                 <button type="button"
                                     class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal"
-                                    data-hs-overlay="#edit-modal1">
+                                    data-hs-overlay="#edit-modalPJ{{ $PJ->ID_PJ }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -230,7 +285,7 @@
                                     class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#hapus-modal1">
+                                    data-hs-overlay="#hapus-modalPJ{{ $PJ->ID_PJ }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -242,7 +297,7 @@
                                     class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#detail-modal1">
+                                    data-hs-overlay="#detail-modalPJ{{ $PJ->ID_PJ }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -252,6 +307,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

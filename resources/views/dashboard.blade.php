@@ -6,14 +6,14 @@
 
     <!-- Card 1 -->
     <div class="w-full flex flex-col p-7 bg-white md:rounded-2xl shadow-md border border-gray-200">
-        <h4 class="text-gray-500 mb-1">Jumlah Laporan</h4>
+        <h4 class="text-gray-500 mb-1">Jumlah Pengaduan</h4>
         <div class="flex justify-between items-center gap-x-2 mb-2">
             <p data-hs-toggle-count='{
             "target": "#toggle-count",
             "min": 0,
             "max": 150
         }' class="text-gray-800 font-semibold text-3xl">
-                120
+                {{ $totalLaporan }}
             </p>
 
             <div class="icon">
@@ -43,7 +43,7 @@
             "min": 0,
             "max": 150
         }' class="text-gray-800 font-semibold text-3xl">
-                120
+                {{ $totalInformasi }}
             </p>
 
             <div class="icon">
@@ -71,7 +71,7 @@
             "min": 0,
             "max": 150
         }' class="text-gray-800 font-semibold text-3xl">
-                44
+                {{ $totalTPS }}
             </p>
 
             <div class="icon">
@@ -127,7 +127,7 @@
             "min": 0,
             "max": 150
         }' class="text-gray-800 font-semibold text-3xl">
-                    22
+                    {{ $totalAdmin }}
                 </p>
 
                 <div class="icon">
@@ -155,7 +155,7 @@
             "min": 0,
             "max": 150
         }' class="text-gray-800 font-semibold text-3xl">
-                    22
+                    {{ $totalPetugas }}
                 </p>
 
                 <div class="icon">

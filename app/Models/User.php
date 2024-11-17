@@ -56,4 +56,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(PetugasModel::class, 'ID_User');
     }
+    public function PengaduanTable()
+    {
+        return $this->hasOne(LaporanModel::class, 'ID_User');
+    }
 }

@@ -1,6 +1,6 @@
 @if (session()->has('success'))
 <div id="toast"
-    class="fixed top-10 w-7/12 bg-green-50 border-s-4 border-green-500 p-4 transition-all duration-500 rounded-md"
+    class="z-[100] fixed top-10 w-7/12 bg-green-50 border-s-4 border-green-500 p-4 transition-all duration-500 rounded-md"
     role="alert" tabindex="-1" aria-labelledby="hs-bordered-red-style-label">
     <div class="flex">
         <div class="shrink-0">
@@ -29,23 +29,23 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var toastElement = document.getElementById('toast');
+document.addEventListener('DOMContentLoaded', function() {
+    var toastElement = document.getElementById('toast');
 
-        if (toastElement) {
-            toastElement.classList.remove('opacity-0', 'translate-y-0');
-            toastElement.classList.add('opacity-100', 'translate-y-10');
+    if (toastElement) {
+        toastElement.classList.remove('opacity-0', 'translate-y-0');
+        toastElement.classList.add('opacity-100', 'translate-y-10');
+
+        setTimeout(function() {
+            toastElement.classList.remove('opacity-100', 'translate-y-10');
+            toastElement.classList.add('opacity-0', 'translate-y-0');
 
             setTimeout(function() {
-                toastElement.classList.remove('opacity-100', 'translate-y-10');
-                toastElement.classList.add('opacity-0', 'translate-y-0');
-
-                setTimeout(function() {
-                    toastElement.remove();
-                }, 5000);
+                toastElement.remove();
             }, 5000);
-        }
-    });
+        }, 5000);
+    }
+});
 </script>
 
 @endif

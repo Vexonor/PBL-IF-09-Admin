@@ -62,4 +62,9 @@ class PetugasModel extends Model
     {
         return $this->hasMany(User::class, 'ID_Petugas');
     }
+
+    public function PenanggungJawabTable()
+    {
+        return $this->hasMany(PenanggungJawabModel::class, 'ID_Petugas');
+    }
 }
