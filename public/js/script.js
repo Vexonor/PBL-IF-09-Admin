@@ -41,4 +41,22 @@ document.querySelectorAll('[data-hs-combo-box-output-item]').forEach(item => {
     });
 });
 
+// Strong Password
+const validatePassword = () => {
+const newPassword = document.getElementById('new-pass').value;
+const confirmPassword = document.getElementById('confirmPass').value;
+const submitPass = document.getElementById('submit-pass');
+const errorMessage = document.getElementById('error-message');
+
+    if (newPassword !== confirmPassword) {
+        errorMessage.classList.remove('hidden');
+        submitPass.setAttribute('disabled', ''); 
+    } else {
+        errorMessage.classList.add('hidden');
+        submitPass.removeAttribute('disabled');
+    }
+};
+
+document.getElementById('confirmPass').addEventListener('input', validatePassword);
+document.getElementById('new-pass').addEventListener('input', validatePassword);
 

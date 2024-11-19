@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('konten_edukasi', function (Blueprint $table) {
+        Schema::create('Konten_Edukasi', function (Blueprint $table) {
             $table->id('ID_Edukasi');
             $table->unsignedBigInteger('ID_User')->nullable();
             $table->foreign('ID_User')->references('ID_User')->on('User')->onDelete('set null');
             $table->string('Judul_Edukasi');
+            $table->string('Link_URL');
             $table->longText('Deskripsi_Edukasi');
             $table->enum('Jenis_Edukasi', ['Video', 'Artikel']);
+            $table->enum('Status_Konten', ['Draf', 'Telah Diunggah'])->default('Draf');
             $table->bigInteger('Jumlah_Komentar')->default(0);
             $table->bigInteger('Jumlah_Like')->default(0);
             $table->timestamps();

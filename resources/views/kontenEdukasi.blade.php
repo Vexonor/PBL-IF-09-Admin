@@ -54,50 +54,72 @@
                         <tr>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
-                                ID Konten</th>
+                                No.
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                Penerbit Konten
+                            </th>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Judul Konten</th>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
-                                Deskripsi Laporan</th>
+                                Jenis Konten</th>
                             <th scope="col"
                                 class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
-                                Status</th>
+                                Status Konten
+                            </th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium uppercase dark:text-neutral-500">
                                 Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 dark:divide-neutral-700 text-center">
+                        @foreach ($dataKonten as $key => $Konten)
                         <tr class="hover:bg-gray-100">
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm border-r-2 font-medium text-gray-800 dark:text-neutral-200">
-                                001</td>
-                            <td
-                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
-                                Pemilahan Sampah</td>
-                            <td
-                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
-                                Penipuan
+                                {{ $key +1 }}.
                             </td>
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $Konten->UserTable->Nama }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $Konten->Judul_Edukasi }}
+                            </td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-sm border-r-2 text-gray-800 dark:text-neutral-200">
+                                {{ $Konten->Jenis_Edukasi }}
+                            </td>
+                            <td
+                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                @if ($Konten->Status_Konten === 'Telah Diunggah')
                                 <span
-                                    class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine dark:bg-blue-800/30 dark:text-blue-500">
-                                    <span
-                                        class="size-1.5 inline-block rounded-full bg-Medium-Carmine  dark:bg-blue-500"></span>
-                                    Belum Selesai
+                                    class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span class="size-1.5 inline-block rounded-full bg-Genoa  dark:bg-blue-500"></span>
+                                    Telah Diunggah
                                 </span>
+                                @elseif ($Konten->Status_Konten === 'Draf')
+                                <span
+                                    class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-Orange-Peel dark:bg-blue-800/30 dark:text-blue-500">
+                                    <span
+                                        class="size-1.5 inline-block rounded-full bg-Orange-Peel  dark:bg-blue-500"></span>
+                                    Draf
+                                </span>
+                                @endif
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                 <button type="button"
                                     class="py-3 px-4 inline-flex items-center text-sm font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal"
-                                    data-hs-overlay="#edit-modal">
+                                    data-hs-overlay="#edit-modal{{ $Konten->ID_Edukasi }}"
+                                    {{ $Konten->Status_Konten === 'Telah Diunggah' ? 'disabled=""' : '' }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
-                                            d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H216a8,8,0,0,0,0-16H115.32l112-112A16,16,0,0,0,227.32,73.37ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.32,64l24-24L216,84.69Z">
+                                            d="M240,136v64a16,16,0,0,1-16,16H32a16,16,0,0,1-16-16V136a16,16,0,0,1,16-16H80a8,8,0,0,1,0,16H32v64H224V136H176a8,8,0,0,1,0-16h48A16,16,0,0,1,240,136ZM85.66,77.66,120,43.31V128a8,8,0,0,0,16,0V43.31l34.34,34.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,77.66ZM200,168a12,12,0,1,0-12,12A12,12,0,0,0,200,168Z">
                                         </path>
                                     </svg>
                                 </button>
@@ -105,7 +127,7 @@
                                     class="py-3 px-4 inline-flex items-center text-sm font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#hapus-modal">
+                                    data-hs-overlay="#hapus-modal{{ $Konten->ID_Edukasi }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -117,7 +139,7 @@
                                     class="py-3 px-4 inline-flex items-center text-sm font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#detail-modal">
+                                    data-hs-overlay="#detail-modal{{ $Konten->ID_Edukasi }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
@@ -127,6 +149,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

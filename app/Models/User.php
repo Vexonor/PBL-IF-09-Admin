@@ -60,4 +60,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(LaporanModel::class, 'ID_User');
     }
+    public function KontenTable()
+    {
+        return $this->hasOne(KontenModel::class, 'ID_User');
+    }
 }

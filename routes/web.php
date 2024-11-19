@@ -6,8 +6,10 @@ use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\login;
 use App\Http\Controllers\petugasKebersihan;
 use App\Http\Controllers\informasiPengangkutan;
+use App\Http\Controllers\kontenController;
 use App\Http\Controllers\laporan;
 use App\Http\Controllers\lokasiTPS;
+use App\Http\Controllers\pengaturan;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
@@ -78,12 +80,19 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{ID_User}', [petugasKebersihan::class, 'destroyPetugas'])->name('petugas.destroy');
     });
 
-    // Halaman Lain
-    Route::get('/kontenEdukasi', function () {
-        return view('kontenEdukasi', ['title' => 'Konten Edukasi']);
+    // Pengaturan
+    Route::prefix('pengaturan')->group(function () {
+        Route::get('/', [pengaturan::class, 'pengaturan'])->name('pengaturan.page');
+        Route::patch('/{ID_User}', [pengaturan::class, 'updateProfile'])->name('pengaturan.update');
+        Route::put('/{ID_User}', [pengaturan::class, 'changePassword'])->name('change.password');
     });
 
-    Route::get('/pengaturan', function () {
-        return view('pengaturan', ['title' => 'Pengaturan']);
+    // Konten Edukasi
+    Route::prefix('kontenEdukasi')->group(function () {
+        Route::get('/', [kontenController::class, 'KontenController'])->name('konten.page');
+        Route::post('/', [kontenController::class, 'storeKonten'])->name('konten.store');
+        Route::put('/{ID_Edukasi}', [kontenController::class, 'uploadKonten'])->name('konten.upload');
+        Route::patch('/{ID_Edukasi}', [kontenController::class, 'updateKonten'])->name('konten.update');
+        Route::delete('/{ID_Edukasi}', [kontenController::class, 'destroyKonten'])->name('konten.destroy');
     });
 });

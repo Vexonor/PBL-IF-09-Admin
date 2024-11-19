@@ -50,7 +50,7 @@
                 <!-- Search Bar -->
                 <div class="col-span-2 flex items-center justify-center w-full">
                     <div class="relative w-full">
-                        <input type="text"
+                        <input type="text" id="table-search-input"
                             class="peer py-3 px-4 pl-11 w-full block bg-gray-100 border border-transparent rounded-full text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                             placeholder="Cari">
                         <div
@@ -71,9 +71,10 @@
                         <button id="hs-dropdown-custom-trigger" type="button"
                             class="hs-dropdown-toggle py-1 ps-1 pe-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                            <img class="w-8 p-1 bg-slate-100 h-auto rounded-full"
-                                src="{{ Auth::User()->Foto_Profil ? Auth::User()->Foto_Profil : asset("/img/user.svg") }}"
+                            <img class="w-8 p-1 bg-slate-100 h-8 rounded-full"
+                                src="{{ Auth::User()->Foto_Profil ? asset('storage/' . Auth::User()->Foto_Profil) : asset('/img/user.svg') }}"
                                 alt="Avatar">
+
                             <span class="text-gray-600 font-medium truncate max-w-[4.5rem] dark:text-neutral-400">
                                 {{ Auth::User()->Nama }}
                             </span>
@@ -121,9 +122,6 @@
             </div>
         </div>
     </div>
-    <script src="./node_modules/lodash/lodash.min.js"></script>
-    <script src="./node_modules/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="./node_modules/preline/dist/helper-apexcharts.js"></script>
 
 
     <!-- Logout Modal -->
@@ -152,7 +150,7 @@
                 </div>
                 <div class="p-4 overflow-y-auto">
                     <p class="text-gray-800 text-center dark:text-neutral-400">
-                        Apakah anda yakin ingin menghapus data ini?
+                        Apakah anda yakin ingin logout?
                     </p>
 
                     <ul class="flex justify-center items-center gap-4 my-10">
