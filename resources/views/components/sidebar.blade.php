@@ -1,4 +1,4 @@
-<div class="sidebar md:w-64 xl:w-[21.875rem] overflow-hidden">
+<div class="sidebar min-h-full xl:h-lvh md:w-64 xl:w-[21.875rem] overflow-hidden">
     <ul>
         <li class="logo pointer-events-none flex justify-center items-center mt-3">
             <a href="#">

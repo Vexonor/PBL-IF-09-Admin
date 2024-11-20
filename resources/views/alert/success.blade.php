@@ -26,26 +26,26 @@
         </div>
     </div>
 </div>
-</div>
+
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    var toastElement = document.getElementById('toast');
+    document.addEventListener('DOMContentLoaded', function() {
+        var toastElement = document.getElementById('toast');
 
-    if (toastElement) {
-        toastElement.classList.remove('opacity-0', 'translate-y-0');
-        toastElement.classList.add('opacity-100', 'translate-y-10');
-
-        setTimeout(function() {
-            toastElement.classList.remove('opacity-100', 'translate-y-10');
-            toastElement.classList.add('opacity-0', 'translate-y-0');
+        if (toastElement) {
+            toastElement.classList.remove('opacity-0', 'translate-y-0');
+            toastElement.classList.add('opacity-100', 'translate-y-10');
 
             setTimeout(function() {
-                toastElement.remove();
+                toastElement.classList.remove('opacity-100', 'translate-y-10');
+                toastElement.classList.add('opacity-0', 'translate-y-0');
+
+                setTimeout(function() {
+                    toastElement.remove();
+                }, 5000);
             }, 5000);
-        }, 5000);
-    }
-});
+        }
+    });
 </script>
 
 @endif

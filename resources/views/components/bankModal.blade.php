@@ -24,7 +24,7 @@
             </div>
             <div class="p-4 overflow-y-auto">
                 <div class="space-y-4">
-                    <form action="{{ route('BankSampah.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('bankSampah.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <!-- Nama Bank Sampah -->
                         <div class="w-full mb-5">
@@ -145,8 +145,9 @@
     </div>
 </div>
 
+@foreach ($dataBankSampah as $BankSampah)
 <!-- Edit -->
-<div id="edit-modal"
+<div id="edit-modal{{ $BankSampah -> ID_BankSampah }}"
     class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
     <div
@@ -159,7 +160,7 @@
                 </h3>
                 <button type="button"
                     class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#edit-modal">
+                    aria-label="Close" data-hs-overlay="#edit-modal{{ $BankSampah -> ID_BankSampah }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -171,14 +172,18 @@
             </div>
             <div class="p-4 overflow-y-auto">
                 <div class="space-y-4">
-                    <form action="">
+                    <form action="{{ route('bankSampah.update', ['ID_BankSampah' => $BankSampah -> ID_BankSampah]) }}"
+                        method="post">
+                        @csrf
+                        @method('PATCH')
                         <!-- Nama Bank Sampah -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nama Bank
                                 Sampah :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Nama_Bank_Sampah"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Nama Bank Sampah">
+                                placeholder="Masukkan Nama Bank Sampah" value="{{ $BankSampah->Nama_Bank_Sampah }}"
+                                required>
                         </div>
                         <!-- Jenis Bank Sampah -->
                         <div class="w-full mb-5">
@@ -192,11 +197,21 @@
                                 "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
+                                }' class="hidden" name="Jenis_Sampah" required>
                                 <option value="">Pilih Jenis Sampah</option>
-                                <option>Plastik</option>
-                                <option>Elektronik</option>
-                                <option>Besi</option>
+                                <option value="Plastik" {{ $BankSampah->Jenis_Sampah == 'Plastik' ? 'selected' : '' }}>
+                                    Plastik</option>
+                                <option value="Kaca" {{ $BankSampah->Jenis_Sampah == 'Kaca' ? 'selected' : '' }}>Kaca
+                                </option>
+                                <option value="Kertas" {{ $BankSampah->Jenis_Sampah == 'Kertas' ? 'selected' : '' }}>
+                                    Kertas</option>
+                                <option value="Logam" {{ $BankSampah->Jenis_Sampah == 'Logam' ? 'selected' : '' }}>Logam
+                                </option>
+                                <option value="Organik" {{ $BankSampah->Jenis_Sampah == 'Organik' ? 'selected' : '' }}>
+                                    Organik</option>
+                                <option value="Elektronik"
+                                    {{ $BankSampah->Jenis_Sampah == 'Elektronik' ? 'selected' : '' }}>Elektronik
+                                </option>
                             </select>
                         </div>
                         <!-- Nama Pemilik Bank Sampah -->
@@ -204,17 +219,18 @@
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nama Pemilik
                                 Bank
                                 Sampah :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Nama_Pemilik"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Nama Pemilik Bank Sampah">
+                                placeholder="Masukkan Nama Pemilik Bank Sampah" value="{{ $BankSampah->Nama_Pemilik }}"
+                                required>
                         </div>
                         <!-- No. Telepon -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">No. Telepon
                                 Pemilik :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="No_Telp"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan No. Telepon Pemilik">
+                                placeholder="Masukkan No. Telepon Pemilik" value="{{ $BankSampah->No_Telp }}" required>
                         </div>
                         <!-- Jam Operasional -->
                         <ul class="flex justify-between gap-2">
@@ -223,9 +239,10 @@
                                 <div class="w-full mb-5">
                                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Jam
                                         Buka :</label>
-                                    <input type="time" id="input-label"
+                                    <input type="time" id="input-label" name="Jam_Buka"
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                        placeholder="Masukkan No. Telepon Pemilik">
+                                        placeholder="Masukkan No. Telepon Pemilik" value="{{ $BankSampah->Jam_Buka }}"
+                                        required>
                                 </div>
                             </li>
                             <!-- Jam Tutup -->
@@ -233,9 +250,10 @@
                                 <div class="w-full mb-5">
                                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Jam
                                         Tutup :</label>
-                                    <input type="time" id="input-label"
+                                    <input type="time" id="input-label" name="Jam_Tutup"
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                        placeholder="Masukkan No. Telepon Pemilik">
+                                        placeholder="Masukkan No. Telepon Pemilik" value="{{ $BankSampah->Jam_Tutup }}"
+                                        required>
                                 </div>
                             </li>
                         </ul>
@@ -243,9 +261,10 @@
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Lokasi
                                 :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Titik_Koordinat"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Titik Koordinat">
+                                placeholder="Masukkan Titik Koordinat" value="{{ $BankSampah->Titik_Koordinat }}"
+                                required>
                         </div>
                         <!-- Status Operasional -->
                         <div class="w-full mb-5">
@@ -259,22 +278,25 @@
                                 "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
-                                <option value="">Pilih Jenis Sampah</option>
-                                <option>Buka</option>
-                                <option>Tutup</option>
+                                }' class="hidden" name="Status_Operasional" required>
+                                <option value="">Pilih Status</option>
+                                <option value="Buka" {{ $BankSampah->Status_Operasional == 'Buka' ? 'selected' : '' }}>
+                                    Buka
+                                </option>
+                                <option value="Tutup"
+                                    {{ $BankSampah->Status_Operasional == 'Tutup' ? 'selected' : '' }}>Tutup
+                                </option>
                             </select>
                         </div>
-                    </form>
                 </div>
             </div>
             <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
                 <button type="button"
                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                    data-hs-overlay="#edit-modal">
+                    data-hs-overlay="#edit-modal{{ $BankSampah -> ID_BankSampah }}">
                     Tutup
                 </button>
-                <button type="button"
+                <button type="submit"
                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white  focus:outline-none  disabled:opacity-50 disabled:pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 256 256">
                         <path
@@ -284,12 +306,13 @@
                     Simpan
                 </button>
             </div>
+            </form>
         </div>
     </div>
 </div>
 
 <!-- Hapus -->
-<div id="hapus-modal"
+<div id="hapus-modal{{ $BankSampah -> ID_BankSampah }}"
     class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-vertically-centered-modal-label">
     <div
@@ -302,7 +325,7 @@
                 </h3>
                 <button type="button"
                     class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#hapus-modal">
+                    aria-label="Close" data-hs-overlay="#hapus-modal{{ $BankSampah -> ID_BankSampah }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -318,7 +341,7 @@
                 </p>
 
                 <ul class="flex justify-center items-center gap-4 my-10">
-                    <li><button type="button" data-hs-overlay="#hapus-modal"
+                    <li><button type="button" data-hs-overlay="#hapus-modal{{ $BankSampah -> ID_BankSampah }}"
                             class="w-32 py-3 px-4 justify-center inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-transparent bg-Medium-Carmine text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 viewBox="0 0 256 256">
@@ -330,16 +353,22 @@
                         </button>
                     </li>
                     <li>
-                        <button type="button"
-                            class="w-32 justify-center py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-transparent bg-Genoa text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                                viewBox="0 0 256 256">
-                                <path
-                                    d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z">
-                                </path>
-                            </svg>
-                            Ya
-                        </button>
+                        <form
+                            action="{{ route('bankSampah.destroy', ['ID_BankSampah' => $BankSampah -> ID_BankSampah]) }}"
+                            method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                class="w-32 justify-center py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-transparent bg-Genoa text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    viewBox="0 0 256 256">
+                                    <path
+                                        d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z">
+                                    </path>
+                                </svg>
+                                Ya
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -348,7 +377,7 @@
 </div>
 
 <!-- Detail -->
-<div id="detail-modal"
+<div id="detail-modal{{ $BankSampah -> ID_BankSampah }}"
     class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
     <div
@@ -361,7 +390,7 @@
                 </h3>
                 <button type="button"
                     class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
-                    aria-label="Close" data-hs-overlay="#detail-modal">
+                    aria-label="Close" data-hs-overlay="#detail-modal{{ $BankSampah -> ID_BankSampah }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -473,3 +502,4 @@
         </div>
     </div>
 </div>
+@endforeach

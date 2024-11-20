@@ -9,14 +9,32 @@ use Illuminate\Http\Request;
 
 class petugasKebersihan extends Controller
 {
-    public function petugasKebersihan()
+    public function petugasKebersihan(Request $request)
     {
-        $dataUser = PetugasModel::with('UserTable')->get();
+        $search = request('search');
+        $dataCount = $request->input('data_count', 10);
+        $wilayah = $request->input('wilayah');
+        $status = $request->input('status');
+        $query = $dataUser = PetugasModel::with('UserTable')->petugas($search)->latest();
         $wilayahOptions = PetugasModel::getWilayahOptions();
+
+        if ($wilayah) {
+            $query->where('Wilayah_Bertugas', $wilayah);
+        }
+
+        if ($status) {
+            $query->where('Status_Keaktifan', $status);
+        }
+
+        $dataUser = $query->paginate($dataCount);
+
         return view('/petugasKebersihan', [
             "title" => "Petugas Kebersihan",
             "wilayahOptions" => $wilayahOptions,
-            "dataUser" => $dataUser
+            "dataUser" => $dataUser,
+            "data_count" => $dataCount,
+            "wilayah" => $wilayah,
+            "status" => $status
         ]);
     }
 

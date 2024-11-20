@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class TPSModel extends Model
 {
@@ -39,5 +40,10 @@ class TPSModel extends Model
     public function PengangkutanTable()
     {
         return $this->hasMany(PengangkutanModel::class, 'Kode_TPS');
+    }
+
+    public function scopeLokasiTPS(Builder $query, $search): void
+    {
+        $query->where('Kode_TPS', 'LIKE', '%' . $search . '%');
     }
 }

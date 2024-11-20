@@ -23,6 +23,7 @@ return new class extends Migration
             $table->enum('Status_Operasional', ['Buka', 'Tutup']);
             $table->timestamps();
         });
+        $this->call(\Database\Seeders\BankSampahSeeder::class);
     }
 
     /**
@@ -31,5 +32,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('bank_sampah');
+    }
+    protected function call($class)
+    {
+        (new $class)->run();
     }
 };

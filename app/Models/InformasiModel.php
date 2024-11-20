@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class InformasiModel extends Model
 {
@@ -39,6 +40,15 @@ class InformasiModel extends Model
 
     public function PetugasTable()
     {
-        return $this->belongsTo(PetugasModel::class, 'ID_Petugas');
+        return $this->belongsTo(PetugasModel::class, 'ID_Petugas', 'ID_Petugas');
+    }
+
+    public function scopeInformasi(Builder $query, $search): void
+    {
+        if ($search) {
+            $query->whereHas('PetugasTable.UserTable', function ($userQuery) use ($search) {
+                $userQuery->where('Nama', 'LIKE', '%' . $search . '%');
+            });
+        }
     }
 }

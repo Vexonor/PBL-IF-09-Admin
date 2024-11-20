@@ -37,7 +37,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('Laporan');
+        Schema::dropIfExists('Pengaduan');
         Schema::dropIfExists('Foto_Pengaduan');
     }
     protected function call($class)

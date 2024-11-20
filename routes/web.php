@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     // Laporan
     Route::prefix('laporan')->group(function () {
         Route::get('/', [laporan::class, 'laporan'])->name('laporan.page');
+        Route::post('/', [laporan::class, 'storeLaporan'])->name('laporan.store');
         Route::patch('/{ID_Laporan}', [laporan::class, 'updateLaporan'])->name('laporan.update');
         Route::delete('/{ID_Laporan}', [laporan::class, 'destroyLaporan'])->name('laporan.destroy');
         Route::get('/get-kategori/{Kode_Laporan}', [laporan::class, 'getKategori'])->name('laporan.getKategori');
@@ -60,8 +61,10 @@ Route::middleware(['auth'])->group(function () {
 
     // Bank Sampah
     Route::prefix('bankSampah')->group(function () {
-        Route::get('/', [bankSampah::class, 'bankSampah'])->name('BankSampah.page');
-        Route::post('/', [bankSampah::class, 'storeBankSampah'])->name('BankSampah.store');
+        Route::get('/', [bankSampah::class, 'bankSampah'])->name('bankSampah.page');
+        Route::post('/', [bankSampah::class, 'storeBankSampah'])->name('bankSampah.store');
+        Route::patch('/{ID_BankSampah}', [bankSampah::class, 'updateBankSampah'])->name('bankSampah.update');
+        Route::delete('/{ID_BankSampah}', [bankSampah::class, 'destroyBankSampah'])->name('bankSampah.destroy');
     });
 
     // Admin

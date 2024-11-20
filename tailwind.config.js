@@ -5,6 +5,7 @@ export default {
     "./resources/**/*.js",
     "./resources/**/*.vue",
     'node_modules/preline/dist/*.js',
+    './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
   ],
   theme: {
     extend: {
@@ -25,8 +26,8 @@ export default {
     },
   },
   plugins: [
-     require('preline/plugin'),
-     require('@tailwindcss/forms')
+      require('preline/plugin'),
+      require('@tailwindcss/forms')
   ],
 }
 

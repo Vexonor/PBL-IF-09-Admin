@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class BankSampahModel extends Model
 {
@@ -20,4 +21,10 @@ class BankSampahModel extends Model
         "Jam_Tutup",
         "Status_Operasional"
     ];
+
+    public function scopeBankSampah(Builder $query, $search): void
+    {
+        $query->where('Nama_Bank_Sampah', 'LIKE', '%' . $search . '%')
+            ->orWhere('Nama_Pemilik', 'LIKE', '%' . $search . '%');
+    }
 }

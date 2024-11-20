@@ -60,3 +60,8 @@ const errorMessage = document.getElementById('error-message');
 document.getElementById('confirmPass').addEventListener('input', validatePassword);
 document.getElementById('new-pass').addEventListener('input', validatePassword);
 
+// Filter Data
+function submitForm() {
+    document.getElementById('filterForm').submit();
+}
+

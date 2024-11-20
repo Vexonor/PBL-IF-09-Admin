@@ -24,6 +24,7 @@ return new class extends Migration
             $table->bigInteger('Jumlah_Like')->default(0);
             $table->timestamps();
         });
+        $this->call(\Database\Seeders\KontenEdukasiSeeder::class);
     }
 
     /**
@@ -32,5 +33,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('Konten_Edukasi');
+    }
+    protected function call($class)
+    {
+        (new $class)->run();
     }
 };

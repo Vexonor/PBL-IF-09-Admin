@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class PenanggungJawabModel extends Model
 {
@@ -20,6 +21,14 @@ class PenanggungJawabModel extends Model
     }
     public function PetugasTable()
     {
-        return $this->belongsTo(PetugasModel::class, 'ID_Petugas');
+        return $this->belongsTo(PetugasModel::class, 'ID_Petugas', 'ID_Petugas');
+    }
+
+    public function scopePenanggungJawab(Builder $query, $search): void
+    {
+        $query->whereHas('PetugasTable.UserTable', function ($userQuery) use ($search) {
+            $userQuery->where('Nama', 'LIKE', '%' . $search . '%')
+                ->orWhere('Kode_Laporan', 'LIKE', '%' . $search . '%');
+        });
     }
 }

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class AdminModel extends Model
 {
@@ -18,5 +20,13 @@ class AdminModel extends Model
     public function UserTable()
     {
         return $this->belongsTo(User::class, 'ID_User');
+    }
+
+    public function scopeAdmin(Builder $query, $search): void
+    {
+        $query->whereHas('UserTable', function ($adminQuery) use ($search) {
+            $adminQuery->where('Nama', 'LIKE', '%' . $search . '%')
+                ->orWhere('email', 'LIKE', '%' . $search . '%');
+        });
     }
 }

@@ -9,18 +9,43 @@ use Illuminate\Http\Request;
 
 class lokasiTPS extends Controller
 {
-    public function lokasiTPS()
+    public function lokasiTPS(Request $request)
     {
-        $dataTPS = TPSModel::all();
-        $dataPengangkutan = PengangkutanModel::all();
+        $search = request('search');
+        $dataCount = $request->input('data_count', 10);
+        $wilayah = $request->input('wilayah');
+        $status = $request->input('status');
+        $statusPengangkutan = $request->input('statusPengangkutan');
+        $queryTPS = $dataTPS = TPSModel::lokasiTPS($search)->latest();
+        $queryPengangkutan = $dataPengangkutan = PengangkutanModel::pengangkutanTPS($search)->latest();
         $dataUser = PetugasModel::with('UserTable')->get();
         $wilayahOptions = TPSModel::getWilayahOptions();
+
+        if ($wilayah) {
+            $queryTPS->where('Wilayah_TPS', $wilayah);
+        }
+
+        if ($status) {
+            $queryTPS->where('Status_TPS', $status);
+        }
+
+        if ($statusPengangkutan) {
+            $queryPengangkutan->where('Status_Pengangkutan', $statusPengangkutan);
+        }
+
+        $dataTPS = $queryTPS->paginate($dataCount);
+        $dataPengangkutan = $queryPengangkutan->paginate($dataCount);
+
         return view('/lokasiTPS', [
             "title" => "Lokasi TPS",
             "dataTPS" => $dataTPS,
             "dataPengangkutan" => $dataPengangkutan,
             "wilayahOptions" => $wilayahOptions,
-            "dataUser" => $dataUser
+            "dataUser" => $dataUser,
+            "data_count" => $dataCount,
+            "wilayah" => $wilayah,
+            "status" => $status,
+            "statusPengangkutan" => $statusPengangkutan
         ]);
     }
 

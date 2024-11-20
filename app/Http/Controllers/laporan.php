@@ -2,23 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FotoModel;
 use App\Models\LaporanModel;
 use App\Models\PenanggungJawabModel;
+use Illuminate\Support\Facades\Storage;
 use App\Models\PetugasModel;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class laporan extends Controller
 {
-    public function laporan()
+    public function laporan(Request $request)
     {
-        $dataPengaduan = LaporanModel::with('UserTable', 'FotoTable')->get();
+        $search = request('search');
+        $dataCount = $request->input('data_count', 10);
+        $kategori = $request->input('kategori');
+        $status = $request->input('status');
+        $queryPengaduan = $dataPengaduan = LaporanModel::with('UserTable', 'FotoTable')->pengaduan($search)->latest();
         $dataPetugas = PetugasModel::with('UserTable')->get();
-        $dataPenanggungJawab = PenanggungJawabModel::with('PengaduanTable', 'PetugasTable')->get();
+        $queryPenanggungJawab = $dataPenanggungJawab = PenanggungJawabModel::with('PengaduanTable', 'PetugasTable')->penanggungJawab($search)->latest();
+        $user = User::where('role', 'Warga')->get();
+
+        if ($kategori) {
+            $queryPengaduan->where('Kategori_Laporan', $kategori);
+            $queryPenanggungJawab->where('Kategori_Laporan', $kategori);
+        }
+
+        if ($status) {
+            $queryPengaduan->where('Status_Laporan', $status);
+            $queryPenanggungJawab->where('Status_Laporan', $status);
+        }
+
+        $dataPengaduan = $queryPengaduan->paginate($dataCount);
+        $dataPenanggungJawab = $queryPenanggungJawab->paginate($dataCount);
+
         return view('/laporan', [
             "title" => "Pengaduan",
             "dataPengaduan" => $dataPengaduan,
             "dataPetugas" => $dataPetugas,
-            "dataPenanggungJawab" => $dataPenanggungJawab
+            "dataPenanggungJawab" => $dataPenanggungJawab,
+            "user" => $user,
+            "data_count" => $dataCount,
+            "kategori" => $kategori,
+            "status" => $status
         ]);
     }
 
@@ -32,6 +58,45 @@ class laporan extends Controller
         ]);
     }
 
+    public function storeLaporan(Request $request)
+    {
+        $validatedData = $request->validate([
+            'ID_User' => 'required',
+            'Kategori_Laporan' => 'required',
+            'Deskripsi_Laporan' => 'required',
+            'Titik_Koordinat' => 'required',
+            'Dokumen_Pendukung' => 'required|file',
+        ]);
+
+        $laporanData = [
+            'ID_User' => $validatedData['ID_User'],
+            'Kategori_Laporan' => $validatedData['Kategori_Laporan'],
+            'Deskripsi_Laporan' => $validatedData['Deskripsi_Laporan'],
+            'Titik_Koordinat' => $validatedData['Titik_Koordinat'],
+        ];
+
+        if ($request->hasFile('Dokumen_Pendukung')) {
+            $dokumenPath = $request->file('Dokumen_Pendukung')->store('dokumen_pengaduan', 'public');
+            $laporanData['Dokumen_Pendukung'] = $dokumenPath;
+        }
+
+        $laporan = LaporanModel::create($laporanData);
+
+        if ($laporan) {
+            if ($request->hasFile('Foto')) {
+                $fotoPath = $request->file('Foto')->store('foto_pengaduan', 'public');
+                $fotoData = [
+                    'Foto' => $fotoPath,
+                    'ID_Laporan' => $laporan->ID_Laporan,
+                ];
+                FotoModel::create($fotoData);
+            }
+
+            return redirect()->back()->with('success', 'Berhasil Membuat Pengaduan');
+        }
+
+        return redirect()->back()->with('error', 'Gagal Membuat Pengaduan');
+    }
 
     public function updateLaporan(Request $request, $ID_Laporan)
     {

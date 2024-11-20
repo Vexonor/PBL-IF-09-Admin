@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class LaporanModel extends Model
 {
@@ -25,7 +26,7 @@ class LaporanModel extends Model
         static::creating(function ($model) {
             $latestId = static::max('ID_Laporan');
             $nextId = $latestId + 1;
-            $model->Kode_Laporan = 'LP-' . str_pad($nextId, 3, '0', STR_PAD_LEFT);
+            $model->Kode_Laporan = 'LPR-' . str_pad($nextId, 3, '0', STR_PAD_LEFT);
         });
     }
     public function UserTable()
@@ -39,5 +40,13 @@ class LaporanModel extends Model
     public function PenanggungJawabTable()
     {
         return $this->belongsTo(PenanggungJawabModel::class, 'Kode_Laporan');
+    }
+
+    public function scopePengaduan(Builder $query, $search): void
+    {
+        $query->whereHas('UserTable', function ($adminQuery) use ($search) {
+            $adminQuery->where('Nama', 'LIKE', '%' . $search . '%')
+                ->orWhere('Kode_Laporan', 'LIKE', '%' . $search . '%');
+        });
     }
 }

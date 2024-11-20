@@ -10,12 +10,24 @@ use Illuminate\Http\Request;
 
 class admin extends Controller
 {
-    public function admin()
+    public function admin(Request $request)
     {
-        $dataUser = User::with('AdminTable')->where('role', 'Admin')->get();
+        $search = request('search');
+        $dataCount = $request->input('data_count', 10);
+        $status = $request->input('status');
+        $query = $dataUser = AdminModel::with('UserTable')->admin($search)->latest();
+
+        if ($status) {
+            $query->where('Role_Admin', $status);
+        }
+
+        $dataUser = $query->paginate($dataCount);
+
         return view('/admin', [
             "title" => "Admin",
-            "dataUser" => $dataUser
+            "dataUser" => $dataUser,
+            "data_count" => $dataCount,
+            "status" => $status
         ]);
     }
 

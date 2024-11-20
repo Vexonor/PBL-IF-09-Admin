@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('Status_Laporan', ['Selesai', 'Sedang Diproses', 'Belum Selesai'])->default('Sedang Diproses');
             $table->timestamps();
         });
+        $this->call(\Database\Seeders\PenanggungJawabSeeder::class);
     }
 
     /**
@@ -29,5 +30,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('Penanggung_Jawab');
+    }
+    protected function call($class)
+    {
+        (new $class)->run();
     }
 };

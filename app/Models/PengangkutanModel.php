@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class PengangkutanModel extends Model
 {
@@ -27,5 +28,11 @@ class PengangkutanModel extends Model
     public function PetugasTable()
     {
         return $this->belongsTo(PetugasModel::class, 'ID_Petugas');
+    }
+
+    public function scopePengangkutanTPS(Builder $query, $search): void
+    {
+        $query->where('Kode_TPS', 'LIKE', '%' . $search . '%')
+            ->orWhere('ID_Petugas', 'LIKE', '%' . $search . '%');
     }
 }

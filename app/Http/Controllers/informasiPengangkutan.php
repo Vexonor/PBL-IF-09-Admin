@@ -8,17 +8,33 @@ use Illuminate\Http\Request;
 
 class informasiPengangkutan extends Controller
 {
-    public function informasiPengangkutan()
+    public function informasiPengangkutan(Request $request)
     {
-        $dataInformasi = InformasiModel::with('PetugasTable')->get();
+        $search = request('search');
+        $dataCount = $request->input('data_count', 10);
+        $status = $request->input('status');
+        $wilayah = $request->input('wilayah');
+        $query = $dataInformasi = InformasiModel::with('PetugasTable.UserTable')->informasi($search)->latest();
         $wilayahOptions = InformasiModel::getWilayahOptions();
         $dataUser = PetugasModel::with('UserTable')->get();
+
+        if ($wilayah) {
+            $query->where('Wilayah_Pengangkutan', $wilayah);
+        }
+
+        if ($status) {
+            $query->where('Status_Pengangkutan', $status);
+        }
+
+        $dataInformasi = $query->paginate($dataCount);
 
         return view('/informasiPengangkutan', [
             "title" => "Informasi Pengangkutan",
             "dataInformasi" => $dataInformasi,
             "wilayahOptions" => $wilayahOptions,
-            "dataUser" => $dataUser
+            "dataUser" => $dataUser,
+            "data_count" => $dataCount,
+            "status" => $status
         ]);
     }
 

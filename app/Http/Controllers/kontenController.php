@@ -8,14 +8,32 @@ use Illuminate\Http\Request;
 
 class kontenController extends Controller
 {
-    public function KontenController()
+    public function KontenController(Request $request)
     {
-        $dataKonten = KontenModel::with('UserTable')->get();
+        $search = request('search');
+        $dataCount = $request->input('data_count', 10);
+        $status = $request->input('status');
+        $jenis = $request->input('jenis');
+        $query = $dataKonten = KontenModel::with('UserTable')->konten($search)->latest();
         $dataUser = User::all();
+
+        if ($jenis) {
+            $query->where('Jenis_Edukasi', $jenis);
+        }
+
+        if ($status) {
+            $query->where('Status_Konten', $status);
+        }
+
+        $dataKonten = $query->paginate($dataCount);
+
         return view('/kontenEdukasi', [
             "title" => "Konten Edukasi",
             "dataKonten" => $dataKonten,
-            "dataUser" => $dataUser
+            "dataUser" => $dataUser,
+            "data_count" => $dataCount,
+            "status" => $status,
+            "jenis" => $jenis
         ]);
     }
 

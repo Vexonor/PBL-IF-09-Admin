@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
@@ -54,7 +55,7 @@ class User extends Authenticatable
 
     public function PetugasTable()
     {
-        return $this->hasOne(PetugasModel::class, 'ID_User');
+        return $this->hasOne(PetugasModel::class, 'ID_User', 'ID_User');
     }
     public function PengaduanTable()
     {

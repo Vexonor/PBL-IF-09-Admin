@@ -50,9 +50,11 @@
                 <!-- Search Bar -->
                 <div class="col-span-2 flex items-center justify-center w-full">
                     <div class="relative w-full">
-                        <input type="text" id="table-search-input"
-                            class="peer py-3 px-4 pl-11 w-full block bg-gray-100 border border-transparent rounded-full text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                            placeholder="Cari">
+                        <form>
+                            <input type="search" id="search"
+                                class="peer py-3 px-4 pl-11 w-full block bg-gray-100 border border-transparent rounded-full text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                placeholder="Cari" name="search" autocomplete="off">
+                        </form>
                         <div
                             class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none peer-disabled:opacity-50 peer-disabled:pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
