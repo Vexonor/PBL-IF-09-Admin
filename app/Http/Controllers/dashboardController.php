@@ -18,13 +18,15 @@ class dashboardController extends Controller
         $totalTPS = TPSModel::count();
         $totalAdmin = AdminModel::count();
         $totalPetugas = PetugasModel::count();
+        $wilayahOptions = InformasiModel::getWilayahOptions();
         return view('/dashboard', [
             "title" => "Dashboard",
             "totalLaporan" => $totalLaporan,
             "totalInformasi" => $totalInformasi,
             "totalTPS" => $totalTPS,
             "totalAdmin" => $totalAdmin,
-            "totalPetugas" => $totalPetugas
+            "totalPetugas" => $totalPetugas,
+            "wilayahOptions" => $wilayahOptions
         ]);
     }
 }

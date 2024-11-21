@@ -47,7 +47,8 @@ class InformasiModel extends Model
     {
         if ($search) {
             $query->whereHas('PetugasTable.UserTable', function ($userQuery) use ($search) {
-                $userQuery->where('Nama', 'LIKE', '%' . $search . '%');
+                $userQuery->where('Nama', 'LIKE', '%' . $search . '%')
+                    ->orWhere('Tanggal_Pengangkutan', 'LIKE', '%' . $search . '%');
             });
         }
     }

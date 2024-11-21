@@ -15,10 +15,11 @@ class InformasiSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create('id_ID');
-
         $petugas = DB::table('Petugas_Kebersihan')->pluck('ID_Petugas');
 
-        foreach ($petugas as $id_petugas) {
+        for ($i = 0; $i < 400; $i++) {
+            $id_petugas = $faker->randomElement($petugas);
+
             DB::table('Informasi_Pengangkutan')->insert([
                 'ID_Petugas' => $id_petugas,
                 'Wilayah_Pengangkutan' => $faker->randomElement([
@@ -35,7 +36,7 @@ class InformasiSeeder extends Seeder
                     'Belakang Padang',
                     'Batu Aji'
                 ]),
-                'Tanggal_Pengangkutan' => $faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
+                'Tanggal_Pengangkutan' => $faker->dateTimeBetween('first day of January 2020', 'last day of December 2024')->format('Y-m-d'),
                 'Jam_Pengangkutan' => $faker->time('H:i:s'),
                 'Status_Pengangkutan' => $faker->randomElement(['Selesai', 'Belum Selesai', 'Tertunda']),
                 'created_at' => now(),
