@@ -10,8 +10,18 @@ use App\Http\Controllers\kontenController;
 use App\Http\Controllers\laporan;
 use App\Http\Controllers\lokasiTPS;
 use App\Http\Controllers\pengaturan;
+use App\Http\Controllers\registerController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
+
+// Register
+Route::get('/register', [registerController::class, 'registerPage'])->name('register.page');
+Route::post('/register', [registerController::class, 'storeUser'])->name('user.store');
+
+// OTP Page
+Route::get('/{ID_User}/verifOTP', [registerController::class, 'OTPPage'])->name('otp.page');
+Route::post('/verifOTP/{ID_User}', [registerController::class, 'ValidateOTP'])->name('otp.validate');
+Route::post('/resendOTP', [registerController::class, 'resendOTP'])->name('otp.resend');
 
 // Login
 Route::get('/', [login::class, 'login'])->name('login');

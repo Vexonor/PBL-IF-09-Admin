@@ -65,4 +65,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(KontenModel::class, 'ID_User');
     }
+    public function OTP()
+    {
+        return $this->hasMany(OTPModel::class, 'ID_User')->where('expired_at', '>', 'now()');
+    }
 }
