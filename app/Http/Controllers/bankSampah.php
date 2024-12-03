@@ -13,6 +13,7 @@ class bankSampah extends Controller
         $dataCount = $request->input('data_count', 10);
         $status = $request->input('status');
         $query = $dataBankSampah = BankSampahModel::bankSampah($search)->latest();
+        $wilayahOptions = BankSampahModel::getWilayahOptions();
 
         if ($status) {
             $query->where('Status_Operasional', $status);
@@ -23,6 +24,7 @@ class bankSampah extends Controller
         return view('/bankSampah', [
             "title" => "Bank Sampah",
             "dataBankSampah" => $dataBankSampah,
+            "wilayahOptions" => $wilayahOptions,
             "data_count" => $dataCount,
             "status" => $status
         ]);
@@ -30,12 +32,13 @@ class bankSampah extends Controller
 
     public function storeBankSampah(Request $request)
     {
-
         $validate = $request->validate([
             'Nama_Bank_Sampah' => 'required',
             'Jenis_Sampah' => 'required',
+            'Harga_Sampah' => 'required',
             'Nama_Pemilik' => 'required',
             'No_Telp' => 'required',
+            'Wilayah_BankSampah' => 'required',
             'Titik_Koordinat' => 'required',
             'Jam_Buka' => 'required',
             'Jam_Tutup' => 'required',
@@ -58,8 +61,10 @@ class bankSampah extends Controller
         $validateBankSampah = $request->validate([
             'Nama_Bank_Sampah' => 'required',
             'Jenis_Sampah' => 'required',
+            'Harga_Sampah' => 'required',
             'Nama_Pemilik' => 'required',
             'No_Telp' => 'required',
+            'Wilayah_BankSampah' => 'required',
             'Titik_Koordinat' => 'required',
             'Jam_Buka' => 'required',
             'Jam_Tutup' => 'required',

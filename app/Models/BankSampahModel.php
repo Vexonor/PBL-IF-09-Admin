@@ -14,13 +14,33 @@ class BankSampahModel extends Model
     protected $fillable = [
         "Nama_Bank_Sampah",
         "Jenis_Sampah",
+        "Harga_Sampah",
         "Nama_Pemilik",
         "No_Telp",
+        "Wilayah_BankSampah",
         "Titik_Koordinat",
         "Jam_Buka",
         "Jam_Tutup",
         "Status_Operasional"
     ];
+
+    public static function getWilayahOptions()
+    {
+        return [
+            'Batu Ampar',
+            'Bengkong',
+            'Bulang',
+            'Galang',
+            'Lubuk Baja',
+            'Nongsa',
+            'Sagulung',
+            'Sei Beduk',
+            'Sekupang',
+            'Batam Kota',
+            'Belakang Padang',
+            'Batu Aji',
+        ];
+    }
 
     public function scopeBankSampah(Builder $query, $search): void
     {

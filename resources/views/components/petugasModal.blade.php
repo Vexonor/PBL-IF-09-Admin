@@ -33,6 +33,9 @@
                             <input type="text" id="input-label" name="Nama"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Lengkap" required>
+                            @error('Nama')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Tanggal Lahir -->
                         <div class="w-full mb-5">
@@ -42,6 +45,9 @@
                             <input type="date" id="input-label" name="Tanggal_Lahir"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Lengkap" required>
+                            @error('Tanggal_Lahir')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Jenis Kelamin -->
                         <div class="w-full mb-5">
@@ -60,6 +66,9 @@
                                 <option value="Laki - Laki">Laki - Laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
+                            @error('Jenis_Kelamin')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Alamat -->
                         <div class="w-full mb-5">
@@ -68,6 +77,9 @@
                             <textarea id="textarea-label" name="Alamat"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 rows="3" placeholder="Alamat" required></textarea>
+                            @error('Alamat')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- No. Telepon -->
                         <div class="w-full mb-5">
@@ -76,6 +88,9 @@
                             <input type="text" id="input-label" name="No_Telp"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan No. Telepon" required>
+                            @error('No_Telp')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Email -->
                         <div class="w-full mb-5">
@@ -84,6 +99,9 @@
                             <input type="email" id="input-label" name="email"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Email" required>
+                            @error('email')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Password -->
                         <div class="w-full mb-5">
@@ -91,7 +109,7 @@
                             <div class="relative">
                                 <input id="oldPass" type="password" name="password"
                                     class="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                    placeholder="Enter password" value="123456" readonly>
+                                    placeholder="Enter password" value="password123" readonly>
                                 <button type="button" data-hs-toggle-password='{
         "target": "#oldPass"
       }' class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500">
@@ -113,6 +131,9 @@
                                     </svg>
                                 </button>
                             </div>
+                            @error('password')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Wilayah Bertugas -->
                         <div class="w-full mb-5">
@@ -157,6 +178,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('Wilayah_Bertugas')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Tanggal Bergabung -->
                         <div class="w-full mb-5">
@@ -166,6 +190,9 @@
                             <input type="date" id="input-label" name="Tanggal_Bergabung"
                                 class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Lengkap" required>
+                            @error('Tanggal_Bergabung')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Status Keaktifan -->
                         <div class="w-full mb-5">
@@ -185,6 +212,9 @@
                                 <option>Izin</option>
                                 <option>Cuti</option>
                             </select>
+                            @error('Status_Keaktifan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>

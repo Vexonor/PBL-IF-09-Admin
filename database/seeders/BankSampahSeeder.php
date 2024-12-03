@@ -20,8 +20,23 @@ class BankSampahSeeder extends Seeder
             DB::table('bank_sampah')->insert([
                 'Nama_Bank_Sampah' => $faker->company,
                 'Jenis_Sampah' => $faker->randomElement(['Plastik', 'Kaca', 'Kertas', 'Logam', 'Organik', 'Elektronik']),
+                'Harga_Sampah' => 'Rp ' . number_format($faker->numberBetween(1000, 30000), 0, ',', '.'),
                 'Nama_Pemilik' => $faker->name,
                 'No_Telp' => $faker->phoneNumber,
+                'Wilayah_BankSampah' => $faker->randomElement([
+                    'Batu Ampar',
+                    'Bengkong',
+                    'Bulang',
+                    'Galang',
+                    'Lubuk Baja',
+                    'Nongsa',
+                    'Sagulung',
+                    'Sei Beduk',
+                    'Sekupang',
+                    'Batam Kota',
+                    'Belakang Padang',
+                    'Batu Aji'
+                ]),
                 'Titik_Koordinat' => $faker->latitude . ', ' . $faker->longitude,
                 'Jam_Buka' => $faker->time('H:i', '08:00'),
                 'Jam_Tutup' => $faker->time('H:i', '17:00'),

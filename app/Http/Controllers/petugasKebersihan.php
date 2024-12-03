@@ -41,13 +41,13 @@ class petugasKebersihan extends Controller
     public function storePetugas(Request $request)
     {
         $validateUser = $request->validate([
-            'Nama' => 'required',
-            'Tanggal_Lahir' => 'required',
-            'Jenis_Kelamin' => 'required',
-            'Alamat' => 'required',
-            'No_Telp' => 'required',
-            'email' => 'required',
-            'password' => 'required',
+            'Nama' => 'required|string|max:255',
+            'Tanggal_Lahir' => 'required|date|before:today',
+            'Jenis_Kelamin' => 'required|in:Laki - Laki,Perempuan',
+            'Alamat' => 'required|string|max:500',
+            'No_Telp' => 'required|string|max:15|regex:/^\+?[0-9]*$/',
+            'email' => 'required|email|unique:User,email',
+            'password' => 'required|string|min:6',
         ]);
         $validateUser['role'] = 'Petugas';
         $validateUser['password'] = bcrypt($validateUser['password']);
@@ -55,9 +55,9 @@ class petugasKebersihan extends Controller
         $user = User::create($validateUser);
 
         $validatePetugas = $request->validate([
-            'Wilayah_Bertugas' => 'required',
-            'Tanggal_Bergabung' => 'required',
-            'Status_Keaktifan' => 'required',
+            'Wilayah_Bertugas' => 'required|in:Batu Ampar,Bengkong,Bulang,Galang,Lubuk Baja,Nongsa,Sagulung,Sei Beduk,Sekupang,Batam Kota,Belakang Padang,Batu Aji',
+            'Tanggal_Bergabung' => 'required|date|before_or_equal:today',
+            'Status_Keaktifan' => 'required|in:Aktif,Izin,Cuti',
         ]);
 
         $petugas = PetugasModel::create([

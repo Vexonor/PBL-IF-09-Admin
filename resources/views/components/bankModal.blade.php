@@ -56,6 +56,42 @@
                                 <option value="Elektronik">Elektronik</option>
                             </select>
                         </div>
+                        <!-- Harga Sampah -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Harga Sampah
+                                per Kg :</label>
+                            <div class="py-2 px-3 border border-gray-200 rounded-lg dark:bg-neutral-700"
+                                data-hs-input-number="">
+                                <div class="w-full flex justify-between items-center gap-x-5">
+                                    <div class="grow">
+                                        <input
+                                            class="price-input w-full p-0 bg-transparent border-0 text-gray-800 focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none dark:text-white"
+                                            style="-moz-appearance: textfield;" type="text"
+                                            aria-roledescription="Number field" name="Harga_Sampah" value="0">
+                                    </div>
+                                    <div class="flex justify-end items-center gap-x-1.5">
+                                        <button class="decrement-button  border border-gray-200 p-1 rounded-md"
+                                            type="button" aria-label="Decrease">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor"
+                                                viewBox="0 0 256 256">
+                                                <path
+                                                    d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                        <button class="increment-button border border-gray-200 p-1 rounded-md"
+                                            type="button" aria-label="Increase">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor"
+                                                viewBox="0 0 256 256">
+                                                <path
+                                                    d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Nama Pemilik Bank Sampah -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nama Pemilik
@@ -96,6 +132,50 @@
                                 </div>
                             </li>
                         </ul>
+                        <!-- Wilayah Bank Sampah -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Wilayah
+                                Bank Sampah
+                                :</label>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" name="Wilayah_BankSampah"
+                                        data-hs-combo-box-input="" value="" required>
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @foreach ($wilayahOptions as $wilayah)
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="{{ $wilayah }}">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="{{ $wilayah }}"
+                                                data-hs-combo-box-value="">{{ $wilayah }}</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
                         <!-- Lokasi -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Lokasi
@@ -214,6 +294,43 @@
                                 </option>
                             </select>
                         </div>
+                        <!-- Harga Sampah -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Harga Sampah
+                                per Kg :</label>
+                            <div class="py-2 px-3 border border-gray-200 rounded-lg dark:bg-neutral-700"
+                                data-hs-input-number="">
+                                <div class="w-full flex justify-between items-center gap-x-5">
+                                    <div class="grow">
+                                        <input
+                                            class="price-input w-full p-0 bg-transparent border-0 text-gray-800 focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none dark:text-white"
+                                            style="-moz-appearance: textfield;" type="text" id="price-input"
+                                            aria-roledescription="Number field" name="Harga_Sampah"
+                                            value="{{ $BankSampah->Harga_Sampah }}">
+                                    </div>
+                                    <div class="flex justify-end items-center gap-x-1.5">
+                                        <button class="decrement-button border border-gray-200 p-1 rounded-md"
+                                            type="button" id="decrement-button" aria-label="Decrease">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor"
+                                                viewBox="0 0 256 256">
+                                                <path
+                                                    d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                        <button class="increment-button border border-gray-200 p-1 rounded-md"
+                                            type="button" id="increment-button" aria-label="Increase">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor"
+                                                viewBox="0 0 256 256">
+                                                <path
+                                                    d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Nama Pemilik Bank Sampah -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nama Pemilik
@@ -257,6 +374,51 @@
                                 </div>
                             </li>
                         </ul>
+                        <!-- Wilayah Bank Sampah -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Wilayah
+                                Bank Sampah
+                                :</label>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" name="Wilayah_BankSampah"
+                                        data-hs-combo-box-input="" value="{{ $BankSampah->Wilayah_BankSampah }}"
+                                        required>
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
+                                        data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @foreach ($wilayahOptions as $wilayah)
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="{{ $wilayah }}">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="{{ $wilayah }}"
+                                                data-hs-combo-box-value="">{{ $wilayah }}</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
                         <!-- Lokasi -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Lokasi
@@ -407,9 +569,10 @@
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nama Bank
                                 Sampah :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Nama_Bank_Sampah"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Nama Bank Sampah">
+                                placeholder="Masukkan Nama Bank Sampah" value="{{ $BankSampah->Nama_Bank_Sampah }}"
+                                readonly>
                         </div>
                         <!-- Jenis Bank Sampah -->
                         <div class="w-full mb-5">
@@ -418,34 +581,82 @@
                             <select data-hs-select='{
                                 "placeholder": "Pilih Jenis Sampah",
                                 "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-                                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                                "toggleClasses": "pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
                                 "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
-                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
+                                }' class="hidden" name="Jenis_Sampah">
                                 <option value="">Pilih Jenis Sampah</option>
-                                <option>Plastik</option>
-                                <option>Elektronik</option>
-                                <option>Besi</option>
+                                <option value="Plastik" {{ $BankSampah->Jenis_Sampah == 'Plastik' ? 'selected' : '' }}>
+                                    Plastik</option>
+                                <option value="Kaca" {{ $BankSampah->Jenis_Sampah == 'Kaca' ? 'selected' : '' }}>Kaca
+                                </option>
+                                <option value="Kertas" {{ $BankSampah->Jenis_Sampah == 'Kertas' ? 'selected' : '' }}>
+                                    Kertas</option>
+                                <option value="Logam" {{ $BankSampah->Jenis_Sampah == 'Logam' ? 'selected' : '' }}>Logam
+                                </option>
+                                <option value="Organik" {{ $BankSampah->Jenis_Sampah == 'Organik' ? 'selected' : '' }}>
+                                    Organik</option>
+                                <option value="Elektronik"
+                                    {{ $BankSampah->Jenis_Sampah == 'Elektronik' ? 'selected' : '' }}>Elektronik
+                                </option>
                             </select>
+                        </div>
+                        <!-- Harga Sampah -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Harga Sampah
+                                per Kg :</label>
+                            <div class="py-2 px-3 border border-gray-200 rounded-lg dark:bg-neutral-700"
+                                data-hs-input-number="">
+                                <div class="w-full flex justify-between items-center gap-x-5">
+                                    <div class="grow">
+                                        <input
+                                            class="price-input w-full p-0 bg-transparent border-0 text-gray-800 focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none dark:text-white"
+                                            style="-moz-appearance: textfield;" type="text" id="price-input"
+                                            aria-roledescription="Number field" name="Harga_Sampah"
+                                            value="{{ $BankSampah->Harga_Sampah }}" readonly>
+                                    </div>
+                                    <div class="flex justify-end items-center gap-x-1.5">
+                                        <button class="decrement-button border border-gray-200 p-1 rounded-md"
+                                            type="button" id="decrement-button" aria-label="Decrease" disabled>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor"
+                                                viewBox="0 0 256 256">
+                                                <path
+                                                    d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                        <button class="increment-button border border-gray-200 p-1 rounded-md"
+                                            type="button" id="increment-button" aria-label="Increase" disabled>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor"
+                                                viewBox="0 0 256 256">
+                                                <path
+                                                    d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- Nama Pemilik Bank Sampah -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nama Pemilik
                                 Bank
                                 Sampah :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="Nama_Pemilik"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Nama Pemilik Bank Sampah">
+                                placeholder="Masukkan Nama Pemilik Bank Sampah" value="{{ $BankSampah->Nama_Pemilik }}"
+                                readonly>
                         </div>
                         <!-- No. Telepon -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">No. Telepon
                                 Pemilik :</label>
-                            <input type="text" id="input-label"
+                            <input type="text" id="input-label" name="No_Telp"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan No. Telepon Pemilik">
+                                placeholder="Masukkan No. Telepon Pemilik" value="{{ $BankSampah->No_Telp }}" readonly>
                         </div>
                         <!-- Jam Operasional -->
                         <ul class="flex justify-between gap-2">
@@ -454,9 +665,10 @@
                                 <div class="w-full mb-5">
                                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Jam
                                         Buka :</label>
-                                    <input type="time" id="input-label"
+                                    <input type="time" id="input-label" name="Jam_Buka"
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                        placeholder="Masukkan No. Telepon Pemilik">
+                                        placeholder="Masukkan No. Telepon Pemilik" value="{{ $BankSampah->Jam_Buka }}"
+                                        readonly>
                                 </div>
                             </li>
                             <!-- Jam Tutup -->
@@ -464,19 +676,83 @@
                                 <div class="w-full mb-5">
                                     <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Jam
                                         Tutup :</label>
-                                    <input type="time" id="input-label"
+                                    <input type="time" id="input-label" name="Jam_Tutup"
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                        placeholder="Masukkan No. Telepon Pemilik">
+                                        placeholder="Masukkan No. Telepon Pemilik" value="{{ $BankSampah->Jam_Tutup }}"
+                                        readonly>
                                 </div>
                             </li>
                         </ul>
+                        <!-- Wilayah Bank Sampah -->
+                        <div class="w-full mb-5">
+                            <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Wilayah
+                                Bank Sampah
+                                :</label>
+                            <div class="relative" data-hs-combo-box="">
+                                <div class="relative">
+                                    <input
+                                        class="py-3 ps-4 pe-9 block w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                        type="text" role="combobox" aria-expanded="false" name="Wilayah_BankSampah"
+                                        data-hs-combo-box-input="" value="{{ $BankSampah->Wilayah_BankSampah }}"
+                                        readonly>
+                                    <div class="absolute top-1/2 end-3 -translate-y-1/2 pointer-events-none"
+                                        aria-expanded="false" data-hs-combo-box-toggle="">
+                                        <svg class="shrink-0 size-3.5 text-gray-500 dark:text-neutral-500"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m7 15 5 5 5-5"></path>
+                                            <path d="m7 9 5-5 5 5"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                @foreach ($wilayahOptions as $wilayah)
+                                <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700"
+                                    style="display: none;" data-hs-combo-box-output="{{ $wilayah }}">
+                                    <div class="cursor-pointer py-2 px-4 w-full text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800"
+                                        tabindex="0" data-hs-combo-box-output-item="">
+                                        <div class="flex justify-between items-center w-full">
+                                            <span data-hs-combo-box-search-text="{{ $wilayah }}"
+                                                data-hs-combo-box-value="">{{ $wilayah }}</span>
+                                            <span class="hidden hs-combo-box-selected:block">
+                                                <svg class="shrink-0 size-3.5 text-blue-600 dark:text-blue-500"
+                                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M20 6 9 17l-5-5"></path>
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
                         <!-- Lokasi -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Lokasi
                                 :</label>
-                            <input type="text" id="input-label"
-                                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                placeholder="Masukkan Titik Koordinat">
+
+                            @php
+                            if (filter_var($BankSampah->Titik_Koordinat, FILTER_VALIDATE_URL)) {
+                            if (preg_match('/@([0-9.-]+),([0-9.-]+)/', $BankSampah->Titik_Koordinat, $matches)) {
+                            $latitude = $matches[1];
+                            $longitude = $matches[2];
+                            } else {
+                            $latitude = 0;
+                            $longitude = 0;
+                            }
+                            } else {
+                            $coordinates = explode(',', $BankSampah->Titik_Koordinat);
+                            $latitude = isset($coordinates[0]) ? trim($coordinates[0]) : 0;
+                            $longitude = isset($coordinates[1]) ? trim($coordinates[1]) : 0;
+                            }
+                            @endphp
+
+                            <iframe
+                                src="https://www.google.com/maps?q={{ $latitude }},{{ $longitude }}&hl=en&z=17&output=embed"
+                                class="w-full h-[25rem] rounded-sm" style="border:0;" allowfullscreen="" loading="lazy">
+                            </iframe>
                         </div>
                         <!-- Status Operasional -->
                         <div class="w-full mb-5">
@@ -485,15 +761,19 @@
                             <select data-hs-select='{
                                 "placeholder": "Pilih Status",
                                 "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-                                "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                                "toggleClasses": "pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
                                 "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
-                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden">
-                                <option value="">Pilih Jenis Sampah</option>
-                                <option>Buka</option>
-                                <option>Tutup</option>
+                                }' class="hidden" name="Status_Operasional" required>
+                                <option value="">Pilih Status</option>
+                                <option value="Buka" {{ $BankSampah->Status_Operasional == 'Buka' ? 'selected' : '' }}>
+                                    Buka
+                                </option>
+                                <option value="Tutup"
+                                    {{ $BankSampah->Status_Operasional == 'Tutup' ? 'selected' : '' }}>Tutup
+                                </option>
                             </select>
                         </div>
                     </form>

@@ -166,4 +166,64 @@
     {{ $dataBankSampah->links() }}
 </div>
 
+
+
+
+<!-- Pricing Format -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const formatRupiah = (value) => {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+            }).format(value);
+        };
+
+        const validateValue = (value) => {
+            const stringValue = typeof value === 'string' ? value : value.toString();
+            return Math.max(0, parseInt(stringValue.replace(/[^\d]/g, ''), 10) || 0);
+        };
+
+        const updateValue = (input, value) => {
+            const validatedValue = validateValue(value);
+            input.value = formatRupiah(validatedValue);
+        };
+
+        const attachListeners = (inputField, incrementBtn, decrementBtn) => {
+            const updateFromInput = () => {
+                const currentValue = validateValue(inputField.value);
+                inputField.value = currentValue;
+            };
+
+            const formatOnBlur = () => {
+                const currentValue = validateValue(inputField.value);
+                inputField.value = formatRupiah(currentValue);
+            };
+
+            incrementBtn.addEventListener("click", () => {
+                const currentValue = validateValue(inputField.value);
+                updateValue(inputField, currentValue + 500);
+            });
+
+            decrementBtn.addEventListener("click", () => {
+                const currentValue = validateValue(inputField.value);
+                updateValue(inputField, Math.max(0, currentValue - 500));
+            });
+
+            inputField.addEventListener("input", updateFromInput);
+            inputField.addEventListener("blur", formatOnBlur);
+
+            const initialValue = validateValue(inputField.value || 0);
+            inputField.value = formatRupiah(initialValue);
+        };
+
+        const inputs = document.querySelectorAll('.price-input');
+        inputs.forEach((input, index) => {
+            const incrementBtn = document.querySelectorAll('.increment-button')[index];
+            const decrementBtn = document.querySelectorAll('.decrement-button')[index];
+            attachListeners(input, incrementBtn, decrementBtn);
+        });
+    });
+</script>
 @endsection
