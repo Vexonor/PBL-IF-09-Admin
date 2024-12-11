@@ -30,6 +30,16 @@
                 <p class="text-center font-semibold mt-2 text-gray-500 dark:text-neutral-400">
                     Harap mengisi form dibawah terlebih dahulu sebelum mengakses halaman dashboard
                 </p>
+                @error('email')
+                <p class="text-base font-semibold text-center text-red-600 mt-2" id="hs-validation-name-error-helper">
+                    {{ $message }}
+                </p>
+                @enderror
+                @error('password')
+                <p class="text-base font-semibold text-center text-red-600 mt-2" id="hs-validation-name-error-helper">
+                    {{ $message }}
+                </p>
+                @enderror
                 <form action="{{ route('login.process') }}" class="my-10" method="post" enctype="multipart/form-data">
                     @csrf
                     <!-- Email -->

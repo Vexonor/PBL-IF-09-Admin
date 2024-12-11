@@ -31,7 +31,7 @@ class login extends Controller
             if ($user->role === 'Admin') {
                 return redirect()->route('dashboard.page')->with('success', 'Berhasil Login');
             } else {
-                return redirect()->route('login.page')->with('error', 'Gagal Login');
+                return redirect()->route('login')->with('error', 'Gagal Login');
             }
         }
         return back()->with('gagal', 'Email atau password yang dimasukkan salah!.')->withErrors([
