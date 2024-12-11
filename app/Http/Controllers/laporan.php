@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PenanggungJawabRequest;
 use App\Models\FotoModel;
 use App\Models\LaporanModel;
 use App\Models\PenanggungJawabModel;
@@ -9,6 +10,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\PetugasModel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class laporan extends Controller
 {
@@ -126,38 +129,52 @@ class laporan extends Controller
         }
     }
 
-    public function storePenanggungJawab(Request $request)
+    public function storePenanggungJawab(PenanggungJawabRequest $request)
     {
-        $validatePenanggungJawab = $request->validate([
-            'Kode_Laporan' => 'required',
-            'Kategori_Laporan' => 'required',
-            'Status_Laporan' => 'required',
-            'ID_Petugas' => 'required'
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $penanggungJawab = PenanggungJawabModel::create($validatePenanggungJawab);
-        if ($penanggungJawab) {
-            return redirect()->back()->with('success', 'Data Penanggung Jawab Berhasil Ditambahkan');
-        } else {
-            return redirect()->back()->with('error', 'Data Penanggung Jawab Gagal Ditambahkan');
+            $penanggungJawab = PenanggungJawabModel::create([
+                'Kode_Laporan' => $request->Kode_Laporan,
+                'ID_Petugas' => $request->ID_Petugas,
+                'Kategori_Laporan' => $request->Kategori_Laporan,
+                'Status_Laporan' => $request->Status_Laporan,
+            ]);
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Penanggung Jawab Berhasil Ditambahkan');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error menambahkan penanggung jawab: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Penanggung Jawab Gagal Ditambahkan');
         }
     }
 
     public function updatePenanggungJawab(Request $request, $ID_PJ)
     {
-        $penanggungJawab = PenanggungJawabModel::findOrFail($ID_PJ);
-        $validatePenanggungJawab = $request->validate([
-            'Kode_Laporan' => 'required',
-            'Kategori_Laporan' => 'required',
-            'Status_Laporan' => 'required',
-            'ID_Petugas' => 'required'
-        ]);
+        DB::beginTransaction();
+        try {
+            $penanggungJawab = PenanggungJawabModel::findOrFail($ID_PJ);
 
-        $status = $penanggungJawab->update($validatePenanggungJawab);
-        if ($status) {
-            return redirect()->back()->with('success', 'Data Penanggung Jawab Berhasil Diperbarui!');
-        } else {
-            return redirect()->back()->with('error', 'Data Penanggung Jawab Gagal Diperbarui!');
+            $penanggungJawab->update([
+                'Kode_Laporan' => $request->Kode_Laporan,
+                'ID_Petugas' => $request->ID_Petugas,
+                'Kategori_Laporan' => $request->Kategori_Laporan,
+                'Status_Laporan' => $request->Status_Laporan,
+            ]);
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Data Penanggung Jawab Berhasil Diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error memperbarui penanggung jawab: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Data Penanggung Jawab Gagal Diperbarui');
         }
     }
 

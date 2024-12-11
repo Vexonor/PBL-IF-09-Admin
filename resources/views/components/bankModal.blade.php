@@ -33,6 +33,9 @@
                             <input type="text" id="input-label" name="Nama_Bank_Sampah"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Bank Sampah" required>
+                            @error('Nama_Bank_Sampah')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Jenis Bank Sampah -->
                         <div class="w-full mb-5">
@@ -55,6 +58,9 @@
                                 <option value="Organik">Organik</option>
                                 <option value="Elektronik">Elektronik</option>
                             </select>
+                            @error('Jenis_Sampah')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Harga Sampah -->
                         <div class="w-full mb-5">
@@ -91,6 +97,9 @@
                                     </div>
                                 </div>
                             </div>
+                            @error('Harga_Sampah')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Nama Pemilik Bank Sampah -->
                         <div class="w-full mb-5">
@@ -100,6 +109,9 @@
                             <input type="text" id="input-label" name="Nama_Pemilik"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Pemilik Bank Sampah" required>
+                            @error('Nama_Pemilik')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- No. Telepon -->
                         <div class="w-full mb-5">
@@ -108,6 +120,9 @@
                             <input type="text" id="input-label" name="No_Telp"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan No. Telepon Pemilik" required>
+                            @error('No_Telp')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Jam Operasional -->
                         <ul class="flex justify-between gap-2">
@@ -119,6 +134,11 @@
                                     <input type="time" id="input-label" name="Jam_Buka"
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                         placeholder="Masukkan No. Telepon Pemilik" required>
+                                    @error('Jam_Buka')
+                                    <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
                             </li>
                             <!-- Jam Tutup -->
@@ -129,6 +149,11 @@
                                     <input type="time" id="input-label" name="Jam_Tutup"
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                         placeholder="Masukkan No. Telepon Pemilik" required>
+                                    @error('Jam_Tutup')
+                                    <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
                             </li>
                         </ul>
@@ -175,6 +200,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('Wilayah_BankSampah')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Lokasi -->
                         <div class="w-full mb-5">
@@ -183,6 +211,9 @@
                             <input type="text" id="input-label" name="Titik_Koordinat"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Titik Koordinat" required>
+                            @error('Titik_Koordinat')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Status Operasional -->
                         <div class="w-full mb-5">
@@ -201,6 +232,9 @@
                                 <option value="Buka">Buka</option>
                                 <option value="Tutup">Tutup</option>
                             </select>
+                            @error('Status_Operasional')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>
@@ -264,6 +298,9 @@
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Bank Sampah" value="{{ $BankSampah->Nama_Bank_Sampah }}"
                                 required>
+                            @error('Nama_Bank_Sampah')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Jenis Bank Sampah -->
                         <div class="w-full mb-5">
@@ -293,6 +330,9 @@
                                     {{ $BankSampah->Jenis_Sampah == 'Elektronik' ? 'selected' : '' }}>Elektronik
                                 </option>
                             </select>
+                            @error('Jenis_Sampah')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Harga Sampah -->
                         <div class="w-full mb-5">
@@ -330,6 +370,9 @@
                                     </div>
                                 </div>
                             </div>
+                            @error('Harga_Sampah')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Nama Pemilik Bank Sampah -->
                         <div class="w-full mb-5">
@@ -340,6 +383,9 @@
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Pemilik Bank Sampah" value="{{ $BankSampah->Nama_Pemilik }}"
                                 required>
+                            @error('Nama_Pemilik')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- No. Telepon -->
                         <div class="w-full mb-5">
@@ -348,6 +394,9 @@
                             <input type="text" id="input-label" name="No_Telp"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan No. Telepon Pemilik" value="{{ $BankSampah->No_Telp }}" required>
+                            @error('No_Telp')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Jam Operasional -->
                         <ul class="flex justify-between gap-2">
@@ -360,6 +409,11 @@
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                         placeholder="Masukkan No. Telepon Pemilik" value="{{ $BankSampah->Jam_Buka }}"
                                         required>
+                                    @error('Jam_Buka')
+                                    <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
                             </li>
                             <!-- Jam Tutup -->
@@ -371,6 +425,11 @@
                                         class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                         placeholder="Masukkan No. Telepon Pemilik" value="{{ $BankSampah->Jam_Tutup }}"
                                         required>
+                                    @error('Jam_Tutup')
+                                    <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
                             </li>
                         </ul>
@@ -418,6 +477,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('Wilayah_BankSampah')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Lokasi -->
                         <div class="w-full mb-5">
@@ -427,6 +489,9 @@
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Titik Koordinat" value="{{ $BankSampah->Titik_Koordinat }}"
                                 required>
+                            @error('Titik_Koordinat')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Status Operasional -->
                         <div class="w-full mb-5">
@@ -449,6 +514,9 @@
                                     {{ $BankSampah->Status_Operasional == 'Tutup' ? 'selected' : '' }}>Tutup
                                 </option>
                             </select>
+                            @error('Status_Operasional')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>

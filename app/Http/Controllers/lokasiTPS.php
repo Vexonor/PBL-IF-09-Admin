@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LokasiTPSRequest;
+use App\Http\Requests\PengangkutanRequest;
 use App\Models\PengangkutanModel;
 use App\Models\TPSModel;
 use App\Models\PetugasModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 
 class lokasiTPS extends Controller
 {
@@ -49,41 +54,61 @@ class lokasiTPS extends Controller
         ]);
     }
 
-    public function storeTPS(Request $request)
+    public function storeTPS(LokasiTPSRequest $request)
     {
-        $validateTPS = $request->validate([
-            'Kode_TPS' => 'required|string|unique:Lokasi_TPS,Kode_TPS',
-            'Wilayah_TPS' => 'required',
-            'Titik_Koordinat' => 'required',
-            'Status_TPS' => 'required'
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $tps = TPSModel::create($validateTPS);
+            $lokasiTPS = TPSModel::create([
+                'Kode_TPS' => $request->Kode_TPS,
+                'Wilayah_TPS' => $request->Wilayah_TPS,
+                'Titik_Koordinat' => $request->Titik_Koordinat,
+                'Status_TPS' => $request->Status_TPS,
+            ]);
 
-        if ($tps) {
+            DB::commit();
+
             return redirect()->back()->with('success', 'Lokasi TPS Berhasil Ditambahkan');
-        } else {
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error menambahkan lokasi tps: ' . $e->getMessage());
+
             return redirect()->back()->with('error', 'Lokasi TPS Gagal Ditambahkan');
         }
     }
 
-    public function updateTPS(Request $request, $ID_TPS)
+    public function updateTPS(LokasiTPSRequest $request, $ID_TPS)
     {
-        $tps = TPSModel::findOrFail($ID_TPS);
+        DB::beginTransaction();
+        try {
+            $lokasiTPS = TPSModel::findOrFail($ID_TPS);
 
-        $validateTPS = $request->validate([
-            'Kode_TPS' => 'required',
-            'Wilayah_TPS' => 'required',
-            'Titik_Koordinat' => 'required',
-            'Status_TPS' => 'required'
-        ]);
+            $request->validate([
+                'Kode_TPS' => [
+                    'required',
+                    'string',
+                    'max:255',
+                    Rule::unique('Lokasi_TPS', 'Kode_TPS')->ignore($ID_TPS, 'ID_TPS'),
+                ],
+            ]);
 
+            $lokasiTPS->update([
+                'Kode_TPS' => $request->Kode_TPS,
+                'Wilayah_TPS' => $request->Wilayah_TPS,
+                'Titik_Koordinat' => $request->Titik_Koordinat,
+                'Status_TPS' => $request->Status_TPS,
+            ]);
 
-        $status = $tps->update($validateTPS);
-        if ($status) {
-            return redirect()->back()->with('success', 'Data Lokasi TPS Berhasil Diperbarui!');
-        } else {
-            return redirect()->back()->with('error', 'Data Lokasi TPS Gagal Diperbarui!');
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Data Lokasi TPS Berhasil Diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error memperbarui lokasi tps: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Data Lokasi TPS Gagal Diperbarui');
         }
     }
 
@@ -101,42 +126,54 @@ class lokasiTPS extends Controller
 
     // Jadwal Pengangkutan
 
-    public function storePengangkutan(Request $request)
+    public function storePengangkutan(PengangkutanRequest $request)
     {
-        $validatePengangkutan = $request->validate([
-            'Kode_TPS' => 'required',
-            'ID_Petugas' => 'required',
-            'Tanggal_Pengangkutan' => 'required',
-            'Jam_Pengangkutan' => 'required',
-            'Status_Pengangkutan' => 'required'
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $pengangkutan = PengangkutanModel::create($validatePengangkutan);
+            $pengangkutan = PengangkutanModel::create([
+                'Kode_TPS' => $request->Kode_TPS,
+                'ID_Petugas' => $request->ID_Petugas,
+                'Tanggal_Pengangkutan' => $request->Tanggal_Pengangkutan,
+                'Jam_Pengangkutan' => $request->Jam_Pengangkutan,
+                'Status_Pengangkutan' => $request->Status_Pengangkutan,
+            ]);
 
-        if ($pengangkutan) {
-            return redirect()->back()->with('success', 'Jadwal Pengangkutan TPS Berhasil Ditambahkan');
-        } else {
-            return redirect()->back()->with('error', 'Jadwal Pengangkutan TPS Gagal Ditambahkan');
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Pengangkutan TPS Berhasil Ditambahkan');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error menambahkan pengangkutan tps: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Pengangkutan TPS Gagal Ditambahkan');
         }
     }
 
-    public function updatePengangkutan(Request $request, $ID_Pengangkutan)
+    public function updatePengangkutan(PengangkutanRequest $request, $ID_Pengangkutan)
     {
-        $pengangkutan = PengangkutanModel::findOrFail($ID_Pengangkutan);
+        DB::beginTransaction();
+        try {
+            $pengangkutan = PengangkutanModel::findOrFail($ID_Pengangkutan);
 
-        $validatePengangkutan = $request->validate([
-            'Kode_TPS' => 'required',
-            'ID_Petugas' => 'required',
-            'Tanggal_Pengangkutan' => 'required',
-            'Jam_Pengangkutan' => 'required',
-            'Status_Pengangkutan' => 'required'
-        ]);
+            $pengangkutan->update([
+                'Kode_TPS' => $request->Kode_TPS,
+                'ID_Petugas' => $request->ID_Petugas,
+                'Tanggal_Pengangkutan' => $request->Tanggal_Pengangkutan,
+                'Jam_Pengangkutan' => $request->Jam_Pengangkutan,
+                'Status_Pengangkutan' => $request->Status_Pengangkutan,
+            ]);
 
-        $status = $pengangkutan->update($validatePengangkutan);
-        if ($status) {
-            return redirect()->back()->with('success', 'Data Jadwal Pengangkutan TPS Berhasil Diperbarui!');
-        } else {
-            return redirect()->back()->with('error', 'Data Jadwal Pengangkutan TPS Gagal Diperbarui!');
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Data Pengangkutan TPS Berhasil Diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error memperbarui pengangkutan tps: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Data Pengangkutan TPS Gagal Diperbarui');
         }
     }
 

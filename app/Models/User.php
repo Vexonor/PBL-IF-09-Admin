@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function AdminTable()
     {
-        return $this->hasOne(AdminModel::class, 'ID_User');
+        return $this->hasOne(AdminModel::class, 'ID_User', 'ID_User');
     }
 
     public function PetugasTable()

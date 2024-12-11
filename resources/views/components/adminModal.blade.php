@@ -33,6 +33,9 @@
                             <input type="text" id="input-label" name="Nama"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Lengkap" required>
+                            @error('Nama')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Tanggal Lahir -->
                         <div class="w-full mb-5">
@@ -42,6 +45,9 @@
                             <input type="date" id="input-label" name="Tanggal_Lahir"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Lengkap" required>
+                            @error('Tanggal_Lahir')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Jenis Kelamin -->
                         <div class="w-full mb-5">
@@ -60,6 +66,9 @@
                                 <option value="Laki - Laki">Laki - Laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
+                            @error('Jenis_Kelamin')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Alamat -->
                         <div class="w-full mb-5">
@@ -68,6 +77,9 @@
                             <textarea id="textarea-label" name="Alamat"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 rows="3" placeholder="Alamat" required></textarea>
+                            @error('Alamat')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- No. Telepon -->
                         <div class="w-full mb-5">
@@ -76,6 +88,9 @@
                             <input type="text" id="input-label" name="No_Telp"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan No. Telepon" required>
+                            @error('No_Telp')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Email -->
                         <div class="w-full mb-5">
@@ -84,6 +99,9 @@
                             <input type="email" id="input-label" name="email"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Email" required>
+                            @error('email')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Password -->
                         <div class="w-full mb-5">
@@ -113,6 +131,9 @@
                                     </svg>
                                 </button>
                             </div>
+                            @error('password')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Role Admin -->
                         <div class="w-full mb-5">
@@ -131,6 +152,9 @@
                                 <option value="Master">Master Admin</option>
                                 <option value="Admin">Admin</option>
                             </select>
+                            @error('Role_Admin')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>
@@ -192,6 +216,9 @@
                             <input type="text" id="input-label" name="Nama"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Lengkap" value="{{ $User->UserTable->Nama }}" required>
+                            @error('Nama')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Tanggal Lahir -->
                         <div class="w-full mb-5">
@@ -202,6 +229,9 @@
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Nama Lengkap" value="{{ $User->UserTable->Tanggal_Lahir }}"
                                 required>
+                            @error('Tanggal_Lahir')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Jenis Kelamin -->
                         <div class="w-full mb-5">
@@ -218,6 +248,9 @@
                                     {{ $User->UserTable->Jenis_Kelamin == 'Perempuan' ? 'selected' : '' }}>
                                     Perempuan</option>
                             </select>
+                            @error('Jenis_Kelamin')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Alamat -->
                         <div class="w-full mb-5">
@@ -227,6 +260,9 @@
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 rows="3" placeholder="Alamat" name="Alamat"
                                 required>{{ $User->UserTable->Alamat }}</textarea>
+                            @error('Alamat')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- No. Telepon -->
                         <div class="w-full mb-5">
@@ -235,6 +271,9 @@
                             <input type="text" id="input-label" name="No_Telp"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan No. Telepon" value="{{ $User->UserTable->No_Telp }}" required>
+                            @error('No_Telp')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Email -->
                         <div class="w-full mb-5">
@@ -243,36 +282,9 @@
                             <input type="email" id="input-label" name="email"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Email" value="{{ $User->UserTable->email }}" required>
-                        </div>
-                        <!-- Password -->
-                        <div class="w-full mb-5">
-                            <label class="block text-sm mb-2 dark:text-white">Password</label>
-                            <div class="relative">
-                                <input id="editPass{{ $User->UserTable->ID_User }}" type="password" name="password"
-                                    class="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-                                    placeholder="Enter password" value="{{ $User->UserTable->password }}" required>
-                                <button type="button" data-hs-toggle-password='{
-                                            "target": "#editPass{{ $User->UserTable->ID_User }}"
-                                        }'
-                                    class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500">
-                                    <svg class="shrink-0 size-3.5" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path class="hs-password-active:hidden" d="M9.88 9.88a3 3 0 1 0 4.24 4.24">
-                                        </path>
-                                        <path class="hs-password-active:hidden"
-                                            d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68">
-                                        </path>
-                                        <path class="hs-password-active:hidden"
-                                            d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61">
-                                        </path>
-                                        <line class="hs-password-active:hidden" x1="2" x2="22" y1="2" y2="22"></line>
-                                        <path class="hidden hs-password-active:block"
-                                            d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                                        <circle class="hidden hs-password-active:block" cx="12" cy="12" r="3"></circle>
-                                    </svg>
-                                </button>
-                            </div>
+                            @error('email')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Role Admin -->
                         <div class="w-full mb-5">
@@ -287,6 +299,9 @@
                                 <option value="Admin" {{ $User->Role_Admin == 'Admin' ? 'selected' : '' }}>
                                     Admin</option>
                             </select>
+                            @error('Role_Admin')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>

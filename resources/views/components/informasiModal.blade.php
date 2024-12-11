@@ -71,6 +71,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('Wilayah_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Tanggal Pengangkutan -->
@@ -80,6 +83,9 @@
                             <input type="date" id="input-label" name="Tanggal_Pengangkutan"
                                 class="py-3 px-4 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="you@site.com" value="{{ $Informasi->Tanggal_Pengangkutan }}" required>
+                            @error('Tanggal_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Jam Pengangkutan -->
@@ -89,6 +95,9 @@
                             <input type="time" id="input-label" name="Jam_Pengangkutan"
                                 class="py-3 px-4 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="you@site.com" value="{{ $Informasi->Jam_Pengangkutan }}" required>
+                            @error('Jam_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Petugas -->
@@ -133,6 +142,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('ID_Petugas')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Status Pengangkutan -->
@@ -153,6 +165,9 @@
                                     {{ $Informasi->Status_Pengangkutan == 'Belum Selesai' ? 'selected' : '' }}>
                                     Belum Selesai</option>
                             </select>
+                            @error('Status_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ class AdminModel extends Model
 
     public function UserTable()
     {
-        return $this->belongsTo(User::class, 'ID_User');
+        return $this->belongsTo(User::class, 'ID_User', 'ID_User');
     }
 
     public function scopeAdmin(Builder $query, $search): void

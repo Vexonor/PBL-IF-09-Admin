@@ -267,6 +267,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('Wilayah_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Tanggal Pengangkutan -->
@@ -276,6 +279,9 @@
                             <input type="date" id="input-label" name="Tanggal_Pengangkutan"
                                 class="py-3 px-4 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="you@site.com">
+                            @error('Tanggal_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Jam Pengangkutan -->
@@ -285,6 +291,9 @@
                             <input type="time" id="input-label" name="Jam_Pengangkutan"
                                 class="py-3 px-4 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="you@site.com">
+                            @error('Jam_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Petugas -->
@@ -331,14 +340,17 @@
                                 @endif
                                 @endforeach
                             </div>
+                            @error('ID_Petugas')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Status Pengangkutan -->
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Status
-                                Keaktifan :</label>
+                                Pengangkutan :</label>
                             <select data-hs-select='{
-                                "placeholder": "Pilih Status Keaktifan",
+                                "placeholder": "Pilih Pengangkutan",
                                 "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
                                 "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
                                 "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
@@ -351,6 +363,9 @@
                                 <option>Tertunda</option>
                                 <option>Belum Selesai</option>
                             </select>
+                            @error('Status_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>

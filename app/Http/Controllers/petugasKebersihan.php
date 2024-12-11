@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PetugasRequest;
 use App\Models\PetugasModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\Rule;
 
 class petugasKebersihan extends Controller
 {
@@ -38,73 +43,74 @@ class petugasKebersihan extends Controller
         ]);
     }
 
-    public function storePetugas(Request $request)
+    public function storePetugas(PetugasRequest $request)
     {
-        $validateUser = $request->validate([
-            'Nama' => 'required|string|max:255',
-            'Tanggal_Lahir' => 'required|date|before:today',
-            'Jenis_Kelamin' => 'required|in:Laki - Laki,Perempuan',
-            'Alamat' => 'required|string|max:500',
-            'No_Telp' => 'required|string|max:15|regex:/^\+?[0-9]*$/',
-            'email' => 'required|email|unique:User,email',
-            'password' => 'required|string|min:6',
-        ]);
-        $validateUser['role'] = 'Petugas';
-        $validateUser['password'] = bcrypt($validateUser['password']);
+        try {
+            DB::beginTransaction();
 
-        $user = User::create($validateUser);
+            $user = User::create([
+                'Nama' => $request->Nama,
+                'Tanggal_Lahir' => $request->Tanggal_Lahir,
+                'Jenis_Kelamin' => $request->Jenis_Kelamin,
+                'Alamat' => $request->Alamat,
+                'No_Telp' => $request->No_Telp,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 'Admin',
+            ]);
 
-        $validatePetugas = $request->validate([
-            'Wilayah_Bertugas' => 'required|in:Batu Ampar,Bengkong,Bulang,Galang,Lubuk Baja,Nongsa,Sagulung,Sei Beduk,Sekupang,Batam Kota,Belakang Padang,Batu Aji',
-            'Tanggal_Bergabung' => 'required|date|before_or_equal:today',
-            'Status_Keaktifan' => 'required|in:Aktif,Izin,Cuti',
-        ]);
+            $petugas = PetugasModel::create([
+                'ID_User' => $user->ID_User,
+                'Wilayah_Bertugas' => $request->Wilayah_Bertugas,
+                'Tanggal_Bergabung' => $request->Tanggal_Bergabung,
+                'Status_Keaktifan' => $request->Status_Keaktifan,
+            ]);
 
-        $petugas = PetugasModel::create([
-            'ID_User' => $user->ID_User,
-            'Wilayah_Bertugas' => $validatePetugas['Wilayah_Bertugas'],
-            'Tanggal_Bergabung' => $validatePetugas['Tanggal_Bergabung'],
-            'Status_Keaktifan' => $validatePetugas['Status_Keaktifan'],
-        ]);
+            DB::commit();
 
-        if ($user && $petugas) {
             return redirect()->back()->with('success', 'Petugas Berhasil Ditambahkan');
-        } else {
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error menambahkan petugas: ' . $e->getMessage());
+
             return redirect()->back()->with('error', 'Petugas Gagal Ditambahkan');
         }
     }
 
-    public function updatePetugas(Request $request, $ID_User)
+    public function updatePetugas(PetugasRequest $request, $ID_User)
     {
-        $user = User::findOrFail($ID_User);
-        $validateUser = $request->validate(
-            [
-                'Nama' => 'required',
-                'Jenis_Kelamin' => 'required',
-                'Alamat' => 'required',
-                'No_Telp' => 'required',
-                'email' => 'required',
-            ]
-        );
+        DB::beginTransaction();
+        try {
+            $user = User::with('PetugasTable')->findOrFail($ID_User);
 
-        $statusUser = $user->update($validateUser);
+            $user->update([
+                'Nama' => $request->Nama,
+                'Tanggal_Lahir' => $request->Tanggal_Lahir,
+                'Jenis_Kelamin' => $request->Jenis_Kelamin,
+                'Alamat' => $request->Alamat,
+                'No_Telp' => $request->No_Telp,
+                'email' => $request->email,
+            ]);
 
-        $petugas = PetugasModel::where('ID_User', $ID_User)->first();
-        $validatePetugas = $request->validate([
-            'ID_Petugas' => 'required',
-            'Wilayah_Bertugas' => 'required',
-            'Tanggal_Bergabung' => 'required',
-            'Status_Keaktifan' => 'required'
-        ]);
+            $user->PetugasTable->update([
+                'Wilayah_Bertugas' => $request->Wilayah_Bertugas,
+                'Tanggal_Bergabung' => $request->Tanggal_Bergabung,
+                'Status_Keaktifan' => $request->Status_Keaktifan,
+            ]);
 
-        $statusPetugas = $petugas->update($validatePetugas);
+            DB::commit();
 
-        if ($statusUser && $statusPetugas) {
-            return redirect()->back()->with('success', 'Data Petugas Berhasil Diperbarui!');
-        } else {
-            return redirect()->back()->with('error', 'Data Petugas Gagal Diperbarui!');
+            return redirect()->back()->with('success', 'Data Petugas Berhasil Diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error memperbarui petugas: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Data Petugas Gagal Diperbarui');
         }
     }
+
 
     public function destroyPetugas($ID_User)
     {

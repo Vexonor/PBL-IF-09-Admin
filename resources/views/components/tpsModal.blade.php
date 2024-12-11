@@ -33,6 +33,9 @@
                             <input type="text" id="input-label" name="Kode_TPS"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Kode TPS" required>
+                            @error('Kode_TPS')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Wilayah TPS -->
                         <div class="w-full mb-5">
@@ -76,6 +79,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('Wilayah_TPS')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Titik Koordinat -->
                         <div class="w-full mb-5">
@@ -84,6 +90,9 @@
                             <input type="text" id="input-label" name="Titik_Koordinat"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Titik Koordinat" required>
+                            @error('Titik_Koordinat')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Status TPS -->
                         <div class="w-full mb-5">
@@ -102,6 +111,9 @@
                                 <option value="Kosong">Kosong</option>
                                 <option value="Penuh">Penuh</option>
                             </select>
+                            @error('Status_TPS')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>
@@ -163,6 +175,9 @@
                             <input type="text" id="input-label" name="Kode_TPS"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Kode TPS" value="{{ $TPS->Kode_TPS }}" required>
+                            @error('Kode_TPS')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Wilayah TPS -->
                         <div class="w-full mb-5">
@@ -206,6 +221,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('Wilayah_TPS')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Titik Koordinat -->
                         <div class="w-full mb-5">
@@ -214,6 +232,9 @@
                             <input type="text" id="input-label" name="Titik_Koordinat"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Titik Koordinat" value="{{ $TPS->Titik_Koordinat }}" required>
+                            @error('Titik_Koordinat')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Status TPS -->
                         <div class="w-full mb-5">
@@ -227,6 +248,9 @@
                                 <option value="Penuh" {{ $TPS->Status_TPS == 'Penuh' ? 'selected' : '' }}>
                                     Penuh</option>
                             </select>
+                            @error('Status_TPS')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>
@@ -502,6 +526,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('Kode_TPS')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Tanggal Pengangkutan -->
                         <div class="w-full mb-5">
@@ -510,6 +537,9 @@
                             <input type="date" id="input-label" name="Tanggal_Pengangkutan"
                                 class="py-3 px-4 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="you@site.com" required>
+                            @error('Tanggal_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                         <!-- Jam Pengangkutan -->
                         <div class="w-full mb-5">
@@ -518,6 +548,9 @@
                             <input type="time" id="input-label" name="Jam_Pengangkutan"
                                 class="py-3 px-4 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="you@site.com" required>
+                            @error('Jam_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Petugas -->
@@ -564,6 +597,9 @@
                                 @endif
                                 @endforeach
                             </div>
+                            @error('ID_Petugas')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Status Pengangkutan -->
@@ -585,6 +621,9 @@
                                 <option value="Tertunda">Tertunda</option>
                                 <option value="Belum Selesai">Belum Selesai</option>
                             </select>
+                            @error('Status_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>
@@ -683,6 +722,9 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @error('Kode_TPS')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Tanggal Pengangkutan -->
@@ -692,6 +734,9 @@
                             <input type="date" id="input-label" name="Tanggal_Pengangkutan"
                                 class="py-3 px-4 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="you@site.com" value="{{ $Pengangkutan->Tanggal_Pengangkutan }}" required>
+                            @error('Tanggal_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Jam Pengangkutan -->
@@ -701,6 +746,9 @@
                             <input type="time" id="input-label" name="Jam_Pengangkutan"
                                 class="py-3 px-4 block w-full border-2 border-slate-400 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="you@site.com" value="{{ $Pengangkutan->Jam_Pengangkutan }}" required>
+                            @error('Jam_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Petugas -->
@@ -747,6 +795,9 @@
                                 @endif
                                 @endforeach
                             </div>
+                            @error('ID_Petugas')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <!-- Status Pengangkutan -->
@@ -774,6 +825,9 @@
                                     {{ $Pengangkutan->Status_Pengangkutan == 'Belum Selesai' ? 'selected' : '' }}>
                                     Belum Selesai</option>
                             </select>
+                            @error('Status_Pengangkutan')
+                            <p class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">{{ $message }}</p>
+                            @enderror
                         </div>
                 </div>
             </div>

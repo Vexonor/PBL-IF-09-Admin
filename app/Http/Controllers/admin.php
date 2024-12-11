@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminRequest;
 use App\Models\User;
 use App\Models\AdminModel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class admin extends Controller
 {
@@ -31,68 +34,70 @@ class admin extends Controller
         ]);
     }
 
-    public function storeAdmin(Request $request)
+    public function storeAdmin(AdminRequest $request)
     {
+        try {
+            DB::beginTransaction();
 
-        $validateUser = $request->validate([
-            'Nama' => 'required',
-            'Tanggal_Lahir' => 'required',
-            'Jenis_Kelamin' => 'required',
-            'Alamat' => 'required',
-            'No_Telp' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-        $validateUser['role'] = 'Admin';
-        $validateUser['password'] = bcrypt($validateUser['password']);
+            $user = User::create([
+                'Nama' => $request->Nama,
+                'Tanggal_Lahir' => $request->Tanggal_Lahir,
+                'Jenis_Kelamin' => $request->Jenis_Kelamin,
+                'Alamat' => $request->Alamat,
+                'No_Telp' => $request->No_Telp,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'role' => 'Admin',
+            ]);
 
-        $user = User::create($validateUser);
+            $admin = AdminModel::create([
+                'ID_User' => $user->ID_User,
+                'Role_Admin' => $request->Role_Admin,
+            ]);
 
-        $validateAdmin = $request->validate([
-            'Role_Admin' => 'required'
-        ]);
+            DB::commit();
 
-        $admin = AdminModel::create([
-            'ID_User' => $user->ID_User,
-            'Role_Admin' => $validateAdmin['Role_Admin']
-        ]);
-
-        if ($user && $admin) {
             return redirect()->back()->with('success', 'Admin Berhasil Ditambahkan');
-        } else {
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error menambahkan admin: ' . $e->getMessage());
+
             return redirect()->back()->with('error', 'Admin Gagal Ditambahkan');
         }
     }
 
-    public function updateAdmin(Request $request, $ID_User)
+    public function updateAdmin(AdminRequest $request, $ID_User)
     {
-        $user = User::findOrFail($ID_User);
+        DB::beginTransaction();
+        try {
+            $user = User::with('AdminTable')->findOrFail($ID_User);
 
-        $validateUser = $request->validate(
-            [
-                'Nama' => 'required',
-                'Jenis_Kelamin' => 'required',
-                'Alamat' => 'required',
-                'No_Telp' => 'required',
-                'email' => 'required',
-                'password' => 'required',
-            ]
-        );
+            $user->update([
+                'Nama' => $request->Nama,
+                'Tanggal_Lahir' => $request->Tanggal_Lahir,
+                'Jenis_Kelamin' => $request->Jenis_Kelamin,
+                'Alamat' => $request->Alamat,
+                'No_Telp' => $request->No_Telp,
+                'email' => $request->email,
+            ]);
 
-        $validateUser['password'] = bcrypt($validateUser['password']);
+            $user->AdminTable->update([
+                'Role_Admin' => $request->Role_Admin,
+            ]);
 
-        $admin = AdminModel::where('ID_User', $ID_User)->first();
-        if ($admin) {
-            $admin->update(['Role_Admin' => $request->input('Role_Admin')]);
-        }
+            DB::commit();
 
-        $status = $user->update($validateUser);
-        if ($status) {
-            return redirect()->back()->with('success', 'Data Admin Berhasil Diperbarui!');
-        } else {
-            return redirect()->back()->with('error', 'Data Admin Gagal Diperbarui!');
+            return redirect()->back()->with('success', 'Data Admin Berhasil Diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error memperbarui admin: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Data Admin Gagal Diperbarui');
         }
     }
+
 
     public function destroyAdmin($ID_User)
     {

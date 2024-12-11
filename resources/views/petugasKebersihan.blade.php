@@ -85,7 +85,7 @@
                                 Nama Petugas</th>
                             <th scope="col" class="px-6 py-3 text-xs border-r-2 uppercase dark:text-neutral-500">
                                 Wilayah Bertugas</th>
-                            <th scope="col" class="px-6 py-3 text-xs border-r-2 uppercase dark:text-neutral-500">
+                            <th scope="col" class="px-4 py-3 text-xs border-r-2 uppercase dark:text-neutral-500">
                                 No. Telepon</th>
                             <th scope="col" class="px-6 py-3 text-xs border-r-2 uppercase dark:text-neutral-500">
                                 Status</th>
@@ -107,7 +107,7 @@
                                 </p>
                             </td>
                             <td
-                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                class="px-4 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
                                 {{ $User->Wilayah_Bertugas }}
                             </td>
                             <td

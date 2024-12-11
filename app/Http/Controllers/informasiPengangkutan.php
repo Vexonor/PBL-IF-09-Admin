@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InformasiRequest;
 use App\Models\InformasiModel;
 use App\Models\PetugasModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class informasiPengangkutan extends Controller
 {
@@ -39,44 +42,54 @@ class informasiPengangkutan extends Controller
     }
 
 
-    public function storeInformasi(Request $request)
+    public function storeInformasi(InformasiRequest $request)
     {
-        $validateInformasi = $request->validate([
-            'ID_Petugas' => 'required',
-            'Wilayah_Pengangkutan' => 'required',
-            'Tanggal_Pengangkutan' => 'required',
-            'Jam_Pengangkutan' => 'required',
-            'Status_Pengangkutan' => 'required'
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $informasi = InformasiModel::create($validateInformasi);
+            $informasi = InformasiModel::create([
+                'ID_Petugas' => $request->ID_Petugas,
+                'Wilayah_Pengangkutan' => $request->Wilayah_Pengangkutan,
+                'Tanggal_Pengangkutan' => $request->Tanggal_Pengangkutan,
+                'Jam_Pengangkutan' => $request->Jam_Pengangkutan,
+                'Status_Pengangkutan' => $request->Status_Pengangkutan,
+            ]);
 
-        if ($informasi) {
+            DB::commit();
+
             return redirect()->back()->with('success', 'Informasi Pengangkutan Berhasil Ditambahkan');
-        } else {
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error menambahkan informasi pengangkutan: ' . $e->getMessage());
+
             return redirect()->back()->with('error', 'Informasi Pengangkutan Gagal Ditambahkan');
         }
     }
 
-    public function updateInformasi(Request $request, $ID_Informasi)
+    public function updateInformasi(InformasiRequest $request, $ID_Informasi)
     {
-        $informasi = InformasiModel::findOrFail($ID_Informasi);
+        DB::beginTransaction();
+        try {
+            $informasi = InformasiModel::findOrFail($ID_Informasi);
 
-        $validateInformasi = $request->validate(
-            [
-                'ID_Petugas' => 'required',
-                'Wilayah_Pengangkutan' => 'required',
-                'Tanggal_Pengangkutan' => 'required',
-                'Jam_Pengangkutan' => 'required',
-                'Status_Pengangkutan' => 'required'
-            ]
-        );
+            $informasi->update([
+                'ID_Petugas' => $request->ID_Petugas,
+                'Wilayah_Pengangkutan' => $request->Wilayah_Pengangkutan,
+                'Tanggal_Pengangkutan' => $request->Tanggal_Pengangkutan,
+                'Jam_Pengangkutan' => $request->Jam_Pengangkutan,
+                'Status_Pengangkutan' => $request->Status_Pengangkutan,
+            ]);
 
-        $status = $informasi->update($validateInformasi);
-        if ($status) {
-            return redirect()->back()->with('success', 'Data Informasi Pengangkutan Berhasil Diperbarui!');
-        } else {
-            return redirect()->back()->with('error', 'Data Informasi Pengangkutan Gagal Diperbarui!');
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Data Informasi Pengangkutan Berhasil Diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error memperbarui informasi pengangkutan: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Data Informasi Pengangkutan Gagal Diperbarui');
         }
     }
 

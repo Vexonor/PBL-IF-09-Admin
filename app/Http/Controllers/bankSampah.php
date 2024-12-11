@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BankSampahRequest;
 use Illuminate\Http\Request;
 use App\Models\BankSampahModel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class bankSampah extends Controller
 {
@@ -30,52 +34,64 @@ class bankSampah extends Controller
         ]);
     }
 
-    public function storeBankSampah(Request $request)
+    public function storeBankSampah(BankSampahRequest $request)
     {
-        $validate = $request->validate([
-            'Nama_Bank_Sampah' => 'required',
-            'Jenis_Sampah' => 'required',
-            'Harga_Sampah' => 'required',
-            'Nama_Pemilik' => 'required',
-            'No_Telp' => 'required',
-            'Wilayah_BankSampah' => 'required',
-            'Titik_Koordinat' => 'required',
-            'Jam_Buka' => 'required',
-            'Jam_Tutup' => 'required',
-            'Status_Operasional' => 'required'
-        ]);
+        try {
+            DB::beginTransaction();
 
-        $bankSampah = BankSampahModel::create($validate);
+            $bankSampah = BankSampahModel::create([
+                'Nama_Bank_Sampah' => $request->Nama_Bank_Sampah,
+                'Jenis_Sampah' => $request->Jenis_Sampah,
+                'Harga_Sampah' => $request->Harga_Sampah,
+                'Nama_Pemilik' => $request->Nama_Pemilik,
+                'No_Telp' => $request->No_Telp,
+                'Wilayah_BankSampah' => $request->Wilayah_BankSampah,
+                'Titik_Koordinat' => $request->Titik_Koordinat,
+                'Jam_Buka' => $request->Jam_Buka,
+                'Jam_Tutup' => $request->Jam_Tutup,
+                'Status_Operasional' => $request->Status_Operasional,
+            ]);
 
-        if ($bankSampah) {
+            DB::commit();
+
             return redirect()->back()->with('success', 'Bank Sampah Berhasil Ditambahkan');
-        } else {
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error menambahkan bank sampah: ' . $e->getMessage());
+
             return redirect()->back()->with('error', 'Bank Sampah Gagal Ditambahkan');
         }
     }
 
-    public function updateBankSampah(Request $request, $ID_BankSampah)
+    public function updateBankSampah(BankSampahRequest $request, $ID_BankSampah)
     {
-        $bankSampah = BankSampahModel::findOrFail($ID_BankSampah);
+        DB::beginTransaction();
+        try {
+            $bankSampah = BankSampahModel::findOrFail($ID_BankSampah);
 
-        $validateBankSampah = $request->validate([
-            'Nama_Bank_Sampah' => 'required',
-            'Jenis_Sampah' => 'required',
-            'Harga_Sampah' => 'required',
-            'Nama_Pemilik' => 'required',
-            'No_Telp' => 'required',
-            'Wilayah_BankSampah' => 'required',
-            'Titik_Koordinat' => 'required',
-            'Jam_Buka' => 'required',
-            'Jam_Tutup' => 'required',
-            'Status_Operasional' => 'required'
-        ]);
+            $bankSampah->update([
+                'Nama_Bank_Sampah' => $request->Nama_Bank_Sampah,
+                'Jenis_Sampah' => $request->Jenis_Sampah,
+                'Harga_Sampah' => $request->Harga_Sampah,
+                'Nama_Pemilik' => $request->Nama_Pemilik,
+                'No_Telp' => $request->No_Telp,
+                'Wilayah_BankSampah' => $request->Wilayah_BankSampah,
+                'Titik_Koordinat' => $request->Titik_Koordinat,
+                'Jam_Buka' => $request->Jam_Buka,
+                'Jam_Tutup' => $request->Jam_Tutup,
+                'Status_Operasional' => $request->Status_Operasional,
+            ]);
 
-        $status = $bankSampah->update($validateBankSampah);
-        if ($status) {
-            return redirect()->back()->with('success', 'Data Bank Sampah Berhasil Diperbarui!');
-        } else {
-            return redirect()->back()->with('error', 'Data Bank Sampah Gagal Diperbarui!');
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Data Bank Sampah Berhasil Diperbarui');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            Log::error('Error memperbarui bank sampah: ' . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Data Bank Sampah Gagal Diperbarui');
         }
     }
 
