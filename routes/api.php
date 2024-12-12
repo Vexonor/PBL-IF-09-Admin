@@ -1,15 +1,44 @@
 <?php
 
+use App\Http\Controllers\admin;
+use App\Http\Controllers\Mobile\AutentikasiMobileController;
+use App\Http\Controllers\Mobile\BankSampahMobileController;
+use App\Http\Controllers\Mobile\BerandaMobileController;
+use App\Http\Controllers\Mobile\InformasiPengangkutanMobileController;
+use App\Http\Controllers\Mobile\LokasiTpsMobileController;
+use App\Http\Controllers\Mobile\PengaduanMobileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::apiResource('/otp', App\Http\Controllers\API\OTPController::class);
-Route::apiResource('/petugasKebersihan', App\Http\Controllers\API\PetugasController::class);
-Route::apiResource('/admin', App\Http\Controllers\API\AdminController::class);
-Route::apiResource('/lokasiTPS', App\Http\Controllers\API\TPSController::class);
-Route::apiResource('/pengangkutanTPS', App\Http\Controllers\API\PengangkutanController::class);
-Route::apiResource('/informasiPengangkutan', App\Http\Controllers\API\InformasiController::class);
-Route::apiResource('/pengaduan', App\Http\Controllers\API\PengaduanController::class);
-Route::apiResource('/penanggungJawab', App\Http\Controllers\API\PenanggungJawabController::class);
-Route::apiResource('/kontenEdukasi', App\Http\Controllers\API\KontenEdukasiController::class);
-Route::apiResource('/bankSampah', App\Http\Controllers\API\BankSampahController::class);
+
+Route::post('/admin', [admin::class, 'storeAdmin'])->name('admin.store');
+
+//Mobile
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+//Auth
+Route::post('/daftar', [AutentikasiMobileController::class, 'daftar']);
+Route::post('/masuk', [AutentikasiMobileController::class, 'masuk']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Beranda
+    Route::get('/beranda/{idUser}', [BerandaMobileController::class, 'show']);
+
+    // Pengaduan
+    Route::get('/pengaduan', [PengaduanMobileController::class, 'index']);
+    Route::get('/pengaduan/{id}', [PengaduanMobileController::class, 'show']);
+    Route::post('/pengaduan', [PengaduanMobileController::class, 'store']);
+    Route::delete('/pengaduan/{id}', [PengaduanMobileController::class, 'destroy']);
+    Route::post('/pengaduan/{id}', [PengaduanMobileController::class, 'update']);
+
+    // Informasi pengangkutan
+    Route::get('/informasi_pengangkutan', [InformasiPengangkutanMobileController::class, 'index']);
+
+    // Lokasi TPS
+    Route::get('/lokasi_tps/{kecamatan}', [LokasiTpsMobileController::class, 'show']);
+
+    // Bank Sampah
+    Route::get('/bank_sampah/{jenisSampah}', [BankSampahMobileController::class, 'show']);
+});

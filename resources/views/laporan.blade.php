@@ -26,8 +26,8 @@
             "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
             }' class="hidden" name="kategori" id="statusFilter" onchange="submitForm()">
                 <option value="">Choose</option>
-                <option value="Pengumpulan Sampah" {{ request('jenis') == 'Pengumpulan Sampah' ? 'selected' : '' }}>
-                    Pengumpulan Sampah</option>
+                <option value="Pengangkutan Sampah" {{ request('jenis') == 'Pengangkutan Sampah' ? 'selected' : '' }}>
+                    Pengangkutan Sampah</option>
                 <option value="Tempat Sampah Liar" {{ request('jenis') == 'Tempat Sampah Liar' ? 'selected' : '' }}>
                     Tempat Sampah Liar</option>
                 <option value="Kondisi TPS" {{ request('jenis') == 'Kondisi TPS' ? 'selected' : '' }}>Kondisi TPS

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('ID_Laporan');
             $table->string('Kode_Laporan')->unique();
             $table->foreignId('ID_User')->constrained('User', 'ID_User')->onDelete('cascade');
-            $table->enum('Kategori_Laporan', ['Pengumpulan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']);
+            $table->enum('Kategori_Laporan', ['Pengangkutan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']);
             $table->longText('Deskripsi_Laporan');
             $table->string('Titik_Koordinat');
             $table->string('Dokumen_Pendukung');

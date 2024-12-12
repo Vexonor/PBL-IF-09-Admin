@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
                 'Foto_Profil' => null,
                 'email' => $faker->unique()->safeEmail,
                 'email_verified_at' => now(),
-                'password' => Hash::make('password123'),
+                'password' => Hash::make('Password123'),
                 'role' => $faker->randomElement(['Admin', 'Petugas', 'Warga']),
                 'remember_token' => Str::random(10),
                 'created_at' => now(),

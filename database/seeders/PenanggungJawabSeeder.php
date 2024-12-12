@@ -23,7 +23,7 @@ class PenanggungJawabSeeder extends Seeder
             DB::table('Penanggung_Jawab')->insert([
                 'Kode_Laporan' => $faker->randomElement($laporanList),
                 'ID_Petugas' => $faker->randomElement($petugasList),
-                'Kategori_Laporan' => $faker->randomElement(['Pengumpulan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']),
+                'Kategori_Laporan' => $faker->randomElement(['Pengangkutan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']),
                 'Status_Laporan' => $faker->randomElement(['Selesai', 'Sedang Diproses', 'Belum Selesai']),
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+import preline from 'preline/plugin';
+import forms from '@tailwindcss/forms';
+
 export default {
     content: [
     "./resources/**/*.blade.php",
@@ -9,25 +12,23 @@ export default {
   ],
   theme: {
     extend: {
-                  colors: {
-                    "Genoa" : "#368666",
-                    "Aquamarine" : "#B5FFCE",
-                    "Orange-Peel" : "#FF9900",
-                    "Shalimar" : "FFF3AE",
-                    "Flamingo" : "F15950",
-                    "Beauty-Bush" : "EEB3B0",
-                    "Brick-Red" : "#B5333D",
-                    "Medium-Carmine" : "#B6333C",
-                    
-            },
+      colors: {
+        "Genoa" : "#368666",
+        "Aquamarine" : "#B5FFCE",
+        "Orange-Peel" : "#FF9900",
+        "Shalimar" : "FFF3AE",
+        "Flamingo" : "F15950",
+        "Beauty-Bush" : "EEB3B0",
+        "Brick-Red" : "#B5333D",
+        "Medium-Carmine" : "#B6333C",
+        },
         fontFamily: {
-                poppins: ["Poppins", "mono"],
-            },
+          poppins: ["Poppins", "mono"],
+        },
     },
   },
   plugins: [
-      require('preline/plugin'),
-      require('@tailwindcss/forms')
+    preline,
+    forms,
   ],
 }
-
