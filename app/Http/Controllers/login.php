@@ -30,6 +30,8 @@ class login extends Controller
 
             if ($user->role === 'Admin') {
                 return redirect()->route('dashboard.page')->with('success', 'Berhasil Login');
+            } elseif ($user->role !== 'Admin') {
+                return redirect()->back()->with('unmatch', 'Anda Bukan Admin');
             } else {
                 return redirect()->route('login')->with('error', 'Gagal Login');
             }

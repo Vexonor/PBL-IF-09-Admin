@@ -119,7 +119,7 @@
             </div>
 
             <!-- Content -->
-            <div class="container mx-auto sm:p-10 lg:p-3">
+            <div class="container 2xl:mx-auto p-5">
                 @yield('main')
             </div>
         </div>

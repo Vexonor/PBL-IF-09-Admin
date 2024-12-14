@@ -152,7 +152,7 @@
                     </div>
                     <!-- Button Simpan -->
                     <button type="submit"
-                        class="py-3 px-4 mt-10 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white disabled:opacity-50 disabled:pointer-events-none">
+                        class="py-3 px-4 w-full mt-10 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white disabled:opacity-50 disabled:pointer-events-none">
                         Simpan Perubahan
                     </button>
                 </form>
