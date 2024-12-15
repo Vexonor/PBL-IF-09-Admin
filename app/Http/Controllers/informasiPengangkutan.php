@@ -50,6 +50,7 @@ class informasiPengangkutan extends Controller
             $informasi = InformasiModel::create([
                 'ID_Petugas' => $request->ID_Petugas,
                 'Wilayah_Pengangkutan' => $request->Wilayah_Pengangkutan,
+                'Titik_Koordinat' => $request->Titik_Koordinat,
                 'Tanggal_Pengangkutan' => $request->Tanggal_Pengangkutan,
                 'Jam_Pengangkutan' => $request->Jam_Pengangkutan,
                 'Status_Pengangkutan' => $request->Status_Pengangkutan,
@@ -76,6 +77,7 @@ class informasiPengangkutan extends Controller
             $informasi->update([
                 'ID_Petugas' => $request->ID_Petugas,
                 'Wilayah_Pengangkutan' => $request->Wilayah_Pengangkutan,
+                'Titik_Koordinat' => $request->Titik_Koordinat,
                 'Tanggal_Pengangkutan' => $request->Tanggal_Pengangkutan,
                 'Jam_Pengangkutan' => $request->Jam_Pengangkutan,
                 'Status_Pengangkutan' => $request->Status_Pengangkutan,

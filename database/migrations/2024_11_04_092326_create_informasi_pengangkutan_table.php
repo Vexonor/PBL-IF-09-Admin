@@ -29,6 +29,7 @@ return new class extends Migration
                 'Belakang Padang',
                 'Batu Aji'
             ]);
+            $table->string('Titik_Koordinat');
             $table->date('Tanggal_Pengangkutan');
             $table->time('Jam_Pengangkutan');
             $table->enum('Status_Pengangkutan', ['Selesai', 'Belum Selesai', 'Tertunda']);
