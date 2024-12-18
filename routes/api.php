@@ -10,8 +10,9 @@ use App\Http\Controllers\Mobile\PengaduanMobileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
-Route::post('/admin', [admin::class, 'storeAdmin'])->name('admin.store');
+// Admin
+Route::apiResource('/informasiPengangkutan', App\Http\Controllers\API\InformasiController::class);
+Route::apiResource('/otp', App\Http\Controllers\API\OTPController::class);
 
 //Mobile
 Route::get('/user', function (Request $request) {

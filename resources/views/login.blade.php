@@ -23,20 +23,26 @@
             @include('components/loaders')
         </div>
     </div>
+    <!-- Message -->
+    <div class="flex justify-center items-center">
+        @include('alert/roleError')
+    </div>
     <div class="flex justify-center items-center w-screen h-screen">
         <div
             class="w-5/12 flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
             <div class="p-4 md:p-5">
-                <p class="text-center font-semibold mt-2 text-gray-500 dark:text-neutral-400">
+                <p class="text-center 2xl:text-lg font-semibold mt-2 text-gray-500 dark:text-neutral-400">
                     Harap mengisi form dibawah terlebih dahulu sebelum mengakses halaman dashboard
                 </p>
                 @error('email')
-                <p class="text-base font-semibold text-center text-red-600 mt-2" id="hs-validation-name-error-helper">
+                <p class="text-base 2xl:text-lg font-semibold text-center text-red-600 mt-2"
+                    id="hs-validation-name-error-helper">
                     {{ $message }}
                 </p>
                 @enderror
                 @error('password')
-                <p class="text-base font-semibold text-center text-red-600 mt-2" id="hs-validation-name-error-helper">
+                <p class="text-base 2xl:text-lg font-semibold text-center text-red-600 mt-2"
+                    id="hs-validation-name-error-helper">
                     {{ $message }}
                 </p>
                 @enderror
@@ -44,18 +50,19 @@
                     @csrf
                     <!-- Email -->
                     <div class="w-full mb-5">
-                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Email
+                        <label for="input-label"
+                            class="block text-sm 2xl:text-base font-medium mb-2 dark:text-white">Email
                             :</label>
                         <input type="email" id="input-label" name="email"
-                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                             placeholder="Masukkan Email" required>
                     </div>
                     <!-- Password -->
                     <div class="w-full mb-5">
-                        <label class="block text-sm mb-2 dark:text-white">Password :</label>
+                        <label class="block text-sm 2xl:text-base mb-2 dark:text-white">Password :</label>
                         <div class="relative">
                             <input id="oldPass" type="password" name="password"
-                                class="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                class="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Enter password" required>
                             <button type="button" data-hs-toggle-password='{
                                         "target": "#oldPass"
@@ -81,7 +88,7 @@
                         </div>
                     </div>
                     <button type="submit"
-                        class="w-full mt-10 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-Genoa text-white disabled:opacity-50 disabled:pointer-events-none">
+                        class="w-full mt-10 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm 2xl:text-base font-medium rounded-lg border border-transparent bg-Genoa text-white disabled:opacity-50 disabled:pointer-events-none">
                         Masuk
                     </button>
                 </form>

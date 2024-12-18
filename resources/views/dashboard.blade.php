@@ -56,7 +56,7 @@
         </div>
 
         <div class="flex items-center">
-            <a href="/laporan" class="text-Genoa underline hover:text-green-900 text-sm ml-auto">
+            <a href="/informasiPengangkutan" class="text-Genoa underline hover:text-green-900 text-sm ml-auto">
                 Lihat Informasi
             </a>
         </div>

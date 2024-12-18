@@ -66,21 +66,22 @@
                     <thead class="bg-Genoa text-white">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-6 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 No.</th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-6 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Kode Laporan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-6 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Nama Pelapor</th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-3 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Kategori Laporan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-6 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Status Laporan</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-medium uppercase dark:text-neutral-500">
+                            <th scope="col"
+                                class="px-6 py-3 text-xs 2xl:text-sm font-medium uppercase dark:text-neutral-500">
                                 Aksi</th>
                         </tr>
                     </thead>
@@ -88,25 +89,25 @@
                         @foreach ($dataPengaduan as $key => $Pengaduan)
                         <tr class="hover:bg-gray-100">
                             <td
-                                class="px-3 py-4 whitespace-nowrap text-sm border-r-2 font-medium text-gray-800 dark:text-neutral-200">
+                                class="px-3 py-4 whitespace-nowrap text-sm 2xl:text-base border-r-2 font-medium text-gray-800 dark:text-neutral-200">
                                 {{ $key + 1 }}.
                             </td>
                             <td
-                                class="px-6 py-4 text-sm border-r-2 font-medium text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                class="px-6 py-4 text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
                                 {{ $Pengaduan->Kode_Laporan }}
                             </td>
                             <td
-                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
-                                <p class="truncate w-28">
+                                class="px-6 py-4 text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                <p class="truncate w-28 2xl:w-max 2xl:mx-auto">
                                     {{ $Pengaduan->UserTable->Nama }}
                                 </p>
                             </td>
                             <td
-                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                class="px-6 py-4 text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
                                 {{ $Pengaduan->Kategori_Laporan }}
                             </td>
                             <td
-                                class="px-1 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                class="px-1 py-4 text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
                                 @if ($Pengaduan->Status_Laporan === 'Selesai')
                                 <span
                                     class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
@@ -131,10 +132,10 @@
                             </td>
                             <td class="px-6 py-4 text-sm font-medium text-center whitespace-nowrap">
                                 <button type="button"
-                                    class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
+                                    class="inline-flex items-center px-4 py-3 text-sm 2xl:text-base font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal"
                                     data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Laporan }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 2xl:size-6" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
                                             d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H216a8,8,0,0,0,0-16H115.32l112-112A16,16,0,0,0,227.32,73.37ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.32,64l24-24L216,84.69Z">
@@ -142,11 +143,11 @@
                                     </svg>
                                 </button>
                                 <button type="button"
-                                    class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
+                                    class="inline-flex items-center px-4 py-3 text-sm 2xl:text-base font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
                                     data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Laporan }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 2xl:size-6" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
                                             d="M216,48H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM192,208H64V64H192ZM80,24a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,24Z">
@@ -154,11 +155,11 @@
                                     </svg>
                                 </button>
                                 <button type="button"
-                                    class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
+                                    class="inline-flex items-center px-4 py-3 text-sm 2xl:text-base font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
                                     data-hs-overlay="#detail-modal{{ $Pengaduan->ID_Laporan }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 2xl:size-6" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
                                             d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm12-88a12,12,0,1,1-12-12A12,12,0,0,1,140,128Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,184,128Zm-88,0a12,12,0,1,1-12-12A12,12,0,0,1,96,128Z">
@@ -180,12 +181,12 @@
 </div>
 
 <div
-    class="mt-12 py-3 flex items-center text-lg font-bold text-gray-800 before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-white dark:before:border-neutral-600 dark:after:border-neutral-600">
+    class="mt-12 py-3 flex items-center text-lg 2xl:text-xl font-bold text-gray-800 before:flex-1 before:border-t before:border-gray-200 before:me-6 after:flex-1 after:border-t after:border-gray-200 after:ms-6 dark:text-white dark:before:border-neutral-600 dark:after:border-neutral-600">
     Penanggung Jawab Laporan</div>
 
 <!-- Penanggung Jawab -->
 <button type="button"
-    class="inline-flex items-center justify-center px-4 py-3 my-10 text-sm font-medium text-white border border-transparent rounded-lg w-max gap-x-2 bg-Genoa focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
+    class="inline-flex items-center justify-center px-4 py-3 my-10 text-sm 2xl:text-base font-medium text-white border border-transparent rounded-lg w-max gap-x-2 bg-Genoa focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal" data-hs-overlay="#tambah-modal">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
         <path
@@ -204,21 +205,22 @@
                     <thead class="bg-Genoa text-white">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-6 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 No.</th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-6 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Kode Laporan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-6 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Nama Petugas</th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-6 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Kategori Laporan</th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs border-r-2 font-medium uppercase dark:text-neutral-500">
+                                class="px-6 py-3 text-xs 2xl:text-sm border-r-2 font-medium uppercase dark:text-neutral-500">
                                 Status Pengerjaan</th>
-                            <th scope="col" class="px-6 py-3 text-xs font-medium uppercase dark:text-neutral-500">
+                            <th scope="col"
+                                class="px-6 py-3 text-xs 2xl:text-sm font-medium uppercase dark:text-neutral-500">
                                 Aksi</th>
                         </tr>
                     </thead>
@@ -226,41 +228,41 @@
                         @foreach ($dataPenanggungJawab as $key => $PJ)
                         <tr class="hover:bg-gray-100">
                             <td
-                                class="px-6 py-4 text-sm border-r-2 font-medium text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                class="px-6 py-4 text-sm 2xl:text-base border-r-2 font-medium text-gray-800 whitespace-nowrap dark:text-neutral-200">
                                 {{ $key + 1 }}.
                             </td>
                             <td
-                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                class="px-6 py-4 text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
                                 {{ $PJ->Kode_Laporan }}
                             </td>
                             <td
-                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
-                                <p class="truncate w-32">
+                                class="px-6 py-4 text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                <p class="truncate w-28 2xl:w-max 2xl:mx-auto">
                                     {{ $PJ->PetugasTable->UserTable->Nama }}
                                 </p>
                             </td>
                             <td
-                                class="px-6 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                class="px-6 py-4 text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
                                 {{ $PJ->Kategori_Laporan }}
                             </td>
                             <td
-                                class="px-1 py-4 text-sm border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
+                                class="px-1 py-4 text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap dark:text-neutral-200">
                                 @if ($PJ->Status_Laporan === 'Selesai')
                                 <span
-                                    class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
+                                    class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-sm font-medium bg-Aquamarine text-Genoa dark:bg-blue-800/30 dark:text-blue-500">
                                     <span class="size-1.5 inline-block rounded-full bg-Genoa  dark:bg-blue-500"></span>
                                     Selesai
                                 </span>
                                 @elseif ($PJ->Status_Laporan === 'Sedang Diproses')
                                 <span
-                                    class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-Orange-Peel dark:bg-blue-800/30 dark:text-blue-500">
+                                    class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-sm font-medium bg-yellow-100 text-Orange-Peel dark:bg-blue-800/30 dark:text-blue-500">
                                     <span
                                         class="size-1.5 inline-block rounded-full bg-Orange-Peel  dark:bg-blue-500"></span>
                                     Sedang Diproses
                                 </span>
                                 @elseif($PJ->Status_Laporan === 'Belum Selesai')
                                 <span
-                                    class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine dark:bg-blue-800/30 dark:text-blue-500">
+                                    class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-sm font-medium bg-red-100 text-Medium-Carmine dark:bg-blue-800/30 dark:text-blue-500">
                                     <span
                                         class="size-1.5 inline-block rounded-full bg-Medium-Carmine  dark:bg-blue-500"></span>
                                     Belum Selesai
@@ -272,7 +274,7 @@
                                     class="inline-flex items-center px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal"
                                     data-hs-overlay="#edit-modalPJ{{ $PJ->ID_PJ }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 2xl:size-6" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
                                             d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H216a8,8,0,0,0,0-16H115.32l112-112A16,16,0,0,0,227.32,73.37ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.32,64l24-24L216,84.69Z">
@@ -284,7 +286,7 @@
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
                                     data-hs-overlay="#hapus-modalPJ{{ $PJ->ID_PJ }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 2xl:size-6" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
                                             d="M216,48H40a8,8,0,0,0,0,16h8V208a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V64h8a8,8,0,0,0,0-16ZM192,208H64V64H192ZM80,24a8,8,0,0,1,8-8h80a8,8,0,0,1,0,16H88A8,8,0,0,1,80,24Z">
@@ -296,7 +298,7 @@
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
                                     data-hs-overlay="#detail-modalPJ{{ $PJ->ID_PJ }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000"
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 2xl:size-6" fill="#000000"
                                         viewBox="0 0 256 256">
                                         <path
                                             d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm12-88a12,12,0,1,1-12-12A12,12,0,0,1,140,128Zm44,0a12,12,0,1,1-12-12A12,12,0,0,1,184,128Zm-88,0a12,12,0,1,1-12-12A12,12,0,0,1,96,128Z">

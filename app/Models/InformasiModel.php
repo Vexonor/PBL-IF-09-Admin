@@ -15,6 +15,7 @@ class InformasiModel extends Model
     protected $fillable = [
         "ID_Petugas",
         "Wilayah_Pengangkutan",
+        "Titik_Koordinat",
         "Tanggal_Pengangkutan",
         "Jam_Pengangkutan",
         "Status_Pengangkutan",

@@ -27,12 +27,17 @@ class PengangkutanModel extends Model
 
     public function PetugasTable()
     {
-        return $this->belongsTo(PetugasModel::class, 'ID_Petugas');
+        return $this->belongsTo(PetugasModel::class, 'ID_Petugas', 'ID_Petugas');
     }
 
     public function scopePengangkutanTPS(Builder $query, $search): void
     {
-        $query->where('Kode_TPS', 'LIKE', '%' . $search . '%')
-            ->orWhere('ID_Petugas', 'LIKE', '%' . $search . '%');
+        if ($search) {
+            $query->whereHas('PetugasTable.UserTable', function ($userQuery) use ($search) {
+                $userQuery->where('Nama', 'LIKE', '%' . $search . '%')
+                    ->orWhere('Kode_TPS', 'LIKE', '%' . $search . '%')
+                    ->orWhere('ID_Petugas', 'LIKE', '%' . $search . '%');
+            });
+        }
     }
 }

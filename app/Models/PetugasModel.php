@@ -61,7 +61,7 @@ class PetugasModel extends Model
 
     public function PengangkutanTable()
     {
-        return $this->hasMany(PengangkutanModel::class, 'ID_Petugas');
+        return $this->hasMany(PengangkutanModel::class, 'ID_Petugas', 'ID_Petugas');
     }
 
     public function PenanggungJawabTable()

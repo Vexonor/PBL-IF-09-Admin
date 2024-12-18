@@ -1,14 +1,14 @@
 @foreach ($dataKonten as $Konten)
 <!-- Edit Konten -->
 <div id="edit-modal{{ $Konten->ID_Edukasi }}"
-    class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+    class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-vertically-centered-modal-label">
     <div
         class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
         <div
             class="flex flex-col w-full bg-white border shadow-sm pointer-events-auto rounded-xl dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
             <div class="flex items-center justify-between px-4 py-3 border-b dark:border-neutral-700">
-                <h3 id="hs-vertically-centered-modal-label" class="font-bold text-gray-800 dark:text-white">
+                <h3 id="hs-vertically-centered-modal-label" class="font-bold 2xl:text-lg text-gray-800 dark:text-white">
                     Unggah Konten
                 </h3>
                 <button type="button"
@@ -24,7 +24,7 @@
                 </button>
             </div>
             <div class="p-4 overflow-y-auto">
-                <p class="text-center text-gray-800 dark:text-neutral-400">
+                <p class="text-center 2xl:text-lg text-gray-800 dark:text-neutral-400">
                     Apakah anda yakin ingin mengunggah konten ini?
                 </p>
                 <ul class="flex items-center justify-center gap-4 my-10">
@@ -64,14 +64,14 @@
 
 <!-- Hapus Laporan -->
 <div id="hapus-modal{{ $Konten->ID_Edukasi }}"
-    class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+    class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-vertically-centered-modal-label">
     <div
         class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
         <div
             class="flex flex-col w-full bg-white border shadow-sm pointer-events-auto rounded-xl dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
             <div class="flex items-center justify-between px-4 py-3 border-b dark:border-neutral-700">
-                <h3 id="hs-vertically-centered-modal-label" class="font-bold text-gray-800 dark:text-white">
+                <h3 id="hs-vertically-centered-modal-label" class="font-bold 2xl:text-lg text-gray-800 dark:text-white">
                     Hapus Laporan
                 </h3>
                 <button type="button"
@@ -87,7 +87,7 @@
                 </button>
             </div>
             <div class="p-4 overflow-y-auto">
-                <p class="text-center text-gray-800 dark:text-neutral-400">
+                <p class="text-center 2xl:text-lg text-gray-800 dark:text-neutral-400">
                     Apakah anda yakin ingin menghapus data ini?
                 </p>
 
@@ -128,14 +128,15 @@
 
 <!-- Detail Laporan -->
 <div id="detail-modal{{ $Konten->ID_Edukasi }}"
-    class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+    class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
     <div
-        class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-4xl sm:w-full m-3 sm:mx-auto h-[calc(100%-3.5rem)] min-h-[calc(100%-3.5rem)] flex items-center">
+        class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-4xl 2xl:max-w-7xl sm:w-full m-3 sm:mx-auto h-[calc(100%-3.5rem)] min-h-[calc(100%-3.5rem)] flex items-center">
         <div
             class="flex flex-col w-full max-h-full overflow-hidden bg-white border shadow-sm pointer-events-auto rounded-xl dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
             <div class="flex items-center justify-between px-4 py-3 border-b dark:border-neutral-700">
-                <h3 id="hs-vertically-centered-scrollable-modal-label" class="font-bold text-gray-800 dark:text-white">
+                <h3 id="hs-vertically-centered-scrollable-modal-label"
+                    class="font-bold 2xl:text-lg text-gray-800 dark:text-white">
                     Detail Konten Edukasi
                 </h3>
                 <button type="button"
@@ -155,40 +156,44 @@
                     <form action="">
                         <!-- Nama Penerbit -->
                         <div class="w-full mb-5">
-                            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Nama
+                            <label for="input-label"
+                                class="block mb-2 text-sm 2xl:text-base font-medium dark:text-white">Nama
                                 Penerbit
                                 :</label>
                             <input type="text" id="input-label"
-                                class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                class="block w-full px-4 py-3 text-sm 2xl:text-base border-gray-200 rounded-lg focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Judul Konten" name="Judul_Edukasi"
                                 value="{{ $Konten->UserTable->Nama }}" readonly>
                         </div>
                         <!-- Judul Konten -->
                         <div class="w-full mb-5">
-                            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Judul Konten
+                            <label for="input-label"
+                                class="block mb-2 text-sm 2xl:text-base font-medium dark:text-white">Judul Konten
                                 :</label>
                             <input type="text" id="input-label"
-                                class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                class="block w-full px-4 py-3 text-sm 2xl:text-base border-gray-200 rounded-lg focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Judul Konten" name="Judul_Edukasi"
                                 value="{{ $Konten->Judul_Edukasi }}" readonly>
                         </div>
                         <!-- Link Konten -->
                         <div class="w-full mb-5">
-                            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Link URL
+                            <label for="input-label"
+                                class="block mb-2 text-sm 2xl:text-base font-medium dark:text-white">Link URL
                                 Konten
                                 :</label>
                             <input type="url" id="input-label"
-                                class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                class="block w-full px-4 py-3 text-sm 2xl:text-base border-gray-200 rounded-lg focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 placeholder="Masukkan Judul Konten" name="Link_URL" value="{{ $Konten->Link_URL }}"
                                 readonly>
                         </div>
                         <!-- Konten -->
                         <div class="w-full mb-5">
-                            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">
+                            <label for="input-label"
+                                class="block mb-2 text-sm 2xl:text-base font-medium dark:text-white">
                                 Konten :</label>
                             @if ($Konten->Jenis_Edukasi === 'Video')
-                            <iframe class="w-full h-80" src="https://www.youtube.com/embed/{{ $Konten->Link_URL }}"
-                                frameborder="0"></iframe>
+                            <iframe class="w-full h-80 2xl:h-96"
+                                src="https://www.youtube.com/embed/{{ $Konten->Link_URL }}" frameborder="0"></iframe>
                             @elseif ($Konten->Jenis_Edukasi === 'Artikel')
                             <a href="{{ $Konten->Link_URL }}" target="_blank"
                                 class="w-max p-2 border-2 border-Genoa rounded-lg flex items-center gap-2">
@@ -204,23 +209,25 @@
                         </div>
                         <!-- Deskripsi Konten -->
                         <div class="w-full mb-5">
-                            <label for="textarea-label" class="block mb-2 text-sm font-medium dark:text-white">Deskripsi
+                            <label for="textarea-label"
+                                class="block mb-2 text-sm 2xl:text-base font-medium dark:text-white">Deskripsi
                                 Konten :</label>
                             <textarea id="textarea-label"
-                                class="block w-full px-4 py-3 text-sm border-gray-200 rounded-lg focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                class="block w-full px-4 py-3 text-sm 2xl:text-base border-gray-200 rounded-lg focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                 rows="3" placeholder="Deskripsi Konten" name="Deskripsi_Edukasi"
                                 readonly>{{ $Konten->Deskripsi_Edukasi }}</textarea>
                         </div>
                         <!-- Tipe Konten -->
                         <div class="w-full mb-5">
-                            <label for="input-label" class="block mb-2 text-sm font-medium dark:text-white">Tipe Konten
+                            <label for="input-label"
+                                class="block mb-2 text-sm 2xl:text-base font-medium dark:text-white">Tipe Konten
                                 :</label>
                             <select data-hs-select='{
                                 "placeholder": "Pilih Tipe Konten",
                                 "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
-                                "toggleClasses": "pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
+                                "toggleClasses": "pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-200 rounded-lg text-start text-sm 2xl:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-neutral-600",
                                 "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-900 dark:border-neutral-700",
-                                "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
+                                "optionClasses": "py-2 px-4 w-full text-sm 2xl:text-base text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 pointer-events-none hs-select-disabled:opacity-50 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:text-neutral-200 dark:focus:bg-neutral-800",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 dark:text-blue-500 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 dark:text-neutral-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                                 }' class="hidden" name="Jenis_Edukasi" required>

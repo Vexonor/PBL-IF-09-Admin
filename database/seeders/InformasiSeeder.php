@@ -36,6 +36,7 @@ class InformasiSeeder extends Seeder
                     'Belakang Padang',
                     'Batu Aji'
                 ]),
+                'Titik_Koordinat' => $faker->latitude . ', ' . $faker->longitude,
                 'Tanggal_Pengangkutan' => $faker->dateTimeBetween('first day of January 2020', 'last day of December 2024')->format('Y-m-d'),
                 'Jam_Pengangkutan' => $faker->time('H:i:s'),
                 'Status_Pengangkutan' => $faker->randomElement(['Selesai', 'Belum Selesai', 'Tertunda']),

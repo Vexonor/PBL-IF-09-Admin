@@ -33,7 +33,7 @@ class TPSSeeder extends Seeder
                     'Belakang Padang',
                     'Batu Aji'
                 ]),
-                'Titik_Koordinat' => $faker->latitude . ', ' . $faker->longitude, // Koordinat GPS acak
+                'Titik_Koordinat' => $faker->latitude . ', ' . $faker->longitude,
                 'Status_TPS' => $faker->randomElement(['Kosong', 'Penuh']),
                 'created_at' => now(),
                 'updated_at' => now(),

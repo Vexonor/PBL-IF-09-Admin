@@ -1,5 +1,5 @@
-<div class="sidebar min-h-full xl:h-lvh md:w-64 xl:w-[21.875rem] overflow-hidden">
-    <ul>
+<div class="sidebar min-h-full xl:h-lvh md:w-80 2xl:w-[21.875rem] overflow-hidden">
+    <ul class="sticky top-5">
         <li class="logo pointer-events-none flex justify-center items-center mt-3">
             <a href="#">
                 <div class="icon">
@@ -21,7 +21,7 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-md font-medium {{ $title == 'Dashboard' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-md 2xl:text-lg font-medium {{ $title == 'Dashboard' ? 'text-black' : 'text-white' }}">
                         Dashboard</div>
                 </a>
             </li>
@@ -38,11 +38,12 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-md font-medium {{ $title == 'Pengaduan' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-md 2xl:text-lg font-medium {{ $title == 'Pengaduan' ? 'text-black' : 'text-white' }}">
                         Pengaduan
                     </div>
                 </a>
             </li>
+
             <li class="{{ $title == 'Informasi Pengangkutan' ? 'active' : '' }}">
                 <a href="/informasiPengangkutan">
                     <div class="icon">
@@ -55,10 +56,11 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-md font-medium {{ $title == 'Informasi Pengangkutan' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-md 2xl:text-lg font-medium {{ $title == 'Informasi Pengangkutan' ? 'text-black' : 'text-white' }}">
                         Informasi Pengangkutan</div>
                 </a>
             </li>
+
             <li class="{{ $title == 'Konten Edukasi' ? 'active' : '' }}">
                 <a href="/kontenEdukasi">
                     <div class="icon">
@@ -71,11 +73,12 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-md font-medium {{ $title == 'Konten Edukasi' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-md 2xl:text-lg font-medium {{ $title == 'Konten Edukasi' ? 'text-black' : 'text-white' }}">
                         Konten Edukasi
                     </div>
                 </a>
             </li>
+
             <li class="{{ $title == 'Lokasi TPS' ? 'active' : '' }}">
                 <a href="/lokasiTPS">
                     <div class="icon">
@@ -88,11 +91,12 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-md font-medium {{ $title == 'Lokasi TPS' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-md 2xl:text-lg font-medium {{ $title == 'Lokasi TPS' ? 'text-black' : 'text-white' }}">
                         Lokasi
                         TPS</div>
                 </a>
             </li>
+
             <li class="{{ $title == 'Bank Sampah' ? 'active' : '' }}">
                 <a href="/bankSampah">
                     <div class="icon">
@@ -105,12 +109,14 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-md font-medium {{ $title == 'Bank Sampah' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-md 2xl:text-lg font-medium {{ $title == 'Bank Sampah' ? 'text-black' : 'text-white' }}">
                         Bank
                         Sampah
                     </div>
                 </a>
             </li>
+
+            @if (auth()->check() && optional(auth()->user()->AdminTable)->Role_Admin === 'Master')
             <li class="{{ $title == 'Admin' ? 'active' : '' }}">
                 <a href="/admin">
                     <div class="icon">
@@ -123,11 +129,13 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-md font-medium {{ $title == 'Admin' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-md 2xl:text-lg font-medium {{ $title == 'Admin' ? 'text-black' : 'text-white' }}">
                         Admin
                     </div>
                 </a>
             </li>
+            @endif
+
             <li class="{{ $title == 'Petugas Kebersihan' ? 'active' : '' }}">
                 <a href="/petugasKebersihan">
                     <div class="icon">
@@ -140,7 +148,7 @@
                         </svg>
                     </div>
                     <div
-                        class="text md:text-sm xl:text-md font-medium {{ $title == 'Petugas Kebersihan' ? 'text-black' : 'text-white' }}">
+                        class="text md:text-sm xl:text-md 2xl:text-lg font-medium {{ $title == 'Petugas Kebersihan' ? 'text-black' : 'text-white' }}">
                         Petugas
                         Kebersihan</div>
                 </a>
