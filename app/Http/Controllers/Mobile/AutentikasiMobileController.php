@@ -58,7 +58,7 @@ class AutentikasiMobileController extends Controller
     {
         $validateUser  = $request->validate([
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:8',
+            'password' => 'required|string',
         ]);
 
         $user = User::where('email', $validateUser ['email'])->first();
@@ -76,11 +76,55 @@ class AutentikasiMobileController extends Controller
                     'message' => 'Berhasil Masuk',
                     'ID_User' => $user->ID_User,
                     'Nama' => $user->Nama,
+                    'Email' => $user->email,
+                    'No_Telp' => $user->No_Telp,
+                    'Alamat' => $user->Alamat,
+                    'Jenis_Kelamin' => $user->Jenis_Kelamin,
+                    'Nik' => $user->Nik,
+                    'Tanggal_Lahir' => $user->Tanggal_Lahir,
+                    'Foto_Profil' => $user->Foto_Profil,
                     'token' => $token,
                 ], 200);
             }
         } else {
-            return response()->json(['message' => 'Email atau Kata Sandi salah'], 401);
+            return response()->json(['message' => 'Kata Sandi salah'], 401);
+        }
+    }
+
+    public function store(Request $request)
+    {
+        $validateDataDiri = $request->validate([
+            'ID_User' => 'required|String',
+            'Foto_Profil' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'No_Telp' => 'required|string',
+            'Alamat' => 'required|string',
+            'Jenis_Kelamin' => 'required|string',
+            'Tanggal_Lahir' => 'required|string',
+            'Nik' => 'required|string',
+        ]);
+
+        $user = User::find($request->ID_User);
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        if ($request->hasFile('Foto_Profil')) {
+            $file = $request->file('Foto_Profil');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $filePath = $file->storeAs('uploads/foto_profil', $filename, 'public');
+            
+            $validateDataDiri['Foto_Profil'] = $filePath;
+        }
+
+        $token = $user->createToken('token')->plainTextToken;
+
+        // Simpan file gambar
+        $update = $user->update($validateDataDiri);
+
+        if ($update) {
+            return response()->json(['message' => 'Data diri berhasil diperbarui', 'token' => $token, 'Foto_Profil' => $validateDataDiri['Foto_Profil']], 201);
+        } else {
+            return response()->json(['message' => 'Data diri gagal diperbarui!'], 500);
         }
     }
 

@@ -19,19 +19,18 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 //Auth
-Route::post('/daftar', [AutentikasiMobileController::class, 'daftar']);
 Route::post('/masuk', [AutentikasiMobileController::class, 'masuk']);
+Route::post('/daftar', [AutentikasiMobileController::class, 'daftar']);
+Route::post('/pembuka', [AutentikasiMobileController::class, 'store']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    // Beranda
-    Route::get('/beranda/{idUser}', [BerandaMobileController::class, 'show']);
 
     // Pengaduan
     Route::get('/pengaduan', [PengaduanMobileController::class, 'index']);
-    Route::get('/pengaduan/{id}', [PengaduanMobileController::class, 'show']);
     Route::post('/pengaduan', [PengaduanMobileController::class, 'store']);
-    Route::delete('/pengaduan/{id}', [PengaduanMobileController::class, 'destroy']);
+    Route::get('/pengaduan/{id}', [PengaduanMobileController::class, 'show']);
     Route::post('/pengaduan/{id}', [PengaduanMobileController::class, 'update']);
+    Route::delete('/pengaduan/{id}', [PengaduanMobileController::class, 'destroy']);
 
     // Informasi pengangkutan
     Route::get('/informasi_pengangkutan', [InformasiPengangkutanMobileController::class, 'index']);
