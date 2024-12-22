@@ -39,9 +39,12 @@ class laporan extends Controller
         $dataPengaduan = $queryPengaduan->paginate($dataCount);
         $dataPenanggungJawab = $queryPenanggungJawab->paginate($dataCount);
 
+        $pegaduan = LaporanModel::get();
+
         return view('/laporan', [
             "title" => "Pengaduan",
             "dataPengaduan" => $dataPengaduan,
+            "pegaduan" => $pegaduan,
             "dataPetugas" => $dataPetugas,
             "dataPenanggungJawab" => $dataPenanggungJawab,
             "user" => $user,

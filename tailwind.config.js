@@ -21,6 +21,7 @@ export default {
         "Beauty-Bush" : "EEB3B0",
         "Brick-Red" : "#B5333D",
         "Medium-Carmine" : "#B6333C",
+        "Charcoal" : "#323232"
         },
         fontFamily: {
           poppins: ["Poppins", "mono"],

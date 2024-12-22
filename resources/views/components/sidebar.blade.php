@@ -1,4 +1,4 @@
-<div class="sidebar min-h-full xl:h-lvh md:w-80 2xl:w-[21.875rem] overflow-hidden">
+<div class="sidebar min-h-full xl:h-lvh md:w-72 xl:w-80 2xl:w-[21.875rem] overflow-hidden">
     <ul class="sticky top-5">
         <li class="logo pointer-events-none flex justify-center items-center mt-3">
             <a href="#">

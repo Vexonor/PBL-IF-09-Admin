@@ -1,5 +1,6 @@
 :root {
     --clr: #ffffff;
+    --drk: #323232;
 }
 
 .sidebar {
@@ -38,7 +39,6 @@
     border-bottom-right-radius: 20px;
     box-shadow: 5px 5px 0 5px var(--clr);
     background: transparent;
-
 }
 
 .sidebar ul li.active::after {
@@ -51,7 +51,6 @@
     border-top-right-radius: 20px;
     box-shadow: 5px -5px 0 5px var(--clr);
     background: transparent;
-
 }
 
 .sidebar ul li.logo .icon {
@@ -93,10 +92,6 @@
 
 .sidebar ul li.active a .icon {
     color: #fff;
-}
-
-.sidebar ul li.active a .text {
-    color: var(--bg);
 }
 
 .sidebar ul li.active a .icon::before {
