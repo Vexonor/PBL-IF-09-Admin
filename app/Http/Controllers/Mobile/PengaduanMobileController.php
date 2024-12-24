@@ -33,27 +33,27 @@ class PengaduanMobileController extends Controller
     {
         $validatePengaduan = $request->validate([
             'ID_User' => 'required|string',
-            'Kategori_Laporan' => 'required|string|max:255',
-            'Deskripsi_Laporan' => 'required|string',
+            'Kategori_Pengaduan' => 'required|string|max:255',
+            'Deskripsi_Pengaduan' => 'required|string',
             'Titik_Koordinat' => 'required|string',
-            'Dokumen_Pendukung' => 'required',
+            'Gambar_Pengaduan' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
         ]);
-        $validatePengaduan ['Status_Laporan'] = 'Belum Selesai';
+        $validatePengaduan ['Status_Pengaduan'] = 'Belum Selesai';
 
-        if ($request->hasFile('Dokumen_Pendukung')) {
-            $file = $request->file('Dokumen_Pendukung');
+        if ($request->hasFile('Gambar_Pengaduan')) {
+            $file = $request->file('Gambar_Pengaduan');
             $filename = time() . '_' . $file->getClientOriginalName();
             $filePath = $file->storeAs('uploads/pengaduan', $filename, 'public');
             
-            $validatePengaduan['Dokumen_Pendukung'] = $filePath;
+            $validatePengaduan['Gambar_Pengaduan'] = $filePath;
         }
 
         $store = LaporanModel::create($validatePengaduan);
 
         if ($store) {
-            return response()->json(['message' => 'Pengaduan berhasil ditambahkan'], 201);
+            return response()->json(['message' => 'Berhasil menambah Pengaduan'], 201);
         } else {
-            return response()->json(['message' => 'Pengaduan gagal ditambahkan!'], 500);
+            return response()->json(['message' => 'Gagal menambah Pengaduan!'], 500);
         }
     }
 
@@ -62,13 +62,13 @@ class PengaduanMobileController extends Controller
      */
     public function show(string $id)
     {
-        $laporan = LaporanModel::find($id);
+        $pengaduan = LaporanModel::find($id);
 
-        if (!$laporan) {
-            return response()->json(['message' => 'Laporan tidak ditemukan'], 404);
+        if (!$pengaduan) {
+            return response()->json(['message' => 'Pengaduan tidak ditemukan!'], 404);
         }
 
-        return response()->json($laporan, 200);
+        return response()->json($pengaduan, 200);
     }
 
     /**
@@ -86,36 +86,40 @@ class PengaduanMobileController extends Controller
     {
         $pengaduan = LaporanModel::findOrFail($id);
 
+        if (!$pengaduan) { 
+            return response()->json(['message' => 'Pengaduan tidak ditemukan!'], 404);
+        }
+
         $validatePengaduan = $request->validate([
-            'Kategori_Laporan' => 'required|string|max:255',
-            'Deskripsi_Laporan' => 'required|string',
+            'Kategori_Pengaduan' => 'required|string|max:255',
+            'Deskripsi_Pengaduan' => 'required|string',
             'Titik_Koordinat' => 'required|string',
-            'Dokumen_Pendukung' => 'nullable',
+            'Gambar_Pengaduan' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
         ]);
 
-        if ($request->hasFile('Dokumen_Pendukung')) {
-            $filePath = storage_path('app/public/' . $pengaduan->Dokumen_Pendukung);
+        if ($request->hasFile('Gambar_Pengaduan')) {
+            $filePath = storage_path('app/public/' . $pengaduan->Gambar_Pengaduan);
             if (file_exists($filePath)) {
-                unlink($filePath);
+                $file = $request->file('Gambar_Pengaduan');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $filePath = $file->storeAs('uploads/pengaduan', $filename, 'public');
+                
+                $validatePengaduan['Gambar_Pengaduan'] = $filePath;
             } else {
-                Log::warning('File tidak ditemukan: ' . $filePath);
+                return response()->json(['message' => 'Terjadi kesalahan, Silakan coba lagi!', 'data' => $pengaduan], 500);
             }
 
-            $file = $request->file('Dokumen_Pendukung');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $filePath = $file->storeAs('uploads/pengaduan', $filename, 'public');
             
-            $validatePengaduan['Dokumen_Pendukung'] = $filePath;
         } else {
-            Log::warning('Tidak ada file yang dikirim');
+            return response()->json(['message' => 'Terjadi kesalahan, Silakan coba lagi!', 'data' => $pengaduan], 500);
         }
 
         $update = $pengaduan->update($validatePengaduan);
 
         if ($update) {
-            return response()->json(['message' => 'Pengaduan berhasil diperbarui', 'data' => $pengaduan], 200);
+            return response()->json(['message' => 'Berhasil memperbarui Pengaduan', 'data' => $pengaduan], 200);
         } else {
-            return response()->json(['message' => 'Pengaduan gagal diperbarui', 'data' => $pengaduan], 403);
+            return response()->json(['message' => 'Gagal memperbarui Pengaduan!', 'data' => $pengaduan], 403);
         }
     }
 
@@ -127,11 +131,11 @@ class PengaduanMobileController extends Controller
         $pengaduan = LaporanModel::find($id);
 
         if (!$pengaduan) {
-            return response()->json(['message' => 'Pengaduan tidak ditemukan'], 403);
+            return response()->json(['message' => 'Pengaduan tidak ditemukan!'], 404);
         }
 
-        if ($pengaduan->Dokumen_Pendukung) {
-            $filePath = storage_path('app/public/' . $pengaduan->Dokumen_Pendukung);
+        if ($pengaduan->Gambar_Pengaduan) {
+            $filePath = storage_path('app/public/' . $pengaduan->Gambar_Pengaduan);
             if (file_exists($filePath)) {
                 unlink($filePath);
             } else {
@@ -139,9 +143,12 @@ class PengaduanMobileController extends Controller
             }
         }
 
-        $pengaduan->delete();
+        $delete = $pengaduan->delete();
 
-
-        return response()->json(['message' => 'Pengaduan berhasil dihapus'], 201);
+        if ($delete) {
+            return response()->json(['message' => 'Berhasil menghapus Pengaduan'], 201);
+        } else {
+            return response()->json(['message' => 'Gagal menghapus Pengaduan!'], 403);
+        }
     }
 }

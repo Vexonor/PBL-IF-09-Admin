@@ -27,13 +27,13 @@ class laporan extends Controller
         $user = User::where('role', 'Warga')->get();
 
         if ($kategori) {
-            $queryPengaduan->where('Kategori_Laporan', $kategori);
-            $queryPenanggungJawab->where('Kategori_Laporan', $kategori);
+            $queryPengaduan->where('Kategori_Pengaduan', $kategori);
+            $queryPenanggungJawab->where('Kategori_Pengaduan', $kategori);
         }
 
         if ($status) {
-            $queryPengaduan->where('Status_Laporan', $status);
-            $queryPenanggungJawab->where('Status_Laporan', $status);
+            $queryPengaduan->where('Status_Pengaduan', $status);
+            $queryPenanggungJawab->where('Status_Pengaduan', $status);
         }
 
         $dataPengaduan = $queryPengaduan->paginate($dataCount);
@@ -56,11 +56,11 @@ class laporan extends Controller
 
     public function getKategori($kodeLaporan)
     {
-        $pengaduan = LaporanModel::where('Kode_Laporan', $kodeLaporan)->first();
+        $pengaduan = LaporanModel::where('Kode_Pengaduan', $kodeLaporan)->first();
 
         return response()->json([
-            'Kategori_Laporan' => $pengaduan ? $pengaduan->Kategori_Laporan : null,
-            'Status_Laporan' => $pengaduan ? $pengaduan->Status_Laporan : null,
+            'Kategori_Pengaduan' => $pengaduan ? $pengaduan->Kategori_Pengaduan : null,
+            'Status_Pengaduan' => $pengaduan ? $pengaduan->Status_Pengaduan : null,
         ]);
     }
 
@@ -68,22 +68,22 @@ class laporan extends Controller
     {
         $validatedData = $request->validate([
             'ID_User' => 'required',
-            'Kategori_Laporan' => 'required',
-            'Deskripsi_Laporan' => 'required',
+            'Kategori_Pengaduan' => 'required',
+            'Deskripsi_Pengaduan' => 'required',
             'Titik_Koordinat' => 'required',
-            'Dokumen_Pendukung' => 'required|file',
+            'Gambar_Pengaduan' => 'required|file',
         ]);
 
         $laporanData = [
             'ID_User' => $validatedData['ID_User'],
-            'Kategori_Laporan' => $validatedData['Kategori_Laporan'],
-            'Deskripsi_Laporan' => $validatedData['Deskripsi_Laporan'],
+            'Kategori_Pengaduan' => $validatedData['Kategori_Pengaduan'],
+            'Deskripsi_Pengaduan' => $validatedData['Deskripsi_Pengaduan'],
             'Titik_Koordinat' => $validatedData['Titik_Koordinat'],
         ];
 
-        if ($request->hasFile('Dokumen_Pendukung')) {
-            $dokumenPath = $request->file('Dokumen_Pendukung')->store('dokumen_pengaduan', 'public');
-            $laporanData['Dokumen_Pendukung'] = $dokumenPath;
+        if ($request->hasFile('Gambar_Pengaduan')) {
+            $dokumenPath = $request->file('Gambar_Pengaduan')->store('dokumen_pengaduan', 'public');
+            $laporanData['Gambar_Pengaduan'] = $dokumenPath;
         }
 
         $laporan = LaporanModel::create($laporanData);
@@ -93,7 +93,7 @@ class laporan extends Controller
                 $fotoPath = $request->file('Foto')->store('foto_pengaduan', 'public');
                 $fotoData = [
                     'Foto' => $fotoPath,
-                    'ID_Laporan' => $laporan->ID_Laporan,
+                    'ID_Pengaduan' => $laporan->ID_Pengaduan,
                 ];
                 FotoModel::create($fotoData);
             }
@@ -104,12 +104,12 @@ class laporan extends Controller
         return redirect()->back()->with('error', 'Gagal Membuat Pengaduan');
     }
 
-    public function updateLaporan(Request $request, $ID_Laporan)
+    public function updateLaporan(Request $request, $ID_Pengaduan)
     {
-        $laporan = LaporanModel::findOrFail($ID_Laporan);
+        $laporan = LaporanModel::findOrFail($ID_Pengaduan);
 
         $validateLaporan = $request->validate([
-            'Status_Laporan' => 'required'
+            'Status_Pengaduan' => 'required'
         ]);
 
         $status = $laporan->update($validateLaporan);
@@ -120,9 +120,9 @@ class laporan extends Controller
         }
     }
 
-    public function destroyLaporan($ID_Laporan)
+    public function destroyLaporan($ID_Pengaduan)
     {
-        $laporan = LaporanModel::findOrFail($ID_Laporan);
+        $laporan = LaporanModel::findOrFail($ID_Pengaduan);
 
         $status = $laporan->delete($laporan);
         if ($status) {
@@ -138,10 +138,10 @@ class laporan extends Controller
             DB::beginTransaction();
 
             $penanggungJawab = PenanggungJawabModel::create([
-                'Kode_Laporan' => $request->Kode_Laporan,
+                'Kode_Pengaduan' => $request->Kode_Pengaduan,
                 'ID_Petugas' => $request->ID_Petugas,
-                'Kategori_Laporan' => $request->Kategori_Laporan,
-                'Status_Laporan' => $request->Status_Laporan,
+                'Kategori_Pengaduan' => $request->Kategori_Pengaduan,
+                'Status_Pengaduan' => $request->Status_Pengaduan,
             ]);
 
             DB::commit();
@@ -163,10 +163,10 @@ class laporan extends Controller
             $penanggungJawab = PenanggungJawabModel::findOrFail($ID_PJ);
 
             $penanggungJawab->update([
-                'Kode_Laporan' => $request->Kode_Laporan,
+                'Kode_Pengaduan' => $request->Kode_Pengaduan,
                 'ID_Petugas' => $request->ID_Petugas,
-                'Kategori_Laporan' => $request->Kategori_Laporan,
-                'Status_Laporan' => $request->Status_Laporan,
+                'Kategori_Pengaduan' => $request->Kategori_Pengaduan,
+                'Status_Pengaduan' => $request->Status_Pengaduan,
             ]);
 
             DB::commit();

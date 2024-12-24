@@ -25,7 +25,7 @@ class AdminRequest extends FormRequest
             // Validation User
             'Nama' => 'required|string|max:255',
             'Tanggal_Lahir' => 'required|date|before_or_equal:today',
-            'Jenis_Kelamin' => 'required|in:Laki - Laki,Perempuan',
+            'Jenis_Kelamin' => 'required|in:Laki-laki,Perempuan',
             'Alamat' => 'required|string|max:500',
             'No_Telp' => 'required|string|max:15|regex:/^\+?[0-9]*$/',
             'email' => 'required|email',
@@ -44,7 +44,7 @@ class AdminRequest extends FormRequest
             'Tanggal_Lahir.required' => 'Tanggal lahir wajib diisi.',
             'Tanggal_Lahir.before' => 'Tanggal lahir harus sebelum hari ini.',
             'Jenis_Kelamin.required' => 'Jenis kelamin wajib diisi.',
-            'Jenis_Kelamin.in' => 'Jenis kelamin hanya boleh Laki - Laki atau Perempuan.',
+            'Jenis_Kelamin.in' => 'Jenis kelamin hanya boleh Laki-laki atau Perempuan.',
             'Alamat.required' => 'Alamat wajib diisi.',
             'No_Telp.required' => 'Nomor telepon wajib diisi.',
             'No_Telp.regex' => 'Format nomor telepon tidak valid.',

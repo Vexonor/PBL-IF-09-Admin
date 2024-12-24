@@ -32,7 +32,7 @@ class LokasiTpsMobileController extends Controller
         $lokasiTps = TPSModel::where('Wilayah_TPS', $kecamatan)->get();
 
         if (!$lokasiTps) {
-            return response()->json(['message' => 'Lokasi TPS tidak ditemukan'], 404);
+            return response()->json(['message' => 'Lokasi TPS tidak ditemukan!'], 404);
         }
 
         return response()->json($lokasiTps, 200);

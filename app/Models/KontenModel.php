@@ -15,14 +15,16 @@ class KontenModel extends Model
         "Link_URL",
         "Deskripsi_Edukasi",
         "Jenis_Edukasi",
-        "Status_Konten",
-        "Jumlah_Komentar",
-        "Jumlah_Like"
+        "Status_Edukasi",
     ];
 
     public function UserTable()
     {
         return $this->belongsTo(User::class, 'ID_User');
+    }
+    public function KomentarTable()
+    {
+        return $this->hasMany(Komentar::class, 'ID_Komentar', 'ID_Komentar');
     }
 
     public function scopeKonten(Builder $query, $search): void

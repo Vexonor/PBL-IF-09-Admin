@@ -36,9 +36,9 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('laporan')->group(function () {
         Route::get('/', [laporan::class, 'laporan'])->name('laporan.page');
         Route::post('/', [laporan::class, 'storeLaporan'])->name('laporan.store');
-        Route::patch('/{ID_Laporan}', [laporan::class, 'updateLaporan'])->name('laporan.update');
-        Route::delete('/{ID_Laporan}', [laporan::class, 'destroyLaporan'])->name('laporan.destroy');
-        Route::get('/get-kategori/{Kode_Laporan}', [laporan::class, 'getKategori'])->name('laporan.getKategori');
+        Route::patch('/{ID_Pengaduan}', [laporan::class, 'updateLaporan'])->name('laporan.update');
+        Route::delete('/{ID_Pengaduan}', [laporan::class, 'destroyLaporan'])->name('laporan.destroy');
+        Route::get('/get-kategori/{Kode_Pengaduan}', [laporan::class, 'getKategori'])->name('laporan.getKategori');
 
         Route::prefix('penanggungJawab')->group(function () {
             Route::post('/', [laporan::class, 'storePenanggungJawab'])->name('penanggungJawab.store');

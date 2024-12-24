@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Mobile;
 
 use App\Http\Controllers\Controller;
 use App\Models\InformasiModel;
+use App\Models\PetugasModel;
+use App\Models\user;
 use Illuminate\Http\Request;
 
 class InformasiPengangkutanMobileController extends Controller
@@ -13,8 +15,8 @@ class InformasiPengangkutanMobileController extends Controller
      */
     public function index()
     {
-        $informasi = InformasiModel::all();
-        return response()->json($informasi);
+        $informasiPengangkutan = InformasiModel::all();
+        return response()->json($informasiPengangkutan);
     }
 
     /**
@@ -28,9 +30,34 @@ class InformasiPengangkutanMobileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(InformasiModel $informasiModel)
+    public function show($idPetugas)
     {
-        //
+        $informasiPetugasPengangkutan = PetugasModel::where('ID_Petugas', $idPetugas)->first();
+
+        if (!$informasiPetugasPengangkutan) {
+            return response()->json(['message' => 'Petugas tidak ditemukan!'], 404);
+        }
+
+        $wilayahBertugas = $informasiPetugasPengangkutan->Wilayah_Bertugas;
+
+        $idUser = $informasiPetugasPengangkutan->ID_User;
+        
+        // Mencari user berdasarkan ID_User
+        $user = User::find($idUser);
+        
+        // Mengambil nama user
+        $namaPetugas  = $user?->Nama;
+        $noTelp = $user?->No_Telp;
+
+        if ($user) {
+            return response()->json([
+                'Wilayah_Bertugas' => $wilayahBertugas,
+                'Nama' => $namaPetugas,
+                'No_Telp' => $noTelp,
+            ], 200);
+        } else {
+            return response()->json(['message' => 'Gagal memuat Petugas!'], 403);
+        }
     }
 
     /**

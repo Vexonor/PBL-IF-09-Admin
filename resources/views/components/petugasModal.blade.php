@@ -67,7 +67,7 @@
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                                 }' class="hidden" name="Jenis_Kelamin" required>
                                 <option value="">Pilih</option>
-                                <option value="Laki - Laki">Laki - Laki</option>
+                                <option value="Laki-laki">Laki-laki</option>
                                 <option value="Perempuan">Perempuan</option>
                             </select>
                             @error('Jenis_Kelamin')
@@ -332,8 +332,8 @@
                                 class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                 required>
                                 <option value="" disabled>Pilih Jenis Kelamin</option>
-                                <option value="Laki - Laki"
-                                    {{ $User->UserTable->Jenis_Kelamin == 'Laki - Laki' ? 'selected' : '' }}>Laki - Laki
+                                <option value="Laki-laki"
+                                    {{ $User->UserTable->Jenis_Kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki
                                 </option>
                                 <option value="Perempuan"
                                     {{ $User->UserTable->Jenis_Kelamin == 'Perempuan' ? 'selected' : '' }}>
@@ -620,8 +620,8 @@
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                                 }' class="hidden" readonly>
                                 <option value="" disabled>Pilih</option>
-                                <option value="Laki - Laki"
-                                    {{ $User->UserTable->Jenis_Kelamin == 'Laki - Laki' ? 'selected' : '' }}>Laki - Laki
+                                <option value="Laki-laki"
+                                    {{ $User->UserTable->Jenis_Kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki
                                 </option>
                                 <option value="Perempuan"
                                     {{ $User->UserTable->Jenis_Kelamin == 'Perempuan' ? 'selected' : '' }}>

@@ -16,15 +16,15 @@ class PenanggungJawabSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        $laporanList = DB::table('Pengaduan')->pluck('Kode_Laporan');
+        $laporanList = DB::table('Pengaduan')->pluck('Kode_Pengaduan');
         $petugasList = DB::table('Petugas_Kebersihan')->where('Status_Keaktifan', 'Aktif')->pluck('ID_Petugas');
 
         for ($i = 0; $i < 20; $i++) {
             DB::table('Penanggung_Jawab')->insert([
-                'Kode_Laporan' => $faker->randomElement($laporanList),
+                'Kode_Pengaduan' => $faker->randomElement($laporanList),
                 'ID_Petugas' => $faker->randomElement($petugasList),
-                'Kategori_Laporan' => $faker->randomElement(['Pengangkutan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']),
-                'Status_Laporan' => $faker->randomElement(['Selesai', 'Sedang Diproses', 'Belum Selesai']),
+                'Kategori_Pengaduan' => $faker->randomElement(['Pengangkutan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']),
+                'Status_Pengaduan' => $faker->randomElement(['Selesai', 'Sedang Diproses', 'Belum Selesai']),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

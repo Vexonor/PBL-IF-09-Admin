@@ -110,13 +110,13 @@
                                 {{ $Konten->Jenis_Edukasi }}
                             </td>
                             <td class="px-6 py-4 text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap">
-                                @if ($Konten->Status_Konten === 'Telah Diunggah')
+                                @if ($Konten->Status_Edukasi === 'Telah Diunggah')
                                 <span
                                     class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-sm font-medium bg-Aquamarine text-Genoa">
                                     <span class="size-1.5 inline-block rounded-full bg-Genoa"></span>
                                     Telah Diunggah
                                 </span>
-                                @elseif ($Konten->Status_Konten === 'Draf')
+                                @elseif ($Konten->Status_Edukasi === 'Draf')
                                 <span
                                     class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-sm font-medium bg-yellow-100 text-Orange-Peel">
                                     <span class="size-1.5 inline-block rounded-full bg-Orange-Peel"></span>
@@ -129,7 +129,7 @@
                                     class="py-3 px-4 inline-flex items-center text-sm 2xl:text-base font-medium rounded-full gap-x-2 hover:bg-slate-200 border border-transparent text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal"
                                     data-hs-overlay="#edit-modal{{ $Konten->ID_Edukasi }}"
-                                    {{ $Konten->Status_Konten === 'Telah Diunggah' ? 'disabled=""' : '' }}>
+                                    {{ $Konten->Status_Edukasi === 'Telah Diunggah' ? 'disabled=""' : '' }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4 xl:size-5 2xl:size-6"
                                         fill="#000000" viewBox="0 0 256 256">
                                         <path

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Warga;
 
@@ -23,7 +25,7 @@ class AutentikasiMobileController extends Controller
             
             // Menambahkan role dan meng-hash password
             $validateUser ['role'] = 'Warga';
-            $validateUser ['password'] = bcrypt($validateUser ['password']);
+            $validateUser ['password'] = Hash::make($validateUser ['password']);
 
             // Membuat pengguna baru
             $user = User::create($validateUser);
@@ -93,19 +95,24 @@ class AutentikasiMobileController extends Controller
 
     public function store(Request $request)
     {
-        $validateDataDiri = $request->validate([
-            'ID_User' => 'required|String',
-            'Foto_Profil' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'No_Telp' => 'required|string',
-            'Alamat' => 'required|string',
-            'Jenis_Kelamin' => 'required|string',
-            'Tanggal_Lahir' => 'required|string',
-            'Nik' => 'required|string',
-        ]);
+        try {
+            $validateDataDiri = $request->validate([
+                'ID_User' => 'required|string',
+                'Foto_Profil' => 'required|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'No_Telp' => 'required|string',
+                'Alamat' => 'required|string',
+                'Jenis_Kelamin' => 'required|string',
+                'Tanggal_Lahir' => 'required|string',
+                'Nik' => 'required|string',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Mengembalikan error validasi
+            return response()->json(['message' => 'Validation Error', 'errors' => $e->validator->errors()], 422);
+        }
 
         $user = User::find($request->ID_User);
         if (!$user) {
-            return response()->json(['message' => 'User not found'], 404);
+            return response()->json(['message' => 'Terjadi Kesalahan, Pengguna tidak ditemukan!'], 404);
         }
 
         if ($request->hasFile('Foto_Profil')) {
@@ -122,9 +129,87 @@ class AutentikasiMobileController extends Controller
         $update = $user->update($validateDataDiri);
 
         if ($update) {
+            return response()->json(['message' => 'Data diri berhasil diperbarui, Selamat Datang', 'token' => $token, 'Foto_Profil' => $validateDataDiri['Foto_Profil']], 201);
+        } else {
+            return response()->json(['message' => 'Data diri gagal diperbarui!'], 500);
+        }
+    }
+
+    public function updateProfil(Request $request, string $userId)
+    {
+        $user = User::find($userId);
+        if (!$user) {
+            return response()->json(['message' => 'Terjadi Kesalahan, Pengguna tidak ditemukan!'], 404);
+        }
+
+        try {
+            $validateDataDiri = $request->validate([
+                'Nama' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:user,email,' . $user->ID_User . ',ID_User',
+                'Foto_Profil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
+                'No_Telp' => 'required|string',
+                'Alamat' => 'required|string',
+                'Jenis_Kelamin' => 'required|string',
+                'Tanggal_Lahir' => 'required|string',
+                'Nik' => 'required|string',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Mengembalikan error validasi
+            return response()->json(['message' => 'Validation Error', 'errors' => $e->validator->errors()], 422);
+        }
+
+        if ($request->hasFile('Foto_Profil')) {
+            $filePath = storage_path('app/public/' . $user->Foto_Profil);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+                $file = $request->file('Foto_Profil');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $filePath = $file->storeAs('uploads/foto_profil', $filename, 'public');
+            
+                $validateDataDiri['Foto_Profil'] = $filePath;
+            } else {
+                $validateDataDiri['Foto_Profil'] = $user->Foto_Profil;
+            }
+        } else {
+            $validateDataDiri['Foto_Profil'] = $user->Foto_Profil;
+        }
+
+        $token = $user->createToken('token')->plainTextToken;
+
+        // Simpan file gambar
+        $update = $user->update($validateDataDiri);
+
+        if ($update) {
             return response()->json(['message' => 'Data diri berhasil diperbarui', 'token' => $token, 'Foto_Profil' => $validateDataDiri['Foto_Profil']], 201);
         } else {
             return response()->json(['message' => 'Data diri gagal diperbarui!'], 500);
+        }
+    }
+
+    public function updateKataSandi(Request $request, string $userId)
+    {
+        $user = User::find($userId);
+        if (!$user) {
+            return response()->json(['message' => 'Terjadi Kesalahan, Pengguna tidak ditemukan!'], 404);
+        }
+
+        $request->validate([
+            'Kata_Sandi_Lama' => 'required|string',
+            'Kata_Sandi_Baru' => 'required|string|min:8',
+        ]);
+
+        if (!Hash::check($request->Kata_Sandi_Lama, $user->password)) {
+            return response()->json(['message' => 'Kata Sandi Lama tidak cocok!'], 403);
+        }
+
+        // Enkripsi kata sandi baru
+        $user->password = Hash::make($request->Kata_Sandi_Baru);
+        $update = $user->save();
+
+        if ($update) {
+            return response()->json(['message' => 'Kata Sandi berhasil diperbarui'], 201);
+        } else {
+            return response()->json(['message' => 'Kata Sandi gagal diperbarui!'], 500);
         }
     }
 

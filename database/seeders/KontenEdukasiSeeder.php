@@ -23,9 +23,7 @@ class KontenEdukasiSeeder extends Seeder
                 'Link_URL' => $faker->url(),
                 'Deskripsi_Edukasi' => $faker->paragraph(),
                 'Jenis_Edukasi' => $faker->randomElement(['Video', 'Artikel']),
-                'Status_Konten' => $faker->randomElement(['Draf', 'Telah Diunggah']),
-                'Jumlah_Komentar' => $faker->numberBetween(0, 100),
-                'Jumlah_Like' => $faker->numberBetween(0, 1000),
+                'Status_Edukasi' => $faker->randomElement(['Draf', 'Telah Diunggah']),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

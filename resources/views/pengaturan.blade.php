@@ -127,8 +127,8 @@
                     <select id="hs-select-label" name="Jenis_Kelamin"
                         class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none">
                         <option disabled="">Pilih Jenis Kelamin</option>
-                        <option value="Laki - Laki"
-                            {{ Auth::User()->Jenis_Kelamin == 'Laki - Laki' ? 'selected' : '' }}>Laki -
+                        <option value="Laki-laki"
+                            {{ Auth::User()->Jenis_Kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki -
                             Laki</option>
                         <option value="Perempuan" {{ Auth::User()->Jenis_Kelamin == 'Perempuan' ? 'selected' : '' }}>
                             Perempuan

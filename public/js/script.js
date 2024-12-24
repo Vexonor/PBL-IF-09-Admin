@@ -20,16 +20,16 @@ document.querySelectorAll('[data-hs-combo-box-output-item]').forEach(item => {
         const kategoriInput = document.getElementById('kategori_laporan_input');
         const statusInput = document.getElementById('status_laporan_input');
 
-        if (data.Kategori_Laporan) {
-            kategoriInput.value = data.Kategori_Laporan;
+        if (data.Kategori_Pengaduan) {
+            kategoriInput.value = data.Kategori_Pengaduan;
             kategoriInput.disabled = false;
         } else {
             kategoriInput.value = 'Tidak Ada Kategori';
             kategoriInput.disabled = true;
         }
 
-        if (data.Status_Laporan) {
-            statusInput.value = data.Status_Laporan;
+        if (data.Status_Pengaduan) {
+            statusInput.value = data.Status_Pengaduan;
             statusInput.disabled = false;
         } else {
             statusInput.value = 'Tidak Ada Status';

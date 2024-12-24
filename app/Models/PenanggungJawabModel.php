@@ -10,14 +10,14 @@ class PenanggungJawabModel extends Model
     protected $table = "Penanggung_Jawab";
     protected $primaryKey = "ID_PJ";
     protected $fillable = [
-        "Kode_Laporan",
+        "Kode_Pengaduan",
         "ID_Petugas",
-        "Kategori_Laporan",
-        "Status_Laporan",
+        "Kategori_Pengaduan",
+        "Status_Pengaduan",
     ];
     public function PengaduanTable()
     {
-        return $this->belongsTo(LaporanModel::class, 'Kode_Laporan');
+        return $this->belongsTo(LaporanModel::class, 'Kode_Pengaduan');
     }
     public function PetugasTable()
     {
@@ -28,7 +28,7 @@ class PenanggungJawabModel extends Model
     {
         $query->whereHas('PetugasTable.UserTable', function ($userQuery) use ($search) {
             $userQuery->where('Nama', 'LIKE', '%' . $search . '%')
-                ->orWhere('Kode_Laporan', 'LIKE', '%' . $search . '%');
+                ->orWhere('Kode_Pengaduan', 'LIKE', '%' . $search . '%');
         });
     }
 }

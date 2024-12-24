@@ -37,20 +37,20 @@ class LaporanSeeder extends Seeder
             }
 
             $laporanId = DB::table('Pengaduan')->insertGetId([
-                'Kode_Laporan' => 'LPR-' . strtoupper($faker->unique()->bothify('###')),
+                'Kode_Pengaduan' => 'LPR-' . strtoupper($faker->unique()->bothify('###')),
                 'ID_User' => $userId,
-                'Kategori_Laporan' => $faker->randomElement(['Pengangkutan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']),
-                'Deskripsi_Laporan' => $faker->sentence(20),
+                'Kategori_Pengaduan' => $faker->randomElement(['Pengangkutan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']),
+                'Deskripsi_Pengaduan' => $faker->sentence(20),
                 'Titik_Koordinat' => $faker->latitude . ', ' . $faker->longitude,
-                'Dokumen_Pendukung' => $storedDocumentPath,
-                'Status_Laporan' => $faker->randomElement(['Selesai', 'Sedang Diproses', 'Belum Selesai']),
+                'Gambar_Pengaduan' => $storedDocumentPath,
+                'Status_Pengaduan' => $faker->randomElement(['Selesai', 'Sedang Diproses', 'Belum Selesai']),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
 
             foreach ($fotoPaths as $fotoPath) {
                 DB::table('Foto_Pengaduan')->insert([
-                    'ID_Laporan' => $laporanId,
+                    'ID_Pengaduan' => $laporanId,
                     'Foto' => $fotoPath,
                     'created_at' => now(),
                     'updated_at' => now(),

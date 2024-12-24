@@ -100,7 +100,7 @@
                             </td>
                             <td
                                 class="px-3 py-4 text-xs xl:text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap">
-                                {{ $Pengaduan->Kode_Laporan }}
+                                {{ $Pengaduan->Kode_Pengaduan }}
                             </td>
                             <td
                                 class="px-6 py-4 text-xs xl:text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap">
@@ -109,22 +109,22 @@
                                 </p>
                             </td>
                             <td class="px-3 py-4 text-xs xl: 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap">
-                                {{ $Pengaduan->Kategori_Laporan }}
+                                {{ $Pengaduan->Kategori_Pengaduan }}
                             </td>
                             <td class="px-1 py-4 text-xs xl: 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap">
-                                @if ($Pengaduan->Status_Laporan === 'Selesai')
+                                @if ($Pengaduan->Status_Pengaduan === 'Selesai')
                                 <span
                                     class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-Aquamarine text-Genoa">
                                     <span class="size-1.5 inline-block rounded-full bg-Genoa"></span>
                                     Selesai
                                 </span>
-                                @elseif ($Pengaduan->Status_Laporan === 'Sedang Diproses')
+                                @elseif ($Pengaduan->Status_Pengaduan === 'Sedang Diproses')
                                 <span
                                     class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-100 text-Orange-Peel">
                                     <span class="size-1.5 inline-block rounded-full bg-Orange-Peel"></span>
                                     Sedang Diproses
                                 </span>
-                                @elseif($Pengaduan->Status_Laporan === 'Belum Selesai')
+                                @elseif($Pengaduan->Status_Pengaduan === 'Belum Selesai')
                                 <span
                                     class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-100 text-Medium-Carmine">
                                     <span class="size-1.5 inline-block rounded-full bg-Medium-Carmine"></span>
@@ -136,7 +136,7 @@
                                 <button type="button"
                                     class="inline-flex items-center px-4 py-3 text-sm 2xl:text-base font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-large-modal"
-                                    data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Laporan }}">
+                                    data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Pengaduan }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4 xl:size-5 2xl:size-6"
                                         fill="#000000" viewBox="0 0 256 256">
                                         <path
@@ -148,7 +148,7 @@
                                     class="inline-flex items-center px-4 py-3 text-sm 2xl:text-base font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Laporan }}">
+                                    data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Pengaduan }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4 xl:size-5 2xl:size-6"
                                         fill="#000000" viewBox="0 0 256 256">
                                         <path
@@ -160,7 +160,7 @@
                                     class="inline-flex items-center px-4 py-3 text-sm 2xl:text-base font-medium text-white border border-transparent rounded-full gap-x-2 hover:bg-slate-200 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal"
-                                    data-hs-overlay="#detail-modal{{ $Pengaduan->ID_Laporan }}">
+                                    data-hs-overlay="#detail-modal{{ $Pengaduan->ID_Pengaduan }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-4 xl:size-5 2xl:size-6"
                                         fill="#000000" viewBox="0 0 256 256">
                                         <path
@@ -240,7 +240,7 @@
                             </td>
                             <td
                                 class="px-3 py-4 text-xs xl:text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap">
-                                {{ $PJ->Kode_Laporan }}
+                                {{ $PJ->Kode_Pengaduan }}
                             </td>
                             <td
                                 class="px-6 py-4 text-xs xl:text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap">
@@ -250,23 +250,23 @@
                             </td>
                             <td
                                 class="px-6 py-4 text-xs xl:text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap">
-                                {{ $PJ->Kategori_Laporan }}
+                                {{ $PJ->Kategori_Pengaduan }}
                             </td>
                             <td
                                 class="px-1 py-4 text-xs xl:text-sm 2xl:text-base border-r-2 text-gray-800 whitespace-nowrap">
-                                @if ($PJ->Status_Laporan === 'Selesai')
+                                @if ($PJ->Status_Pengaduan === 'Selesai')
                                 <span
                                     class="inline-flex border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-sm font-medium bg-Aquamarine text-Genoa">
                                     <span class="size-1.5 inline-block rounded-full bg-Genoa"></span>
                                     Selesai
                                 </span>
-                                @elseif ($PJ->Status_Laporan === 'Sedang Diproses')
+                                @elseif ($PJ->Status_Pengaduan === 'Sedang Diproses')
                                 <span
                                     class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-sm font-medium bg-yellow-100 text-Orange-Peel">
                                     <span class="size-1.5 inline-block rounded-full bg-Orange-Peel"></span>
                                     Sedang Diproses
                                 </span>
-                                @elseif($PJ->Status_Laporan === 'Belum Selesai')
+                                @elseif($PJ->Status_Pengaduan === 'Belum Selesai')
                                 <span
                                     class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-sm font-medium bg-red-100 text-Medium-Carmine">
                                     <span class="size-1.5 inline-block rounded-full bg-Medium-Carmine"></span>

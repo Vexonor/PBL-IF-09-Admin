@@ -32,7 +32,7 @@ class BankSampahMobileController extends Controller
         $bankSampah = BankSampahModel::where('Jenis_Sampah', $jenisSampah)->get();
 
         if (!$bankSampah) {
-            return response()->json(['message' => 'Bank Sampah tidak ditemukan'], 404);
+            return response()->json(['message' => 'Bank Sampah tidak ditemukan!'], 404);
         }
 
         return response()->json($bankSampah, 200);

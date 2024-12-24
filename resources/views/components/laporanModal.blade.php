@@ -1,6 +1,6 @@
 @foreach ($dataPengaduan as $key => $Pengaduan)
 <!-- Edit Laporan -->
-<div id="edit-modal{{ $Pengaduan->ID_Laporan }}"
+<div id="edit-modal{{ $Pengaduan->ID_Pengaduan }}"
     class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
     <div
@@ -13,7 +13,7 @@
                 </h3>
                 <button type="button"
                     class="inline-flex items-center justify-center text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
-                    aria-label="Close" data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Laporan }}">
+                    aria-label="Close" data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Pengaduan }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -25,7 +25,7 @@
             </div>
             <div class="p-4 overflow-y-auto">
                 <div class="space-y-4">
-                    <form action="{{ route('laporan.update', ['ID_Laporan' => $Pengaduan -> ID_Laporan]) }}"
+                    <form action="{{ route('laporan.update', ['ID_Pengaduan' => $Pengaduan -> ID_Pengaduan]) }}"
                         method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
@@ -33,9 +33,9 @@
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm 2xl:text-base font-medium">Kode Laporan
                                 :</label>
-                            <input type="text" id="input-label" name="Kode_Laporan"
+                            <input type="text" id="input-label" name="Kode_Pengaduan"
                                 class="block w-full px-4 py-3 text-sm 2xl:text-base border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
-                                placeholder="Masukkan Kode Laporan" value="{{ $Pengaduan->Kode_Laporan }}" readonly>
+                                placeholder="Masukkan Kode Laporan" value="{{ $Pengaduan->Kode_Pengaduan }}" readonly>
                         </div>
                         <!-- Kategori Laporan -->
                         <div class="w-full mb-5">
@@ -43,38 +43,38 @@
                                 Laporan :</label>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="flex">
-                                    <input type="radio" name="Kategori_Laporan"
+                                    <input type="radio" name="Kategori_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-1" value="Pengangkutan Sampah"
-                                        {{ $Pengaduan->Kategori_Laporan === 'Pengangkutan Sampah' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Kategori_Pengaduan === 'Pengangkutan Sampah' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-1"
                                         class="text-sm 2xl:text-base text-gray-500 ms-2">Pengumpulan
                                         Sampah</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="Kategori_Laporan"
+                                    <input type="radio" name="Kategori_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-2" value="Kondisi TPS"
-                                        {{ $Pengaduan->Kategori_Laporan === 'Kondisi TPS' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Kategori_Pengaduan === 'Kondisi TPS' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-2"
                                         class="text-sm 2xl:text-base text-gray-500 ms-2">Kondisi
                                         TPS</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="Kategori_Laporan"
+                                    <input type="radio" name="Kategori_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-3" value="Tempat Sampah Liar"
-                                        {{ $Pengaduan->Kategori_Laporan === 'Tempat Sampah Liar' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Kategori_Pengaduan === 'Tempat Sampah Liar' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-3"
                                         class="text-sm 2xl:text-base text-gray-500 ms-2">Tempat
                                         Sampah
                                         Liar</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="Kategori_Laporan"
+                                    <input type="radio" name="Kategori_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-3" value="Lainnya"
-                                        {{ $Pengaduan->Kategori_Laporan === 'Lainnya' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Kategori_Pengaduan === 'Lainnya' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-3"
                                         class="text-sm 2xl:text-base text-gray-500 ms-2">Lainnya</label>
                                 </div>
@@ -84,10 +84,10 @@
                         <div class="w-full mb-5">
                             <label for="textarea-label" class="block mb-2 text-sm 2xl:text-base font-medium">Deskripsi
                                 Laporan</label>
-                            <textarea id="textarea-label" name="Deskripsi_Laporan"
+                            <textarea id="textarea-label" name="Deskripsi_Pengaduan"
                                 class="block w-full px-4 py-3 text-sm 2xl:text-base border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                 rows="3" placeholder="Deskripsi Laporan"
-                                readonly>{{ $Pengaduan->Deskripsi_Laporan }}</textarea>
+                                readonly>{{ $Pengaduan->Deskripsi_Pengaduan }}</textarea>
                         </div>
                         <!-- Titik Koordinat -->
                         <div class="w-full mb-5">
@@ -114,7 +114,7 @@
                                 Pendukung :</label>
                             <div class="grid grid-cols-3 gap-4">
                                 @foreach ($Pengaduan->FotoTable as $foto)
-                                @if ($foto->ID_Laporan === $Pengaduan->ID_Laporan)
+                                @if ($foto->ID_Pengaduan === $Pengaduan->ID_Pengaduan)
                                 <div class="col-span-1">
                                     <img src="{{ asset('storage/' . $foto->Foto) }}" class="size-full" alt="">
                                 </div>
@@ -127,8 +127,8 @@
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm 2xl:text-base font-medium">Dokumen
                                 Pendukung :</label>
-                            @if($Pengaduan->Dokumen_Pendukung)
-                            <a href="{{ Storage::url($Pengaduan->Dokumen_Pendukung) }}" target="_blank"
+                            @if($Pengaduan->Gambar_Pengaduan)
+                            <a href="{{ Storage::url($Pengaduan->Gambar_Pengaduan) }}" target="_blank"
                                 class="w-max p-2 border-2 border-Genoa rounded-lg flex items-center gap-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000"
                                     viewBox="0 0 256 256">
@@ -137,7 +137,7 @@
                                     </path>
                                 </svg>
                                 <p class="w-40 truncate">
-                                    {{ $Pengaduan->Dokumen_Pendukung }}
+                                    {{ $Pengaduan->Gambar_Pengaduan }}
                                 </p>
                             </a>
                             @else
@@ -150,10 +150,10 @@
                                 Laporan :</label>
                             <div class="flex gap-x-6">
                                 <div class="flex items-center">
-                                    <input type="radio" name="Status_Laporan"
+                                    <input type="radio" name="Status_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-1" value="Selesai"
-                                        {{ $Pengaduan->Status_Laporan === 'Selesai' ? 'checked' : '' }}>
+                                        {{ $Pengaduan->Status_Pengaduan === 'Selesai' ? 'checked' : '' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-base font-medium bg-Aquamarine text-Genoa">
                                         <span
@@ -163,10 +163,10 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input type="radio" name="Status_Laporan"
+                                    <input type="radio" name="Status_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-2" value="Sedang Diproses"
-                                        {{ $Pengaduan->Status_Laporan === 'Sedang Diproses' ? 'checked' : '' }}>
+                                        {{ $Pengaduan->Status_Pengaduan === 'Sedang Diproses' ? 'checked' : '' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-base font-medium bg-yellow-100 text-Orange-Peel">
                                         <span class="size-1.5 inline-block rounded-full bg-Orange-Peel"></span>
@@ -175,10 +175,10 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input type="radio" name="Status_Laporan"
+                                    <input type="radio" name="Status_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-3" value="Belum Selesai"
-                                        {{ $Pengaduan->Status_Laporan === 'Belum Selesai' ? 'checked' : '' }}>
+                                        {{ $Pengaduan->Status_Pengaduan === 'Belum Selesai' ? 'checked' : '' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-base font-medium bg-red-100 text-Medium-Carmine">
                                         <span class="size-1.5 inline-block rounded-full bg-Medium-Carmine"></span>
@@ -192,7 +192,7 @@
             <div class="flex items-center justify-end px-4 py-3 border-t gap-x-2">
                 <button type="button"
                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-800 bg-white border border-gray-200 rounded-lg shadow-sm gap-x-2 hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                    data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Laporan }}">
+                    data-hs-overlay="#edit-modal{{ $Pengaduan->ID_Pengaduan }}">
                     Tutup
                 </button>
                 <button type="submit"
@@ -211,7 +211,7 @@
 </div>
 
 <!-- Hapus Laporan -->
-<div id="hapus-modal{{ $Pengaduan->ID_Laporan }}"
+<div id="hapus-modal{{ $Pengaduan->ID_Pengaduan }}"
     class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-vertically-centered-modal-label">
     <div
@@ -223,7 +223,7 @@
                 </h3>
                 <button type="button"
                     class="inline-flex items-center justify-center text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
-                    aria-label="Close" data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Laporan }}">
+                    aria-label="Close" data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Pengaduan }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -239,7 +239,7 @@
                 </p>
 
                 <ul class="flex items-center justify-center gap-4 my-10">
-                    <li><button type="button" data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Laporan }}"
+                    <li><button type="button" data-hs-overlay="#hapus-modal{{ $Pengaduan->ID_Pengaduan }}"
                             class="btn-cancel inline-flex items-center justify-center w-32 px-4 py-3 text-sm font-medium text-white border border-transparent rounded-full gap-x-2 bg-Medium-Carmine focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 viewBox="0 0 256 256">
@@ -251,7 +251,7 @@
                         </button>
                     </li>
                     <li>
-                        <form action="{{ route('laporan.destroy', ['ID_Laporan' => $Pengaduan -> ID_Laporan]) }}"
+                        <form action="{{ route('laporan.destroy', ['ID_Pengaduan' => $Pengaduan -> ID_Pengaduan]) }}"
                             method="post">
                             @csrf
                             @method('DELETE')
@@ -274,7 +274,7 @@
 </div>
 
 <!-- Detail Laporan -->
-<div id="detail-modal{{ $Pengaduan->ID_Laporan }}"
+<div id="detail-modal{{ $Pengaduan->ID_Pengaduan }}"
     class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
     role="dialog" tabindex="-1" aria-labelledby="hs-large-modal-label">
     <div
@@ -287,7 +287,7 @@
                 </h3>
                 <button type="button"
                     class="inline-flex items-center justify-center text-gray-800 bg-gray-100 border border-transparent rounded-full size-8 gap-x-2 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
-                    aria-label="Close" data-hs-overlay="#detail-modal{{ $Pengaduan->ID_Laporan }}">
+                    aria-label="Close" data-hs-overlay="#detail-modal{{ $Pengaduan->ID_Pengaduan }}">
                     <span class="sr-only">Close</span>
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -304,9 +304,9 @@
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm 2xl:text-base font-medium">Kode Laporan
                                 :</label>
-                            <input type="text" id="input-label" name="Kode_Laporan"
+                            <input type="text" id="input-label" name="Kode_Pengaduan"
                                 class="block w-full px-4 py-3 text-sm 2xl:text-base border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
-                                placeholder="Masukkan Kode Laporan" value="{{ $Pengaduan->Kode_Laporan }}" readonly>
+                                placeholder="Masukkan Kode Laporan" value="{{ $Pengaduan->Kode_Pengaduan }}" readonly>
                         </div>
                         <!-- Kategori Laporan -->
                         <div class="w-full mb-5">
@@ -314,38 +314,38 @@
                                 Laporan :</label>
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="flex">
-                                    <input type="radio" name="Kategori_Laporan"
+                                    <input type="radio" name="Kategori_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-1" value="Pengangkutan Sampah"
-                                        {{ $Pengaduan->Kategori_Laporan === 'Pengangkutan Sampah' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Kategori_Pengaduan === 'Pengangkutan Sampah' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-1"
                                         class="text-sm 2xl:text-base text-gray-500 ms-2 dark:text-neutral-400">Pengumpulan
                                         Sampah</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="Kategori_Laporan"
+                                    <input type="radio" name="Kategori_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-2" value="Kondisi TPS"
-                                        {{ $Pengaduan->Kategori_Laporan === 'Kondisi TPS' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Kategori_Pengaduan === 'Kondisi TPS' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-2"
                                         class="text-sm 2xl:text-base text-gray-500 ms-2 dark:text-neutral-400">Kondisi
                                         TPS</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="Kategori_Laporan"
+                                    <input type="radio" name="Kategori_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-3" value="Tempat Sampah Liar"
-                                        {{ $Pengaduan->Kategori_Laporan === 'Tempat Sampah Liar' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Kategori_Pengaduan === 'Tempat Sampah Liar' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-3"
                                         class="text-sm 2xl:text-base text-gray-500 ms-2 dark:text-neutral-400">Tempat
                                         Sampah
                                         Liar</label>
                                 </div>
                                 <div class="flex">
-                                    <input type="radio" name="Kategori_Laporan"
+                                    <input type="radio" name="Kategori_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-3" value="Lainnya"
-                                        {{ $Pengaduan->Kategori_Laporan === 'Lainnya' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Kategori_Pengaduan === 'Lainnya' ? 'checked' : 'disabled' }}>
                                     <label for="hs-radio-group-3"
                                         class="text-sm 2xl:text-base text-gray-500 ms-2 dark:text-neutral-400">Lainnya</label>
                                 </div>
@@ -355,10 +355,10 @@
                         <div class="w-full mb-5">
                             <label for="textarea-label" class="block mb-2 text-sm 2xl:text-base font-medium">Deskripsi
                                 Laporan</label>
-                            <textarea id="textarea-label" name="Deskripsi_Laporan"
+                            <textarea id="textarea-label" name="Deskripsi_Pengaduan"
                                 class="block w-full px-4 py-3 text-sm 2xl:text-base border-gray-200 rounded-lg pointer-events-none focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                                 rows="3" placeholder="Deskripsi Laporan"
-                                readonly>{{ $Pengaduan->Deskripsi_Laporan }}</textarea>
+                                readonly>{{ $Pengaduan->Deskripsi_Pengaduan }}</textarea>
                         </div>
                         <!-- Titik Koordinat -->
                         <div class="w-full mb-5">
@@ -396,7 +396,7 @@
                                 Pendukung :</label>
                             <div class="grid grid-cols-3 gap-4">
                                 @foreach ($Pengaduan->FotoTable as $foto)
-                                @if ($foto->ID_Laporan === $Pengaduan->ID_Laporan)
+                                @if ($foto->ID_Pengaduan === $Pengaduan->ID_Pengaduan)
                                 <div class="col-span-1">
                                     <img src="{{ asset('storage/' . $foto->Foto) }}" class="size-full" alt="">
                                 </div>
@@ -409,8 +409,8 @@
                         <div class="w-full mb-5">
                             <label for="input-label" class="block mb-2 text-sm 2xl:text-base font-medium">Dokumen
                                 Pendukung :</label>
-                            @if($Pengaduan->Dokumen_Pendukung)
-                            <a href="{{ Storage::url($Pengaduan->Dokumen_Pendukung) }}" target="_blank"
+                            @if($Pengaduan->Gambar_Pengaduan)
+                            <a href="{{ Storage::url($Pengaduan->Gambar_Pengaduan) }}" target="_blank"
                                 class="w-max p-2 border-2 border-Genoa rounded-lg flex items-center gap-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000"
                                     viewBox="0 0 256 256">
@@ -419,7 +419,7 @@
                                     </path>
                                 </svg>
                                 <p class="w-40 truncate">
-                                    {{ $Pengaduan->Dokumen_Pendukung }}
+                                    {{ $Pengaduan->Gambar_Pengaduan }}
                                 </p>
                             </a>
                             @else
@@ -432,10 +432,10 @@
                                 Laporan :</label>
                             <div class="flex gap-x-6">
                                 <div class="flex items-center">
-                                    <input type="radio" name="Status_Laporan"
+                                    <input type="radio" name="Status_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-1" value="Selesai"
-                                        {{ $Pengaduan->Status_Laporan === 'Selesai' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Status_Pengaduan === 'Selesai' ? 'checked' : 'disabled' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Genoa items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-base font-medium bg-Aquamarine text-Genoa">
                                         <span class="size-1.5 inline-block rounded-full bg-Genoa"></span>
@@ -444,10 +444,10 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input type="radio" name="Status_Laporan"
+                                    <input type="radio" name="Status_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-2" value="Sedang Diproses"
-                                        {{ $Pengaduan->Status_Laporan === 'Sedang Diproses' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Status_Pengaduan === 'Sedang Diproses' ? 'checked' : 'disabled' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Orange-Peel items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-base font-medium bg-yellow-100 text-Orange-Peel">
                                         <span class="size-1.5 inline-block rounded-full bg-Orange-Peel"></span>
@@ -456,10 +456,10 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <input type="radio" name="Status_Laporan"
+                                    <input type="radio" name="Status_Pengaduan"
                                         class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                         id="hs-radio-group-3" value="Belum Selesai"
-                                        {{ $Pengaduan->Status_Laporan === 'Belum Selesai' ? 'checked' : 'disabled' }}>
+                                        {{ $Pengaduan->Status_Pengaduan === 'Belum Selesai' ? 'checked' : 'disabled' }}>
                                     <span
                                         class="inline-flex mx-5 border-2 border-Medium-Carmine items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs 2xl:text-base font-medium bg-red-100 text-Medium-Carmine">
                                         <span class="size-1.5 inline-block rounded-full bg-Medium-Carmine"></span>
@@ -561,7 +561,7 @@
                                 <div class="relative">
                                     <input
                                         class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                        type="text" role="combobox" aria-expanded="false" name="Kode_Laporan"
+                                        type="text" role="combobox" aria-expanded="false" name="Kode_Pengaduan"
                                         data-hs-combo-box-input="" id="kode_laporan_input" value="" required>
                                     <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
                                         data-hs-combo-box-toggle="">
@@ -575,14 +575,14 @@
                                     </div>
                                 </div>
                                 @foreach ($pegaduan as $Pengaduan)
-                                @if ($Pengaduan->Status_Laporan !== "Selesai")
+                                @if ($Pengaduan->Status_Pengaduan !== "Selesai")
                                 <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300"
-                                    style="display: none;" data-hs-combo-box-output="{{ $Pengaduan->Kode_Laporan }}">
+                                    style="display: none;" data-hs-combo-box-output="{{ $Pengaduan->Kode_Pengaduan }}">
                                     <div class="cursor-pointer py-2 px-4 w-full text-sm 2xl:text-base text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100"
-                                        tabindex="0" data-hs-combo-box-output-item="{{ $Pengaduan->Kode_Laporan }}">
+                                        tabindex="0" data-hs-combo-box-output-item="{{ $Pengaduan->Kode_Pengaduan }}">
                                         <div class="flex justify-between items-center w-full">
-                                            <span data-hs-combo-box-search-text="{{ $Pengaduan->Kode_Laporan }}"
-                                                data-hs-combo-box-value="{{ $Pengaduan->Kode_Laporan }}">{{ $Pengaduan->Kode_Laporan }}</span>
+                                            <span data-hs-combo-box-search-text="{{ $Pengaduan->Kode_Pengaduan }}"
+                                                data-hs-combo-box-value="{{ $Pengaduan->Kode_Pengaduan }}">{{ $Pengaduan->Kode_Pengaduan }}</span>
                                             <span class="hidden hs-combo-box-selected:block">
                                                 <svg class="shrink-0 size-3.5 text-blue-600"
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -597,7 +597,7 @@
                                 @endif
                                 @endforeach
                             </div>
-                            @error('Kode_Laporan')
+                            @error('Kode_Pengaduan')
                             <p class="text-sm 2xl:text-base text-red-600 mt-2" id="hs-validation-name-error-helper">
                                 {{ $message }}
                             </p>
@@ -610,8 +610,8 @@
                                 :</label>
                             <input type="text" id="kategori_laporan_input"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                placeholder="Masukkan Kategori Laporan" name="Kategori_Laporan" value="" readonly>
-                            @error('Kategori_Laporan')
+                                placeholder="Masukkan Kategori Laporan" name="Kategori_Pengaduan" value="" readonly>
+                            @error('Kategori_Pengaduan')
                             <p class="text-sm 2xl:text-base text-red-600 mt-2" id="hs-validation-name-error-helper">
                                 {{ $message }}
                             </p>
@@ -623,8 +623,8 @@
                                 Laporan :</label>
                             <input type="text" id="status_laporan_input"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                placeholder="Masukkan Status Laporan" name="Status_Laporan" value="">
-                            @error('Status_Laporan')
+                                placeholder="Masukkan Status Laporan" name="Status_Pengaduan" value="">
+                            @error('Status_Pengaduan')
                             <p class="text-sm 2xl:text-base text-red-600 mt-2" id="hs-validation-name-error-helper">
                                 {{ $message }}
                             </p>
@@ -742,9 +742,9 @@
                                 <div class="relative">
                                     <input
                                         class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                        type="text" role="combobox" aria-expanded="false" name="Kode_Laporan"
+                                        type="text" role="combobox" aria-expanded="false" name="Kode_Pengaduan"
                                         data-hs-combo-box-input="" id="kode_laporan_input"
-                                        value="{{ $PJ->Kode_Laporan }}" required>
+                                        value="{{ $PJ->Kode_Pengaduan }}" required>
                                     <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
                                         data-hs-combo-box-toggle="">
                                         <svg class="shrink-0 size-3.5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
@@ -756,14 +756,14 @@
                                     </div>
                                 </div>
                                 @foreach ($dataPengaduan as $Pengaduan)
-                                @if ($Pengaduan->Status_Laporan !== 'Selesai')
+                                @if ($Pengaduan->Status_Pengaduan !== 'Selesai')
                                 <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300"
-                                    style="display: none;" data-hs-combo-box-output="{{ $Pengaduan->Kode_Laporan }}">
+                                    style="display: none;" data-hs-combo-box-output="{{ $Pengaduan->Kode_Pengaduan }}">
                                     <div class="cursor-pointer py-2 px-4 w-full text-sm 2xl:text-base text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100"
-                                        tabindex="0" data-hs-combo-box-output-item="{{ $Pengaduan->Kode_Laporan }}">
+                                        tabindex="0" data-hs-combo-box-output-item="{{ $Pengaduan->Kode_Pengaduan }}">
                                         <div class="flex justify-between items-center w-full">
-                                            <span data-hs-combo-box-search-text="{{ $Pengaduan->Kode_Laporan }}"
-                                                data-hs-combo-box-value="{{ $Pengaduan->Kode_Laporan }}">{{ $Pengaduan->Kode_Laporan }}</span>
+                                            <span data-hs-combo-box-search-text="{{ $Pengaduan->Kode_Pengaduan }}"
+                                                data-hs-combo-box-value="{{ $Pengaduan->Kode_Pengaduan }}">{{ $Pengaduan->Kode_Pengaduan }}</span>
                                             <span class="hidden hs-combo-box-selected:block">
                                                 <svg class="shrink-0 size-3.5 text-blue-600"
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -778,7 +778,7 @@
                                 @endif
                                 @endforeach
                             </div>
-                            @error('Kode_Laporan')
+                            @error('Kode_Pengaduan')
                             <p class="text-sm 2xl:text-base text-red-600 mt-2" id="hs-validation-name-error-helper">
                                 {{ $message }}
                             </p>
@@ -791,9 +791,9 @@
                                 :</label>
                             <input type="text" id="kategori_laporan_input"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                placeholder="Masukkan Kategori Laporan" name="Kategori_Laporan"
-                                value="{{ $PJ->Kategori_Laporan }}" readonly>
-                            @error('Kategori_Laporan')
+                                placeholder="Masukkan Kategori Laporan" name="Kategori_Pengaduan"
+                                value="{{ $PJ->Kategori_Pengaduan }}" readonly>
+                            @error('Kategori_Pengaduan')
                             <p class="text-sm 2xl:text-base text-red-600 mt-2" id="hs-validation-name-error-helper">
                                 {{ $message }}
                             </p>
@@ -812,18 +812,18 @@
                                 "optionClasses": "py-2 px-4 w-full text-sm 2xl:text-base text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden" name="Status_Laporan" required>
+                                }' class="hidden" name="Status_Pengaduan" required>
                                 <option value="">Pilih</option>
-                                <option value="Selesai" {{ $PJ->Status_Laporan == 'Selesai' ? 'selected' : '' }}>Selesai
+                                <option value="Selesai" {{ $PJ->Status_Pengaduan == 'Selesai' ? 'selected' : '' }}>Selesai
                                 </option>
                                 <option value="Sedang Diproses"
-                                    {{ $PJ->Status_Laporan == 'Sedang Diproses' ? 'selected' : '' }}>
+                                    {{ $PJ->Status_Pengaduan == 'Sedang Diproses' ? 'selected' : '' }}>
                                     Sedang Diproses</option>
                                 <option value="Belum Selesai"
-                                    {{ $PJ->Status_Laporan == 'Belum Selesai' ? 'selected' : '' }}>
+                                    {{ $PJ->Status_Pengaduan == 'Belum Selesai' ? 'selected' : '' }}>
                                     Belum Selesai</option>
                             </select>
-                            @error('Status_Laporan')
+                            @error('Status_Pengaduan')
                             <p class="text-sm 2xl:text-base text-red-600 mt-2" id="hs-validation-name-error-helper">
                                 {{ $message }}
                             </p>
@@ -932,9 +932,9 @@
                                 <div class="relative">
                                     <input
                                         class="py-3 ps-4 pe-9 block w-full border-2 border-slate-400 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 pointer-events-none"
-                                        type="text" role="combobox" aria-expanded="false" name="Kode_Laporan"
+                                        type="text" role="combobox" aria-expanded="false" name="Kode_Pengaduan"
                                         data-hs-combo-box-input="" id="kode_laporan_input"
-                                        value="{{ $PJ->Kode_Laporan }}" required>
+                                        value="{{ $PJ->Kode_Pengaduan }}" required>
                                     <div class="absolute top-1/2 end-3 -translate-y-1/2" aria-expanded="false"
                                         data-hs-combo-box-toggle="">
                                         <svg class="shrink-0 size-3.5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
@@ -946,14 +946,14 @@
                                     </div>
                                 </div>
                                 @foreach ($dataPengaduan as $Pengaduan)
-                                @if ($Pengaduan->Status_Laporan !== 'Selesai')
+                                @if ($Pengaduan->Status_Pengaduan !== 'Selesai')
                                 <div class="absolute z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto pointer-events-none [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300"
-                                    style="display: none;" data-hs-combo-box-output="{{ $Pengaduan->Kode_Laporan }}">
+                                    style="display: none;" data-hs-combo-box-output="{{ $Pengaduan->Kode_Pengaduan }}">
                                     <div class="cursor-pointer py-2 px-4 w-full text-sm 2xl:text-base text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100"
-                                        tabindex="0" data-hs-combo-box-output-item="{{ $Pengaduan->Kode_Laporan }}">
+                                        tabindex="0" data-hs-combo-box-output-item="{{ $Pengaduan->Kode_Pengaduan }}">
                                         <div class="flex justify-between items-center w-full">
-                                            <span data-hs-combo-box-search-text="{{ $Pengaduan->Kode_Laporan }}"
-                                                data-hs-combo-box-value="{{ $Pengaduan->Kode_Laporan }}">{{ $Pengaduan->Kode_Laporan }}</span>
+                                            <span data-hs-combo-box-search-text="{{ $Pengaduan->Kode_Pengaduan }}"
+                                                data-hs-combo-box-value="{{ $Pengaduan->Kode_Pengaduan }}">{{ $Pengaduan->Kode_Pengaduan }}</span>
                                             <span class="hidden hs-combo-box-selected:block">
                                                 <svg class="shrink-0 size-3.5 text-blue-600"
                                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -976,8 +976,8 @@
                                 :</label>
                             <input type="text" id="kategori_laporan_input"
                                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm 2xl:text-base focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                placeholder="Masukkan Kategori Laporan" name="Kategori_Laporan"
-                                value="{{ $PJ->Kategori_Laporan }}" readonly>
+                                placeholder="Masukkan Kategori Laporan" name="Kategori_Pengaduan"
+                                value="{{ $PJ->Kategori_Pengaduan }}" readonly>
                         </div>
                         <!-- Status Laporan -->
                         <div class="w-full mb-5">
@@ -992,15 +992,15 @@
                                 "optionClasses": "py-2 px-4 w-full text-sm 2xl:text-base text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 pointer-events-none hs-select-disabled:opacity-50",
                                 "optionTemplate": "<div class=\"flex justify-between items-center w-full\"><span data-title></span><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-3.5 text-blue-600 \" xmlns=\"http:.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"20 6 9 17 4 12\"/></svg></span></div>",
                                 "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-gray-500 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
-                                }' class="hidden" name="Status_Laporan" required>
+                                }' class="hidden" name="Status_Pengaduan" required>
                                 <option value="">Pilih</option>
-                                <option value="Selesai" {{ $PJ->Status_Laporan == 'Selesai' ? 'selected' : '' }}>Selesai
+                                <option value="Selesai" {{ $PJ->Status_Pengaduan == 'Selesai' ? 'selected' : '' }}>Selesai
                                 </option>
                                 <option value="Sedang Diproses"
-                                    {{ $PJ->Status_Laporan == 'Sedang Diproses' ? 'selected' : '' }}>
+                                    {{ $PJ->Status_Pengaduan == 'Sedang Diproses' ? 'selected' : '' }}>
                                     Sedang Diproses</option>
                                 <option value="Belum Selesai"
-                                    {{ $PJ->Status_Laporan == 'Belum Selesai' ? 'selected' : '' }}>
+                                    {{ $PJ->Status_Pengaduan == 'Belum Selesai' ? 'selected' : '' }}>
                                     Belum Selesai</option>
                             </select>
                         </div>

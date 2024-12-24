@@ -22,7 +22,7 @@ class kontenController extends Controller
         }
 
         if ($status) {
-            $query->where('Status_Konten', $status);
+            $query->where('Status_Edukasi', $status);
         }
 
         $dataKonten = $query->paginate($dataCount);
@@ -103,7 +103,7 @@ class kontenController extends Controller
     {
         $konten = KontenModel::findOrFail($ID_Edukasi);
 
-        $konten->Status_Konten = "Telah Diunggah";
+        $konten->Status_Edukasi = "Telah Diunggah";
         $konten->save();
 
         return redirect()->back()->with('success', 'Konten Berhasil Diunggah');
