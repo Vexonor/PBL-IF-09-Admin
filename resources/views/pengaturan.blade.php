@@ -34,56 +34,51 @@
 
     <div class="col-span-2 bg-slate-100 rounded-md h-screen overflow-hidden">
         <!-- Section Informasi Personal -->
-        <section id="informasiPersonal" class="h-screen py-5">
+        <section id="informasiPersonal" class="h-screen py-1.5 xl:py-5">
             <h2 class="mx-5 my-5 text-lg font-bold">Informasi Personal</h2>
-            <div class="grid grid-cols-1 p-10 gap-4">
+            <div class="grid grid-cols-1 p-5 xl:p-10 gap-4">
                 <!-- Email -->
                 <div class="w-full">
-                    <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Email</label>
+                    <label for="input-label" class="block text-sm font-medium mb-2">Email</label>
                     <input type="text" id="input-label"
-                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 pointer-events-none"
+                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                         placeholder="you@site.com" value="{{ Auth::User()->email }}" readonly>
                 </div>
                 <!-- No. Telepon -->
                 <div class="w-full">
-                    <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">No. Telepon</label>
+                    <label for="input-label" class="block text-sm font-medium mb-2">No. Telepon</label>
                     <input type="text" id="input-label"
-                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 pointer-events-none"
+                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                         placeholder="0812345678" value="{{ Auth::User()->No_Telp }}" readonly>
                 </div>
                 <!-- Alamat -->
                 <div class="w-full">
-                    <label for="textarea-label" class="block text-sm font-medium mb-2 dark:text-white">Alamat</label>
+                    <label for="textarea-label" class="block text-sm font-medium mb-2">Alamat</label>
                     <textarea id="textarea-label"
-                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 pointer-events-none"
+                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                         rows="3" placeholder="Alamat" readonly>{{ Auth::User()->Alamat }}</textarea>
                 </div>
                 <!-- Jenis Kelamin -->
                 <div class="w-full">
-                    <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Jenis
+                    <label for="input-label" class="block text-sm font-medium mb-2">Jenis
                         Kelamin</label>
                     <input type="text" id="input-label"
-                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 pointer-events-none"
+                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                         placeholder="Jenis Kelamin" value="{{ Auth::User()->Jenis_Kelamin }}" readonly>
                 </div>
                 <!-- NIK -->
                 <div class="w-full">
-                    <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">NIK</label>
+                    <label for="input-label" class="block text-sm font-medium mb-2">NIK</label>
                     <input type="text" id="input-label"
-                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 pointer-events-none"
+                        class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                         placeholder="NIK" value="{{ Auth::User()->Nik }}" readonly>
                 </div>
             </div>
         </section>
 
         <!-- Section Ubah Profile -->
-        <section id="ubahProfile" class="h-screen py-5 overflow-auto  [&::-webkit-scrollbar]:w-2
-  [&::-webkit-scrollbar-track]:rounded-full
-  [&::-webkit-scrollbar-track]:bg-gray-100
-  [&::-webkit-scrollbar-thumb]:rounded-full
-  [&::-webkit-scrollbar-thumb]:bg-gray-300
-  dark:[&::-webkit-scrollbar-track]:bg-neutral-700
-  dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
+        <section id="ubahProfile"
+            class="h-screen py-5 overflow-auto  [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gray-300">
             <h2 class="mx-5 mt-5 text-lg font-bold">Ubah Profile</h2>
             <div class="grid grid-cols-1 p-10 gap-4">
                 <form action="{{ route('pengaturan.update', ['ID_User' => Auth::User()->ID_User]) }}" method="post"
@@ -92,49 +87,45 @@
                     @method('PATCH')
                     <!-- Nama -->
                     <div class="w-full">
-                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Nama</label>
+                        <label for="input-label" class="block text-sm font-medium mb-2">Nama</label>
                         <input type="text" id="input-label"
-                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="Nama" name="Nama" value="{{ Auth::User()->Nama }}" required>
                     </div>
                     <!-- Photo Profile -->
                     <div class="w-full">
-                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Foto
+                        <label for="input-label" class="block text-sm font-medium mb-2">Foto
                             Profile</label>
-                        <input type="file" name="Foto_Profil" id="file-input" class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400
-                            file:bg-gray-50 file:border-0
-                            file:me-4
-                            file:py-3 file:px-4
-                            dark:file:bg-neutral-700 dark:file:text-neutral-400">
+                        <input type="file" name="Foto_Profil" id="file-input"
+                            class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4">
                     </div>
                     <!-- Email -->
                     <div class="w-full">
-                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">Email</label>
+                        <label for="input-label" class="block text-sm font-medium mb-2">Email</label>
                         <input type="text" id="input-label"
-                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="you@site.com" name="email" value="{{ Auth::User()->email }}" required>
                     </div>
                     <!-- No. Telepon -->
                     <div class="w-full">
-                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">No.
+                        <label for="input-label" class="block text-sm font-medium mb-2">No.
                             Telepon</label>
                         <input type="text" id="input-label"
-                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="0812345678" name="No_Telp" value="{{ Auth::User()->No_Telp }}" required>
                     </div>
                     <!-- Alamat -->
                     <div class="w-full">
-                        <label for="textarea-label"
-                            class="block text-sm font-medium mb-2 dark:text-white">Alamat</label>
+                        <label for="textarea-label" class="block text-sm font-medium mb-2">Alamat</label>
                         <textarea id="textarea-label"
-                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                             rows="3" placeholder="Alamat" name="Alamat" required>{{ Auth::User()->Alamat }}</textarea>
                     </div>
                     <!-- Jenis Kelamin -->
-                    <label for="hs-select-label" class="block text-sm font-medium mb-2 dark:text-white">Jenis
+                    <label for="hs-select-label" class="block text-sm font-medium mb-2">Jenis
                         Kelamin</label>
                     <select id="hs-select-label" name="Jenis_Kelamin"
-                        class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                        class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none">
                         <option disabled="">Pilih Jenis Kelamin</option>
                         <option value="Laki - Laki"
                             {{ Auth::User()->Jenis_Kelamin == 'Laki - Laki' ? 'selected' : '' }}>Laki -
@@ -145,9 +136,9 @@
                     </select>
                     <!-- NIK -->
                     <div class="w-full">
-                        <label for="input-label" class="block text-sm font-medium mb-2 dark:text-white">NIK</label>
+                        <label for="input-label" class="block text-sm font-medium mb-2">NIK</label>
                         <input type="text" id="input-label"
-                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus-within:outline-none disabled:opacity-50 disabled:pointer-events-none"
                             placeholder="NIK" name="Nik" value="{{ Auth::User()->Nik }}" required>
                     </div>
                     <!-- Button Simpan -->
@@ -169,16 +160,16 @@
                     @method('PUT')
                     <!-- Kata Sandi Baru -->
                     <div class="w-full">
-                        <label class="block text-sm mb-2 dark:text-white">Password Baru</label>
+                        <label class="block text-sm mb-2">Password Baru</label>
                         <div class="flex">
                             <div class="relative flex-1">
                                 <input type="password" id="new-pass"
-                                    class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                    class="py-3 px-4 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                     placeholder="Enter password" name="newPass">
                                 <button type="button" data-hs-toggle-password='{
                                     "target": "#new-pass"
                                     }'
-                                    class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500">
+                                    class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600">
                                     <svg class="shrink-0 size-3.5" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round">
@@ -197,7 +188,7 @@
                                     </svg>
                                 </button>
                                 <div id="hs-strong-password-popover-new-pass"
-                                    class="hidden absolute z-50 w-full bg-white shadow-md rounded-lg p-4 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700">
+                                    class="hidden absolute z-50 w-full bg-white shadow-md rounded-lg p-4">
                                     <div id="hs-strong-password-in-popover" data-hs-strong-password='{
                                     "target": "#new-pass",
                                     "hints": "#hs-strong-password-popover-new-pass",
@@ -206,11 +197,11 @@
                                 }' class="flex mt-2 -mx-1">
                                     </div>
 
-                                    <h4 class="mt-3 text-sm font-semibold text-gray-800 dark:text-white">
+                                    <h4 class="mt-3 text-sm font-semibold text-gray-800">
                                         Password Harus Memiliki :
                                     </h4>
 
-                                    <ul class="space-y-1 text-sm text-gray-500 dark:text-neutral-500">
+                                    <ul class="space-y-1 text-sm text-gray-500">
                                         <li data-hs-strong-password-hints-rule-text="min-length"
                                             class="hs-strong-password-active:text-teal-500 flex items-center gap-x-2">
                                             <span class="hidden" data-check="">
@@ -324,15 +315,15 @@
 
                     <!-- Konfirmasi Kata Sandi Baru -->
                     <div class="w-full my-5">
-                        <label class="block text-sm mb-2 dark:text-white">Konfirmasi Password</label>
+                        <label class="block text-sm mb-2">Konfirmasi Password</label>
                         <div class="relative">
                             <input id="confirmPass" type="password" name="password"
-                                class="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                class="py-3 ps-4 pe-10 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                 placeholder="Enter password" value="" required>
                             <button type="button" data-hs-toggle-password='{
                             "target": "#confirmPass"
                             }'
-                                class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600 dark:text-neutral-600 dark:focus:text-blue-500">
+                                class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-blue-600">
                                 <svg class="shrink-0 size-3.5" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round">

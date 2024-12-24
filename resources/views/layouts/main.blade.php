@@ -29,6 +29,7 @@
     <!-- Message -->
     <div class="flex justify-center items-center">
         @include('alert/success')
+        @include('alert/cancel')
         @include('alert/error')
     </div>
 
@@ -39,20 +40,20 @@
         </div>
 
         <!-- Main Content -->
-        <div class="flex-grow flex flex-col">
+        <div class="flex-grow flex flex-col w-full px-8 xl:px-0 overflow-hidden">
             <!-- Header -->
-            <div class="grid grid-cols-5 p-5">
+            <div class="grid grid-cols-4 xl:grid-cols-5 p-5">
                 <!-- Title -->
-                <div class="col-span-2 flex items-center justify-center">
-                    <span class="font-semibold text-xl">{{ $title }}</span>
+                <div class="col-span-1 xl:col-span-2 flex items-center justify-center">
+                    <span class="font-semibold text-lg xl:text-xl">{{ $title }}</span>
                 </div>
 
                 <!-- Search Bar -->
-                <div class="col-span-2 flex items-center justify-center w-full">
+                <div class="col-span-2 mx-auto flex items-center justify-center w-10/12 xl:w-full">
                     <div class="relative w-full">
                         <form>
                             <input type="search" id="search"
-                                class="peer py-3 px-4 pl-11 w-full block bg-gray-100 border border-transparent rounded-full text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+                                class="peer py-3 px-4 pl-11 w-full block bg-gray-100 border border-transparent rounded-full text-sm focus:border-blue-500 focus:ring-blue-500"
                                 placeholder="Cari" name="search" autocomplete="off">
                         </form>
                         <div
@@ -71,7 +72,7 @@
                 <div class="col-span-1 flex justify-end">
                     <div class="hs-dropdown relative inline-flex">
                         <button id="hs-dropdown-custom-trigger" type="button"
-                            class="hs-dropdown-toggle py-1 ps-1 pe-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                            class="hs-dropdown-toggle py-1 ps-1 pe-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50"
                             aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
                             <img class="w-8 p-1 bg-slate-100 h-8 rounded-full"
                                 src="{{ Auth::User()->Foto_Profil ? asset('storage/' . Auth::User()->Foto_Profil) : asset('/img/user.svg') }}"
@@ -86,7 +87,7 @@
                                 <path d="m6 9 6 6 6-6" />
                             </svg>
                         </button>
-                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 z-10 hidden min-w-60 bg-white shadow-md rounded-lg mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700"
+                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 z-10 hidden min-w-60 bg-white shadow-md rounded-lg mt-2"
                             role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-custom-trigger">
                             <div class="p-1 space-y-0.5">
                                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 {{ $title == 'Pengaturan' ? 'text-black bg-green-100' : 'text-black bg-white' }}"
@@ -101,7 +102,7 @@
                                 </a>
                             </div>
                             <div class="p-1 space-y-0.5">
-                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700"
+                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 cursor-pointer"
                                     aria-haspopup="dialog" aria-expanded="false"
                                     aria-controls="hs-vertically-centered-scrollable-modal" data-hs-overlay="#modal">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="#000000"
@@ -119,7 +120,7 @@
             </div>
 
             <!-- Content -->
-            <div class="container 2xl:mx-auto p-5">
+            <div class="w-full xl:container mx-auto p-5 overflow-hidden">
                 @yield('main')
             </div>
         </div>
@@ -128,18 +129,17 @@
 
     <!-- Logout Modal -->
     <div id="modal"
-        class="hs-overlay hidden [--body-scroll:true] size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+        class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
         role="dialog" tabindex="-1" aria-labelledby="hs-vertically-centered-modal-label">
         <div
             class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
-            <div
-                class="w-full flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
-                    <h3 id="hs-vertically-centered-modal-label" class="font-bold text-gray-800 dark:text-white">
+            <div class="w-full flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto">
+                <div class="flex justify-between items-center py-3 px-4 border-b">
+                    <h3 id="hs-vertically-centered-modal-label" class="font-bold text-gray-800">
                         Konfirmasi Logout
                     </h3>
                     <button type="button"
-                        class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600"
+                        class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
                         aria-label="Close" data-hs-overlay="#modal">
                         <span class="sr-only">Close</span>
                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -151,13 +151,13 @@
                     </button>
                 </div>
                 <div class="p-4 overflow-y-auto">
-                    <p class="text-gray-800 text-center dark:text-neutral-400">
+                    <p class="text-gray-800 text-center">
                         Apakah anda yakin ingin logout?
                     </p>
 
                     <ul class="flex justify-center items-center gap-4 my-10">
                         <li><button type="button" data-hs-overlay="#modal"
-                                class="w-32 py-3 px-4 justify-center inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-transparent bg-Medium-Carmine text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
+                                class="btn-cancel w-32 py-3 px-4 justify-center inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-transparent bg-Medium-Carmine text-white focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                     viewBox="0 0 256 256">
                                     <path
