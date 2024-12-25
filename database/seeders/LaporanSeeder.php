@@ -37,7 +37,7 @@ class LaporanSeeder extends Seeder
             }
 
             $laporanId = DB::table('Pengaduan')->insertGetId([
-                'Kode_Pengaduan' => 'LPR-' . strtoupper($faker->unique()->bothify('###')),
+                'Kode_Pengaduan' => 'PGD-' . strtoupper($faker->unique()->bothify('###')),
                 'ID_User' => $userId,
                 'Kategori_Pengaduan' => $faker->randomElement(['Pengangkutan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']),
                 'Deskripsi_Pengaduan' => $faker->sentence(20),
