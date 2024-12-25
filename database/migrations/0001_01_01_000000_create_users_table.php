@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('User', function (Blueprint $table) {
             $table->id('ID_User');
             $table->string('Nama');
-            $table->bigInteger('Nik');
+            $table->bigInteger('Nik')->nullable();
             $table->date('Tanggal_Lahir');
             $table->enum('Jenis_Kelamin', ['Laki - Laki', 'Perempuan']);
             $table->longText('Alamat');
