@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id('ID_User');
             $table->string('Nama');
             $table->bigInteger('Nik')->nullable();
-            $table->date('Tanggal_Lahir')->nullable();
-            $table->enum('Jenis_Kelamin', ['Laki-laki', 'Perempuan'])->nullable();
-            $table->longText('Alamat')->nullable();
-            $table->char('No_Telp')->nullable();
+            $table->date('Tanggal_Lahir');
+            $table->enum('Jenis_Kelamin', ['Laki - Laki', 'Perempuan']);
+            $table->longText('Alamat');
+            $table->char('No_Telp');
             $table->string('Foto_Profil')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
