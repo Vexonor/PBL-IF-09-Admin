@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('Kategori_Pengaduan', ['Pengangkutan Sampah', 'Tempat Sampah Liar', 'Kondisi TPS', 'Lainnya']);
             $table->longText('Deskripsi_Pengaduan');
             $table->string('Titik_Koordinat');
-            $table->string('Gambar_Pengaduan');
+            $table->string('Gambar_Pengaduan')->nullable();
             $table->enum('Status_Pengaduan', ['Selesai', 'Sedang Diproses', 'Belum Selesai'])->default('Belum Selesai');
             $table->timestamps();
         });
