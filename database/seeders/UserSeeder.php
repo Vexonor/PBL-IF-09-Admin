@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 'Nama' => $faker->name,
                 'Nik' => $faker->unique()->randomNumber(9, true),
                 'Tanggal_Lahir' => $faker->date('Y-m-d', '2000-12-31'),
-                'Jenis_Kelamin' => $faker->randomElement(['Laki - laki', 'Perempuan']),
+                'Jenis_Kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
                 'Alamat' => $faker->address,
                 'No_Telp' => $faker->phoneNumber,
                 'Foto_Profil' => null,
